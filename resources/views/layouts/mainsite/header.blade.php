@@ -154,18 +154,18 @@
               <a class="nav-link" href="#statistics">Statistics</a>
             </li>
                         <li class="nav-item">
-              <a class="nav-link" href="faq/index.html">FAQ</a>
+              <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="support/index.html">Support</a>
+              <a class="nav-link" href="{{ route('contact-us') }}">Support</a>
             </li>
           </ul>
   
           <div class="nav-item language">
             <button class="btn btn-link nohover language en me-3 px-0" data-bs-toggle="modal" data-bs-target="#language-modal"><span class="ms-2 d-md-none d-xl-inline">en</span></button>
           </div>
-                      <a class="btn btn-light me-2" href="login/index.html">Login</a>
-            <a class="btn btn-light" href="signup/index.html">Sign up</a>
+                      <a class="btn btn-light me-2" href="{{ route('login') }}">Login</a>
+            <a class="btn btn-light" href="{{ route('register') }}">Sign up</a>
                   </div>
       </div>
     </nav>

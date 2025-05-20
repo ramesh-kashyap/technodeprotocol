@@ -1,320 +1,67 @@
 @include('layouts.mainsite.header')
 
-<div class="hero">
-    <div class="container text-center">
-        <h1>Create an <span class="gradient-text">Account</span></h1>
-        <p class="lead mt-4 mb-5" style="color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto;">
-            Join helixfund.live and start your investment journey today
-        </p>
-    </div>
-</div>
+<div class="regpage">
+  <div class="container">
+    <div class="regimg wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: fadeInLeft;"></div>
+    <div class="regimg2 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: fadeInRight;"></div>
 
-<section class="unique-section">
-    <div class="container">
+    <div class="row justify-content-center">
+      <div class="col mt-5">
 
-        <script language=javascript>
-            function checkform() {
-                if (document.regform.fullname.value == '') {
-                    alert("Please enter your full name!");
-                    document.regform.fullname.focus();
-                    return false;
-                }
-
-
-                if (document.regform.username.value == '') {
-                    alert("Please enter your username!");
-                    document.regform.username.focus();
-                    return false;
-                }
-                if (!document.regform.username.value.match(/^[A-Za-z0-9_\-]+$/)) {
-                    alert("For username you should use English letters and digits only!");
-                    document.regform.username.focus();
-                    return false;
-                }
-                if (document.regform.password.value == '') {
-                    alert("Please enter your password!");
-                    document.regform.password.focus();
-                    return false;
-                }
-                if (document.regform.password.value != document.regform.password2.value) {
-                    alert("Please check your password!");
-                    document.regform.password2.focus();
-                    return false;
-                }
-
-
-                if (document.regform.email.value == '') {
-                    alert("Please enter your e-mail address!");
-                    document.regform.email.focus();
-                    return false;
-                }
-                if (document.regform.email.value != document.regform.email1.value) {
-                    alert("Please retype your e-mail!");
-                    document.regform.email.focus();
-                    return false;
-                }
-
-                for (i in document.regform.elements) {
-                    f = document.regform.elements[i];
-                    if (f.name && f.name.match(/^pay_account/)) {
-                        if (f.value == '') continue;
-                        var notice = f.getAttribute('data-validate-notice');
-                        var invalid = 0;
-                        if (f.getAttribute('data-validate') == 'regexp') {
-                            var re = new RegExp(f.getAttribute('data-validate-regexp'));
-                            if (!f.value.match(re)) {
-                                invalid = 1;
-                            }
-                        } else if (f.getAttribute('data-validate') == 'email') {
-                            var re = /^[^\@]+\@[^\@]+\.\w{2,4}$/;
-                            if (!f.value.match(re)) {
-                                invalid = 1;
-                            }
-                        }
-                        if (invalid) {
-                            alert('Invalid account format. Expected ' + notice);
-                            f.focus();
-                            return false;
-                        }
-                    }
-                }
-
-                if (document.regform.agree.checked == false) {
-                    alert("You have to agree with the Terms and Conditions!");
-                    return false;
-                }
-
-                return true;
-            }
-
-            function IsNumeric(sText) {
-                var ValidChars = "0123456789";
-                var IsNumber = true;
-                var Char;
-                if (sText == '') return false;
-                for (i = 0; i < sText.length && IsNumber == true; i++) {
-                    Char = sText.charAt(i);
-                    if (ValidChars.indexOf(Char) == -1) {
-                        IsNumber = false;
-                    }
-                }
-                return IsNumber;
-            }
-
-        </script>
-
-
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card bento-card">
-                    <div class="card-body p-4">
-
-                        <form method="post" action="{{ route('registers') }}" name="regform">
-                            {{ csrf_field() }}
-
-
-                            <div class="row g-4">
-
-                                <div class="col-12">
-                                    <h4 class="mb-4">Personal Information</h4>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="mb-2">Full Name</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">
-                                                <i class='bx bx-user'></i>
-                                            </span>
-                                            <input type="text" name="name" value="" class="form-control"
-                                                placeholder="Enter your full name">
-                                        </div>
-                                    </div>
-                                </div>
-  
-                                        
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="mb-2">Sponsor</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">
-                                                <i class='bx bx-user-circle'></i>
-                                            </span>
-                                            <input type="text" name="sponsor" value=""   class="form-control"
-                                                placeholder="Choose a sponsor">
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                               
-
-
-<!-- 
-                                <div class="col-12">
-                                    <h4 class="mb-4 mt-4">Contact Information</h4>
-                                </div> -->
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="mb-2">Email Address</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">
-                                                <i class='bx bx-envelope'></i>
-                                            </span>
-                                            <input type="email" name="email" value="" class="form-control"
-                                                placeholder="Enter your email">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="mb-2">Phone</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">
-                                                <i class='bx bx-envelope'></i>
-                                            </span>
-                                            <input type="number" name="phone" value="" class="form-control"
-                                                placeholder="Enter your phone">
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="mb-2">Password</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">
-                                                <i class='bx bx-lock-alt'></i>
-                                            </span>
-                                            <input type="password" name="password" value="" class="form-control"
-                                                placeholder="Create password">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="mb-2">Confirm Password</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">
-                                                <i class='bx bx-lock'></i>
-                                            </span>
-                                            <input type="password" name="password_confirmation" value="" class="form-control"
-                                                placeholder="Confirm password">
-                                        </div>
-                                    </div>
-                                </div>
-                          
-<!-- 
-                                <div class="col-12">
-                                    <h4 class="mb-4 mt-4">Referral Information</h4>
-                                    <div class="alert alert-info d-flex align-items-center">
-                                        <i class='bx bx-user-plus me-2' style="font-size: 1.2rem;"></i>
-                                        Your Upline: <strong class="ms-2">N/A (n/a)</strong>
-                                    </div>
-                                </div> -->
-
-                                <div class="col-12 mt-4">
-
-                                </div>
-
-
-                                <div class="col-12 mt-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="agree" value="1"
-                                            id="agreeTerms">
-                                        <label class="form-check-label" for="agreeTerms">
-                                            I agree with the <a href="{{route('faq')}}" class="themed-link">Terms and
-                                                Conditions</a>
-                                        </label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="button w-100">Create Account</button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="text-center mt-4">
-                            <p style="color: rgba(255, 255, 255, 0.7);">
-                                Already have an account?
-                                <a href="{{route('login')}}" class="themed-link">Sign in here</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="row justify-content-center">
+      <div class="col-12 mb-5 wow fadeIn" data-wow-duration="2.5s" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 2.5s; animation-delay: 0.3s; animation-name: fadeIn;">
+        <div class="text-center">
+          <h1>Register Now</h1>
+          <span class="fs-4">And start mining cryptocurrency</span>
         </div>
+      </div>
+      <div class="col col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+        <div class="card wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUp;">
+          <div class="card-body" id="signup">
+            <form id="contact-form" action="/signup/" class="signup">
+
+              <div class="row">
+          <div class="col-12">
+              <input type="text" class="form-control mt-1" name="user_login" id="user_login" placeholder="User login">
+          </div>
+
+          <div class="col-12 mt-3">
+            <input type="email" class="form-control mt-1" name="user_email" id="user_email" placeholder="Your e-mail address">
+          </div>
+
+          <div class="col-12 mt-3">
+            <input type="password" class="form-control mt-1" name="password" id="password" placeholder="Password">
+          </div>
+
+          <div class="col-12 mt-3">
+            <input type="password" class="form-control mt-1" name="password2" id="password2" placeholder="Confirm password">
+          </div>
+
+          <div class="col-12 mt-3">
+            <div class="form-check mb-0">
+              <input type="checkbox" class="form-check-input" id="checkboxTerms" name="terms" value="true" checked="">
+              <label class="form-check-label" for="checkboxTerms"><small>I accept <a href="/terms/" target="_blank" class="_blank">usage rules</a></small></label>
+            </div>
+          </div>
+          <div class="col-12 mt-3 text-center">
+            <div class="h-captcha d-flex justify-content-center" data-sitekey="bee4c716-97a4-43ac-8aa8-fca04de80a80"><iframe src="https://newassets.hcaptcha.com/captcha/v1/3d86f84f0763959329e7e143f693dec441c0c973/static/hcaptcha.html#frame=checkbox&amp;id=0t37epmk3c0d&amp;host=synox.cc&amp;sentry=true&amp;reportapi=https%3A%2F%2Faccounts.hcaptcha.com&amp;recaptchacompat=true&amp;custom=false&amp;hl=en&amp;tplinks=on&amp;andint=off&amp;pstissuer=https%3A%2F%2Fpst-issuer.hcaptcha.com&amp;sitekey=bee4c716-97a4-43ac-8aa8-fca04de80a80&amp;theme=light&amp;origin=https%3A%2F%2Fsynox.cc" tabindex="0" frameborder="0" scrolling="no" allow="private-state-token-issuance 'src'; private-state-token-redemption 'src'" title="Widget containing checkbox for hCaptcha security challenge" data-hcaptcha-widget-id="0t37epmk3c0d" data-hcaptcha-response="" style="pointer-events: auto; background-color: rgba(255, 255, 255, 0); border-radius: 4px; width: 302px; height: 76px; overflow: hidden;"></iframe><textarea id="g-recaptcha-response-0t37epmk3c0d" name="g-recaptcha-response" style="display: none;"></textarea><textarea id="h-captcha-response-0t37epmk3c0d" name="h-captcha-response" style="display: none;"></textarea></div>
+          </div>
+          <div class="col-12 mt-3 d-grid">
+            <button type="submit" class="btn btn-primary py-3">Create Account</button>
+          </div>
+        </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
-
+    </div>
+    </div>
+    <div class="row">
+      <div class="col text-center my-5 fs-2 pb-5 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.8s" style="position: relative; z-index: 4; visibility: visible; animation-duration: 1s; animation-delay: 0.8s; animation-name: fadeInUp;">
+        Already have have an account? <a href="/login/">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
 @include('layouts.mainsite.footer')
-@include('partials.notify')
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
-</script>
-<script src="{{asset('')}}assets/js/gsap.min.js"></script>
-<script src="{{asset('')}}assets/js/ScrollTrigger.min.js"></script>
-<script src="{{asset('')}}assets/js/SplitText.min.js"></script>
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<script src="{{asset('')}}assets/js/app.js"></script>
-
-
-<script>
-    window.addEventListener('load', function () {
-        // All resources (images, scripts, stylesheets, etc.) are loaded
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer) {
-            // Add the 'hidden' class to trigger the fade-out animation
-            preloaderContainer.classList.add('hidden');
-
-            // Optional: If you want to completely remove the preloader from the DOM
-            // after the transition, you can listen for the 'transitionend' event.
-            preloaderContainer.addEventListener('transitionend', function () {
-                if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer)
-                    .opacity === '0') {
-                    preloaderContainer.style.display = 'none'; // Or preloaderContainer.remove();
-                }
-            }, {
-                once: true
-            }); // {once: true} ensures the event listener is removed after it fires
-        }
-
-        if (content) {
-            content.style.display = 'block'; // Or any other display type you need, e.g., 'flex'
-            // If you used opacity for content:
-            // content.style.opacity = '1';
-            // content.style.visibility = 'visible';
-        }
-    });
-
-    // Fallback in case 'load' event doesn't fire or takes too long (e.g., for broken images)
-    // You might want to adjust the timeout duration
-    setTimeout(function () {
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer && !preloaderContainer.classList.contains('hidden')) {
-            console.warn("Preloader timeout reached. Forcing hide.");
-            preloaderContainer.classList.add('hidden');
-            if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer).opacity ===
-                '0') {
-                preloaderContainer.style.display = 'none';
-            }
-            if (content) {
-                content.style.display = 'block';
-            }
-        }
-    }, 10000); // 10 seconds timeout as an example
-
-</script>
-
-
-</body>
-
-</html>
