@@ -24,6 +24,8 @@ class Login extends Controller
 
             ]);
 
+
+            // dd($validation->errors());
        
         //   if (isset($request->captcha)) {
         //         if (!captchaVerify($request->captcha, $request->captcha_secret)) {

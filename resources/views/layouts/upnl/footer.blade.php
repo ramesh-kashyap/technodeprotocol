@@ -6,7 +6,7 @@
         <div class="col col-lg-5 col-md-6 col-sm-8 col-xl-4">
           <div class="footer-about wow fadeIn d-flex d-md-block" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: fadeIn;">
             <a class="navbar-brand d-flex flex-row me-4 me-md-0" href="/">
-              <img src="/img/logo.png" style="height:3.5rem;">
+              <img src="{{asset('')}}assets/img/logo.png" style="height:3.5rem;">
                             <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">synox
                 <div style="font-size:1rem;margin-top:1.5rem;" class="text-end">mining</div>
               </div>
@@ -16,10 +16,10 @@
           
             <div class="row mobile_app">
               <div class="col-6 col-xl-5 col-xxl-4 mt-2 mt-md-5">
-                <img src="/img/appstore.png" class="gray" data-toggle="tooltip" data-html="true" data-placement="top" aria-label="Mobile app coming soon" data-bs-original-title="Mobile app coming soon">
+                <img src="{{asset('')}}assets/img/appstore.png" class="gray" data-toggle="tooltip" data-html="true" data-placement="top" aria-label="Mobile app coming soon" data-bs-original-title="Mobile app coming soon">
               </div>
               <div class="col-6 col-xl-5 col-xxl-4 mt-2 mt-md-5">
-                <img src="/img/googleplay.png" class="gray" data-toggle="tooltip" data-html="true" data-placement="top" aria-label="Mobile app coming soon" data-bs-original-title="Mobile app coming soon">
+                <img src="{{asset('')}}assets/img/googleplay.png" class="gray" data-toggle="tooltip" data-html="true" data-placement="top" aria-label="Mobile app coming soon" data-bs-original-title="Mobile app coming soon">
               </div>
             </div>
           
@@ -65,20 +65,20 @@
     <!--====== BACK TOP TOP PART ENDS ======-->
 
     <!--====== Javascript Files ======-->
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/count-up.min.js"></script>
-    <script src="/js/particles.min.js"></script>
+    <script src="{{asset('')}}assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('')}}assets/js/count-up.min.js"></script>
+    <script src="{{asset('')}}assets/js/particles.min.js"></script>
 
-	<script type="text/javascript" src="/js/wNumb.min.js"></script>
-	<script type="text/javascript" src="/js/plugins/jquery.easing.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/wNumb.min.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/plugins/jquery.easing.js"></script>
 	
-	<script type="text/javascript" src="/js/nouislider.min.js"></script>
-	<script type="text/javascript" src="/js/clipboard.min.js"></script>
-	<script type="text/javascript" src="/js/plugins/jquery.noty.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.knob.min.js"></script>
-	<script type="text/javascript" src="/js/script.js"></script>
-		<script type="text/javascript" src="/js/plugins/circle-progress.min.js"></script>
-	<script type="text/javascript" src="/js/account.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/nouislider.min.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/clipboard.min.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/plugins/jquery.noty.min.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/jquery.knob.min.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/script.js"></script>
+		<script type="text/javascript" src="{{asset('')}}assets/js/plugins/circle-progress.min.js"></script>
+	<script type="text/javascript" src="{{asset('')}}assets/js/account.js"></script>
 	  
 <noindex><a href="https://www.liveinternet.ru/click" target="_blank" style="display:none;"><img id="licnt0360" width="0" height="0" style="border:0" title="LiveInternet" src="https://counter.yadro.ru/hit?t45.5;rhttps%3A//synox.cc/partners/;s1280*720*24;uhttps%3A//synox.cc/mining/;hSynox%20Mining%20%u2014%20Mining;0.09051980913074853" alt=""></a><script>(function(d,s){d.getElementById("licnt0360").src=
 "https://counter.yadro.ru/hit?t45.5;r"+escape(d.referrer)+

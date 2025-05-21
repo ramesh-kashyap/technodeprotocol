@@ -1,793 +1,1177 @@
+ @include('layouts.upnl.header')
+<script>
+$(function() {
+  $('.SHA-256 .circle-progress').circleProgress({
+    lineCap: 'round',
+    size:120,
+    fill: {
+      gradient: ["rgba(142,112,238,1)", "rgba(54,130,197,1)"]
+    },
+    animation: {
+      duration: 2200, easing: "circleProgressEasing"
+    },
+  }).on('circle-animation-progress', function(event, progress, stepValue) {
+    $(this).find('strong').html( (stepValue*100).toFixed(2) + '<i>%</i>' );
+  });
+  $('.SCRYPT .circle-progress').circleProgress({
+    lineCap: 'round',
+    size:120,
+    fill: {
+      gradient: ["rgba(222,124,227,1)", "rgba(125,106,239,1)"]
+    },
+    animation: {
+      duration: 2200, easing: "circleProgressEasing"
+    },
+  }).on('circle-animation-progress', function(event, progress, stepValue) {
+    $(this).find('strong').html( (stepValue*100).toFixed(2) + '<i>%</i>' );
+  });
+});
+
+ 
+var profit = {
+	'btc': 0/60/60/10,
+	'bch': 2.1E-7/60/60/10,
+	'bnb': 0/60/60/10,
+	'dash': 0/60/60/10,
+	'doge': 0.0003772/60/60/10,
+	'xec': 3.74363582/60/60/10,
+	'kas': 0.00073899/60/60/10,
+	'ltc': 8.9E-7/60/60/10,
+	'trx': 0/60/60/10,
+	'usd.epc': 0/60/60/10,
+	'usdt.bep20': 0/60/60/10,
+	'usdt.trc20': 0/60/60/10,
+};
+
+var power = {
+		'KHEAVYHASH' : {
+				'kas': 20,
+			},
+		'SHA-256' : {
+				'btc': 20,
+				'bch': 20,
+				'xec': 20,
+			},
+		'SCRYPT' : {
+				'doge': 20,
+				'ltc': 20,
+			},
+	};
+var currencies = {
+		'btc':{
+				'enabled':'true',
+				'color':'ac6830',
+				'min_deposit':'0.0005',
+				'min_withdraw':'0.0005',
+				'algorithm':'SHA-256',
+				'name':'Bitcoin',
+				'currency':'btc',
+				'system':'',
+				},
+			'bch':{
+				'enabled':'true',
+				'color':'1f6e3b',
+				'min_deposit':'0.01',
+				'min_withdraw':'0.01',
+				'algorithm':'SHA-256',
+				'name':'Bitcoin Cash',
+				'currency':'bch',
+				'system':'',
+				},
+			'bnb':{
+				'enabled':'true',
+				'color':'',
+				'min_deposit':'0.005',
+				'min_withdraw':'0.005',
+				'algorithm':'',
+				'name':'BNB Coin',
+				'currency':'bnb',
+				'system':'',
+				},
+			'dash':{
+				'enabled':'true',
+				'color':'',
+				'min_deposit':'0.05',
+				'min_withdraw':'0.05',
+				'algorithm':'',
+				'name':'Dash',
+				'currency':'dash',
+				'system':'',
+				},
+			'doge':{
+				'enabled':'true',
+				'color':'af8e2f',
+				'min_deposit':'10',
+				'min_withdraw':'10',
+				'algorithm':'SCRYPT',
+				'name':'Dogecoin',
+				'currency':'doge',
+				'system':'',
+				},
+			'xec':{
+				'enabled':'true',
+				'color':'',
+				'min_deposit':'100000',
+				'min_withdraw':'100000',
+				'algorithm':'SHA-256',
+				'name':'eCash',
+				'currency':'xec',
+				'system':'',
+				},
+			'kas':{
+				'enabled':'true',
+				'color':'ababab',
+				'min_deposit':'50',
+				'min_withdraw':'50',
+				'algorithm':'KHEAVYHASH',
+				'name':'Kaspa',
+				'currency':'kas',
+				'system':'',
+				},
+			'ltc':{
+				'enabled':'true',
+				'color':'ababab',
+				'min_deposit':'0.03',
+				'min_withdraw':'0.03',
+				'algorithm':'SCRYPT',
+				'name':'Litecoin',
+				'currency':'ltc',
+				'system':'',
+				},
+			'trx':{
+				'enabled':'true',
+				'color':'',
+				'min_deposit':'10',
+				'min_withdraw':'10',
+				'algorithm':'',
+				'name':'Tron',
+				'currency':'trx',
+				'system':'',
+				},
+			'usd.epc':{
+				'enabled':'true',
+				'color':'',
+				'min_deposit':'1',
+				'min_withdraw':'1',
+				'algorithm':'',
+				'name':'ePayCore',
+				'currency':'usd',
+				'system':'epc',
+				},
+			'usdt.bep20':{
+				'enabled':'true',
+				'color':'',
+				'min_deposit':'5',
+				'min_withdraw':'5',
+				'algorithm':'',
+				'name':'Tether BEP20',
+				'currency':'usdt',
+				'system':'bep20',
+				},
+			'usdt.trc20':{
+				'enabled':'true',
+				'color':'',
+				'min_deposit':'5',
+				'min_withdraw':'10',
+				'algorithm':'',
+				'name':'Tether TRC20',
+				'currency':'usdt',
+				'system':'trc20',
+				},
+	};
+    
+var course = {
+			'btc': 105253.88985665,
+			'bch': 389.19314354,
+			'bnb': 644.14415961,
+			'dash': 23.4113029,
+			'doge': 0.22092387,
+			'xec': 2.226E-5,
+			'kas': 0.11276699,
+			'ltc': 93.5523894,
+			'trx': 0.27336542,
+			'usd.epc': 1,
+			'usdt.bep20': 1.00101,
+			'usdt.trc20': 1.00101,
+	};
+</script>
 <style>
-    .button {
-        cursor: pointer;
-        font-size: 1.4rem;
-        border-radius: 16px;
-        border: none;
-        padding: 2px;
-        background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
-        position: relative;
-    }
+  .server_img{
+    width:50%;
+  }
+  .server_img:before{
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 0;
+    right: -35rem;
+    top: -35rem;
+    width: 100rem;
+    height: 100rem;
+    border-radius: 100%;
+    background: rgba(21, 189, 255, 0);
+    background: radial-gradient(circle, rgba(21, 189, 255, .7) 0%, rgba(21, 189, 255, 0) 50%);
 
-    .button::after {
-        content: "";
-        position: absolute;
-        width: 65%;
-        height: 60%;
-        border-radius: 120px;
-        top: 0;
-        right: 0;
-        box-shadow: 0 0 20px #ffffff38;
-        z-index: -1;
-    }
-
-    .blob1 {
-        position: absolute;
-        width: 70px;
-        height: 70%;
-        border-radius: 16px;
-        bottom: 0;
-        left: 0;
-        background: radial-gradient(circle 60px at 0% 100%,
-                #3fe9ff,
-                #0000ff80,
-                transparent);
-        box-shadow: -10px 10px 30px #0051ff2d;
-    }
-
-    .inner {
-        padding: 5px 25px;
-        border-radius: 14px;
-        color: #fff;
-        z-index: 3;
-        position: relative;
-        background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
-    }
-
-    .inner::before {
-        content: "";
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        border-radius: 14px;
-        background: radial-gradient(circle 60px at 0% 100%,
-                #00e1ff1a,
-                #0000ff11,
-                transparent);
-        position: absolute;
-    }
-
+  }
+  .server_img:after{
+    content:'';
+    display:block;
+    background-image:url(/img/srv.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 100% 0;
+    
+    width:100%;
+    height:30rem;
+    position:absolute;
+    right:0;
+    top:0;
+  }
 </style>
-<div id="main-content" class="flex-grow-1 m-3">
-    <nav class="navbar navbar-expand-lg sticky-top shadow-sm main-header">
-        <div class="container-fluid">
-            <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#mobileMenu" aria-controls="mobileMenu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <button id="sidebarToggle" class="btn btn-outline-secondary d-none d-md-inline-block me-3">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <span class="navbar-brand text-capitalize text-white mb-0 h1 d-none d-sm-inline-block">account</span>
-
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item mb-0 dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user-circle fa-lg me-1"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
-                        <li><a class="dropdown-item" href="?a=support"><i
-                                    class="fas fa-headset fa-fw me-2"></i>Support</a></li>
-                        <li><a class="dropdown-item" href="?a=edit_account"><i
-                                    class="fas fa-user-edit fa-fw me-2"></i>Edit Account</a></li>
-                        <li><a class="dropdown-item" href="?a=security"><i
-                                    class="fas fa-shield-alt fa-fw me-2"></i>Security</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item text-danger" href="?a=logout"><i
-                                    class="fas fa-sign-out-alt fa-fw me-2"></i>Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- <div class="top-video">
-                <video class="top" src="{{asset('')}}assets/video/top.mp4" type="video/mp4" muted autoplay loop plays-inline
-                    poster="video/poster.png"></video>
-            </div> -->
-
-
-
-    <div class="row mt-3">
-        <!-- Account Security Card -->
-        <!-- <div class="col-12 mb-4 security-notice">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Security Notices</h4>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="alert alert-warning mb-0">
-                                <h5>Two Factor Authentication Not Enabled</h5>
-                                <p>Enhance your account security by activating Two Factor Authentication.</p>
-                                <a href="?a=security" class="sbmt">Enable 2FA</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-        <?php
-            
-            $quantifiable_count = 0;
-            $vip = 0;
-            if ($balance >= 10 ) {
-                $quantifiable_count = 3;
-                $vip = 1;
-            } 
-            if ($balance >= 210  && $userDirect >= 5) {
-                $quantifiable_count = 4;
-                $vip = 2;
-            } 
-            if ($balance >= 510 && $userDirect >= 10) {
-                $quantifiable_count = 6;
-                $vip = 3;
-            } 
-            // dd($userDirect);
-            ?>
-        <div class="col-md-6 mb-4  account-overview">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h4 class="mb-0"><i class="fas fa-chart-line me-2"></i>Trade Center</h4>
-                </div>
-                <div class="card-body">
-                    <!-- Junior Agent Logo / Title -->
-                    <h2 style="font-family: 'Arial Black', sans-serif; letter-spacing: 2px;">
-                        <span style="color:rgb(255, 255, 255);">VIP{{ $vip }}</span>
-
-                    </h2>
-
-
-                    @php
-                    $progress = $quantifiable_count > 0 ? ($todaysRoi / $quantifiable_count) * 100 : 0;
-                    @endphp
-
-                    <!-- Progress Bar -->
-                    <div class="progress my-3"
-                        style="height: 20px; border-radius: 50px; background-color: rgba(255,255,255,0.3);">
-                        <div class="progress-bar" role="progressbar"
-                            style="width: {{ $progress }}%; background:  #6e0daf; border-radius: 50px;"
-                            aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
-                        </div>
-                    </div>
-
-                    <!-- Assigned Orders -->
-                    <p class="mt-2" style="font-size: 16px;">Daily Assigned Trades:</p>
-                    <h4><b>{{ $todaysRoi }}/{{ $quantifiable_count }}</b></h4>
-
-                    <!-- Buttons -->
-
-
-
-
-
-                    @if (Auth::user()->last_trade != null)
-
-                    <?php
-                                    
-                                    $hourdiff = round((strtotime(date('Y-m-d H:i:s')) - strtotime(Auth::user()->last_trade)) / 3600);
-                                    
-                                    // echo $hourdiff;
-                                    
-                                    // echo $hourdiff;
-                                    
-                                    ?>
-
-
-                    @if ($hourdiff >= 24)
-                    <div class="btns d-flex justify-content-center mt-3 gap-2">
-                        <a href="{{ route('user.tradeOn') }}" class="button"
-                            style="display: block; width: 100%; max-width: 500px; text-decoration: none;">
-                            <div class="blob1"></div>
-                            <div class="blob2"></div>
-                            <div class="inner"
-                                style="background: radial-gradient(circle 80px at 80% -50%, #a020f0, #4b0082); text-align: center; width: 100%;">
-                                Start Quantization
-                            </div>
-                        </a>
-                    </div> @else
-                    <script src="https://code.jquery.com//jquery-3.3.1.min.js"></script>
-
-
-                    <?php
-                                        
-                                        $date1 = Auth::user()->last_trade;
-                                        $date1 = strtotime($date1);
-                                        $date1 = strtotime(' + 24 hours', $date1);
-                                        $new_date1 = date('Y-m-d H:i:s', $date1);
-                                        
-                                        //   echo $new_date1;
-                                        
-                                        ?>
-
-                    <script>
-                        // Set the date we're counting down to
-                        timer = setInterval(function () {
-                            countdownTimeStart();
-
-                        }, 1000);
-
-
-                        function countdownTimeStart() {
-
-                            var countDownDate = new Date("{{ $new_date1 }}").getTime();
-
-                            // Get todays date and time
-                            // var now = new Date().getTime();
-                            var now = new Date(new Date().toLocaleString('en-US', {
-                                timeZone: 'Asia/Kolkata'
-                            }))
-
-                            // Find the distance between now an the count down date
-                            var distance = countDownDate - now;
-
-                            // Time calculations for days, hours, minutes and seconds
-                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                            // Output the result in an element with id="demo"
-
-
-
-                            document.getElementById("tiles").innerHTML = "<span>" + hours + "h:</span><span>" +
-                                minutes + "m:</span><span>" +
-                                seconds + "s</span>";
-                            //   $('#left_time').html('Hello');
-
-                            // If the count down is over, write some text 
-                            if (distance < 0) {
-                                clearInterval(timer);
-                                document.getElementById("tiles").innerHTML = "EXPIRED";
-                            }
-
-                        }
-
-                    </script>
-
-
-
-                    @if(!isset($_GET['trade']))
-
-
-                    <div class="btns d-flex justify-content-center mt-3 gap-2">
-                        <a class="button" style="display: block; width: 100%; max-width: 500px; text-decoration: none;">
-                            <div class="blob1"></div>
-                            <div class="blob2"></div>
-                            <div class="inner"
-                                style="background: radial-gradient(circle 80px at 80% -50%,rgb(82, 81, 82),rgb(82, 81, 82)); text-align: center; width: 100%;">
-                                Next Quantization <span id="tiles"></span>
-                            </div>
-                        </a>
-                    </div>
-                    @endif
-
-
-                    @endif
-                    @else
-                    <div class="btns d-flex justify-content-center mt-3 gap-2">
-                        <a href="{{ route('user.tradeOn') }}" class="button"
-                            style="display: block; width: 100%; max-width: 500px; text-decoration: none;">
-                            <div class="blob1"></div>
-                            <div class="blob2"></div>
-                            <div class="inner"
-                                style="background: radial-gradient(circle 80px at 80% -50%, #a020f0, #4b0082); text-align: center; width: 100%;">
-                                Start Quantization
-                            </div>
-                        </a>
-                    </div>
-
-
-                    @endif
-
-
-                    <?php
-                                $status = false;
-                                $trade = false;
-                                
-                                $u_id = Auth::user()->id;
-                                if (isset($_GET['trade'])) {
-                                    $trade = true;
-                                    $trade_row = \DB::table('contract')->where('user_id', $u_id)->where('c_status', 1)->orderBy('created_at', 'DESC')->first();
-                                    if (!$trade_row) {
-                                        $status = true;
-                                    }
-                                    if ($status == true) {
-                                        header('Location: dashboard?notrade');
-                                        exit();
-                                    }
-                                }
-                                
-                                ?>
-
-                    @if ($trade === true)
-                    <div id="zscooProcess" class="quantify-execute mt-4"
-                        style="display: block; width: 100%; max-width: 500px;">
-                        <div class="process-box">
-                            <h3 style="font-size: 16px;">@lang('Helix Fund Run Panel Process') <span
-                                    class="spinner">⏳</span></h3>
-                            <div id="stepsLog"></div>
-                        </div>
-                    </div>
-
-                    <style>
-                        .spinner {
-                            animation: spin 1s linear infinite;
-                            display: inline-block;
-                            font-size: 18px;
-                            margin-left: 5px;
-                        }
-
-                        @keyframes spin {
-                            0% {
-                                transform: rotate(0deg);
-                            }
-
-                            100% {
-                                transform: rotate(360deg);
-                            }
-                        }
-
-                        .process-box {
-                            background: #222423;
-                            padding: 20px 25px;
-                            border-radius: 10px;
-                            font-family: 'Segoe UI', sans-serif;
-                            max-width: 450px;
-                            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-                            margin: 30px auto;
-                        }
-
-                        #stepsLog p {
-                            margin: 8px 0;
-                            font-size: 14px;
-                            color: #fff;
-                            line-height: 1.4;
-                        }
-
-                        .quantify-execute {
-                            margin-bottom: 80px;
-                        }
-
-                    </style>
-
-                    <script>
-                        document.addEventListener('DOMContentLoaded', async () => {
-                            const exchanges = ["BINANCE", "BITTREX", "KUCOIN", "HUOBI", "OKX"];
-                            const coin = "{{ $trade_row->c_name ?? 'SOL' }}";
-                            // Get random item from array
-                            function getRandomExchange() {
-                                return exchanges[Math.floor(Math.random() * exchanges.length)];
-                            }
-                            // Assign random exchanges
-                            const buyExchange = getRandomExchange();
-                            let sellExchange = getRandomExchange();
-
-                            // Ensure buy and sell are not the same
-                            while (sellExchange === buyExchange) {
-                                sellExchange = getRandomExchange();
-                            }
-
-                            const steps = [
-                                'Starting Helix Fund quantification',
-                                'Start queuing...',
-                                'Start capturing various exchange market prices',
-                                `Start executing buy order ${coin} ${buyExchange}`,
-                                `Start executing sell order ${coin} ${sellExchange}`,
-                                'Start allocating commissions',
-                                'The execution is completed and the commission distribution is successful'
-                            ];
-
-                            const stepsLog = document.getElementById('stepsLog');
-
-                            for (let i = 0; i < steps.length; i++) {
-                                await new Promise(resolve => setTimeout(resolve, 4000));
-                                const p = document.createElement('p');
-                                p.textContent = steps[i];
-                                stepsLog.appendChild(p);
-                            }
-
-                            setTimeout(() => {
-                                document.getElementById('zscooProcess').style.display = 'none';
-
-
-                            }, 6000);
-
-                            function closetrade() {
-                                fetch("{{ route('user.close-trade') }}").then(response => response
-                                        .json()) // Parse JSON response
-                                    .then(data => {
-                                        if (data.status) {
-                                            const profit = data.profit ? ?
-                                            "0.0000"; // fallback if no profit sent
-                                            console.log(data);
-                                            // Set the profit in the modal
-                                            document.getElementById("profitAmount").textContent =
-                                                `${profit} USDT`;
-
-                                            // Show modal and overlay
-
-                                            const popup = document.querySelector(".van-popup");
-                                            popup.classList.add("show");
-
-                                            // Show the popup by setting display to bloc
-
-
-                                            setTimeout(() => {
-                                                location
-                                            .reload(); // ⬅️i this refreshes the page
-                                            }, 3000);
-                                            // Add the 'show' class to trigger transitions/animations (like Bootstrap modals)
-
-                                            // Show execute button again
-                                            $('.quantify-execute').css('display', 'block');
-
-
-
-                                        } else {
-                                            // exit
-                                            $('.team-income').css('display', 'none')
-                                        }
-                                        // setTimeout(pollServer, 500000);
-                                    })
-                                    .catch((error) => {
-                                        console.error("Error polling server:", {
-                                            message: error.message,
-                                            stack: error.stack,
-                                            response: error.response,
-                                        });
-                                        // Retry polling after a delay (e.g., every 5 seconds)
-                                        // 
-                                    });
-
-                            }
-                            setTimeout(closetrade, 6000);
-
-
-                        });
-
-                    </script>
-                    @endif
-
-
-
-
-
-
-
-
-
-                    {{-- loader --}}
-
-
-
-
-                </div>
+<div id="mining" class="account mining py-lg-5">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12 py-4">
+				<div class="card wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s" style="visibility: visible; animation-duration: 0.7s; animation-delay: 0s; animation-name: fadeInUp;">
+          <div class="total-balance">
+              Total Balance: <span class="inter">$0.00</span>
+          </div>
+          <nav class="navbar navbar-account navbar-expand-md bg-body-tertiary p-0">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 w-100">
+                  <li class="nav-item">
+                    <a href="/mining/" class="active">Mining</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/partners/">Partners</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/deposit/">Deposit</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/buy-power/">Buy hashrate</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/exchange/">Exchange</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/withdraw/">Withdraw</a>
+                  </li>
+                  <li class="nav-item ms-auto">
+                    <a href="/bitcoin-faucet/"><i class="far fa-coin-vertical fa-lg text-warning me-1" style="bottom: 2.3rem;"></i> Free BTC</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-        </div>
+          </nav>
+				</div>
+			</div>
+      
+      <div class="col-12 pb-4">
+		<ul class="nav nav-pills nav-fill text-uppercase wow fadeIn position-relative" style="z-index: 1; visibility: visible; animation-duration: 0.7s; animation-delay: 0.5s; animation-name: fadeIn;" data-wow-duration=".7s" data-wow-delay=".5s" role="tablist" id="tabAlgorithm">
+						<li class="nav-item" role="presentation">
+				<a class="nav-link" id="tabAlgorithmKHEAVYHASH" data-bs-toggle="tab" href="#algorithmKHEAVYHASH" data-bs-target="#algorithmKHEAVYHASH" role="tab" aria-controls="algorithmKHEAVYHASH" aria-selected="false" tabindex="-1">
+					KHEAVYHASH
+				</a>
+			</li>
+						<li class="nav-item" role="presentation">
+				<a class="nav-link active" id="tabAlgorithmSHA-256" data-bs-toggle="tab" href="#algorithmSHA-256" data-bs-target="#algorithmSHA-256" role="tab" aria-controls="algorithmSHA-256" aria-selected="true">
+					SHA-256
+				</a>
+			</li>
+						<li class="nav-item" role="presentation">
+				<a class="nav-link" id="tabAlgorithmSCRYPT" data-bs-toggle="tab" href="#algorithmSCRYPT" data-bs-target="#algorithmSCRYPT" role="tab" aria-controls="algorithmSCRYPT" aria-selected="false" tabindex="-1">
+					SCRYPT
+				</a>
+			</li>
+					</ul>
+	</div>
+      
+		<div class="col-12">
 
-        <!-- Popup Modal -->
-        <div class="modal fade van-popup" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content text-white bg-dark rounded-4 p-4 position-relative text-center">
-                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
+			
+			<div class="tab-content" id="tabAlgorithmContent">
+			
+	
+<div class="tab-pane fade KHEAVYHASH algorithm pb-4" id="algorithmKHEAVYHASH" role="tabpanel" aria-labelledby="#tabAlgorithmKHEAVYHASH">
+			
+	
+	
+	<input type="hidden" name="algorithm" value="KHEAVYHASH">
+	<input type="hidden" name="algorithm_unit" value="TH/s">
 
-                    <div class="position-relative mb-3">
-                        <div class="bg-success bg-gradient rounded-circle mx-auto d-flex align-items-center justify-content-center"
-                            style="width: 80px; height: 80px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white"
-                                class="bi bi-check-lg" viewBox="0 0 16 16">
-                                <path
-                                    d="M13.485 1.893a.75.75 0 0 1 1.06 1.06L6.56 11.939 1.453 6.828a.75.75 0 0 1 1.06-1.06l3.932 3.931L13.485 1.893z" />
-                            </svg>
-                        </div>
+	<input type="hidden" name="available_power_warning" value="Use 100% of purchased power for maximum profit">
+	<input type="hidden" name="spent_power_warning" value="Mining is stopped">
+  
+  <div class="row">
+    <div class="col mb-4">
+      <div class="card shadow-lg overflow-hidden wow fadeInUp animated" data-wow-duration=".7s" data-wow-delay="0s" style="visibility: visible; animation-duration: 0.7s; animation-delay: 0s; animation-name: fadeInUp;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col col-sm-8">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="mb-4 pb-2 opacity-75">Your daily profit:</div>
+                  <div class="lvl mt-5">
+                    <div class="progress">
+                      <div style="width:00%;"></div>
                     </div>
-
-                    <h5 class="fw-bold mb-1">Strategy Complete</h5>
-                    <p class="mb-1">Congratulations To Get</p>
-                    <h4 class="fw-bold mb-4" id="profitAmount">1.47773 USDT</h4>
-
-                    <div class="d-flex justify-content-center gap-3">
-                        <a href="#" class="btn btn-outline-success px-4">View Order</a>
-                        <a href="#" class="btn btn-success text-white px-4">Confirm</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Account Overview Card -->
-        <div class="col-md-6 mb-4 account-overview">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h4 class="mb-0"><i class="fas fa-user me-2"></i>Account Information</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td><i class="fas fa-user-circle me-2"></i>Username:</td>
-                                    <td class="text-end">{{ $profile_data ? $profile_data->username : '' }}</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-calendar-alt me-2"></i>Activation Date:</td>
-                                    <td class="text-end">{{ $profile_data ? $profile_data->jdate : 'N/A' }}</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-clock me-2"></i>Last Access:</td>
-                                    <td class="text-end">{{ $profile_data ? $profile_data->created_at : '' }}</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-link me-2"></i>Referral Link:</td>
-                                    <td class="text-end">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="refLink"
-                                                value="{{ asset('') }}register?ref={{ Auth::user()->username }}"
-                                                readonly>
-                                            <button class="sbmt" onclick="copyReferralLink()">
-                                                <i class="fas fa-copy"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Financial Overview Card -->
-        <div class="col-md-6 mb-4 account-overview">
-            <div class="card h-100">
-                <div class="card-header">
-                    <h4 class="mb-0"><i class="fas fa-chart-line me-2"></i>Financial Overview</h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <!-- <tr>
-                                            <td><i class="fas fa-wallet me-2"></i>Account Balance:</td>
-                                            <td class="text-end">
-                                                <h4 class="mb-1">$<b>{{ number_format(Auth::user()->totalIncome->sum('comm'), 2) }}  {{generalDetail()->cur_text}}</b></h4>
-                                            </td>
-                                        </tr> -->
-                                <tr>
-                                    <td><i class="fas fa-coins me-2"></i>Active Deposit:</td>
-                                    <td class="text-end">
-                                        $<b>{{ number_format(Auth::user()->Activeinvestment->sum('amount'), 2) }}
-                                            {{generalDetail()->cur_text}}</b></td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-hand-holding-usd me-2"></i>Earned Total:</td>
-                                    <td class="text-end">
-                                        $<b>{{ number_format(Auth::user()->totalIncome->sum('comm'), 2) }}
-                                            {{generalDetail()->cur_text}}</b></td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-hand-holding-usd me-2"></i>Available Balance:</td>
-                                    <td class="text-end">
-                                        $<b>{{ number_format(Auth::user()->available_balance(), 2) }}
-                                            {{ generalDetail()->cur_text }}</b></td>
-                                </tr>
-
-                                <tr>
-                                    <td><i class="fas fa-hourglass-half me-2"></i>Pending Withdrawal:</td>
-                                    <td class="text-end">$<b>{{ number_format(Auth::user()->withdraw(), 2) }}
-                                            {{generalDetail()->cur_text}}</b></td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-money-bill-wave me-2"></i>withdrawtotal:</td>
-                                    <td class="text-end">$<b>{{ number_format(Auth::user()->withdraw(), 2) }}
-                                            {{generalDetail()->cur_text}}</b></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- Transaction History Card -->
-        <div class="col-md-6 mb-4 account-overview">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="mb-0"><i class="fas fa-history me-2"></i>Recent Transactions</h4>
-                </div>
-                <div class="card-body">
-                   <div class="row g-3">
-                     @if (is_array($records) || $records)
-                                    @foreach ($records as $value)
-                <div class="col-md-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="d-flex justify-content-between align-middle lvl-table">
+                                          <div class="item ratio ratio-1x1 active" data-lvl="0">
                         <div>
-                            <h5 class="mb-1">{{ $value->type === 'contract' ? 'ORDER REVENUE' : ($value->type === 'investment' ? 'DEPOSIT' : strtoupper($value->type)) }}
-</h5>
-                       <div class="small" style="color: {{ in_array(strtolower($value->description), ['approved', 'active']) ? 'green' : 'inherit' }}">
-    {{ strtolower($value->description) === 'approved' ? 'COMPLETED' : strtoupper($value->description) }}
-    {{ $value->type === 'contract' ? '-USDT' : '' }}
-</div>
+                        <span class="text-success fs-4" style="top:-2.2rem;">1%</span>
+                        <span>0 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="1">
+                        <div>
+                        <span>1.2%</span>
+                        <span>1 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="2">
+                        <div>
+                        <span>1.5%</span>
+                        <span>2 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="3">
+                        <div>
+                        <span>2%</span>
+                        <span>3 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="4">
+                        <div>
+                        <span>2.2%</span>
+                        <span>4 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="5">
+                        <div>
+                        <span>2.5%</span>
+                        <span>5 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="6">
+                        <div>
+                        <span>3%</span>
+                        <span>6 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="7">
+                        <div>
+                        <span>3.5%</span>
+                        <span>7 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="8">
+                        <div>
+                        <span>4%</span>
+                        <span>8 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="9">
+                        <div>
+                        <span>4.5%</span>
+                        <span>9 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="10">
+                        <div>
+                        <span>5%</span>
+                        <span>10 Level</span>
+                        </div>
+                      </div>
+                                        </div>
+                  </div>
+                </div>
+                
+                <div class="col">
+                  <div>
+                    <span class="opacity-75">Power in stock:</span><br><i class="lnil lnil-server-8 text-success" style="font-size:2rem;"></i> <span class="in_stock text-success inter" style="font-size:2rem;">10.00</span> <span class="text-success" style="font-size:1rem;">TH/s</span>
+                  </div>
+                  <div class="py-3 my-md-0 opacity-75">
+                    Available power:<br><span class="available_power inter text-warning" style="font-size:2rem;width:100%;"><i class="lnil lnil-alert-server"></i> 80% <small>(8 TH/s)</small></span>
+                  </div>
+                  <div class="opacity-75">
+                    Power used:<br><span class="spent_power inter text-warning" style="font-size:2rem;width:100%;"><i class="lnil lnil-spinner-7 fa-spin"></i> 20% <small>(2 TH/s)</small></span>
+                  </div>
 
-                        </div>
-                        <div class="text-end">
-                            <div class="d-flex align-items-center justify-content-end">
-                                <h4 class="mb-0 me-2">{{ number_format($value->amount, 2) }}</h4>
-                                <img src="http://127.0.0.1:8000/assets/images/102.png" height="17">
-                            </div>
-                            <small>  {{ date('D, d M Y H:i:s', strtotime($value->date)) }}</small>
-                        </div>
+                </div>
+                <div class="col position-relative" style="z-index:10;">
+                                    <div class="my-md-0">
+                    <span class="opacity-75">Bonus daily profit:</span><br><span class="profit_daily text-success inter" style="font-size:2rem;width:100%;">+0%</span><br>
+                    <small>For accumulated days without withdrawal</small>
+                  </div>
+
+                  <div class="py-4 my-md-0 opacity-75">
+                    Buy 90.00 TH/s to earn 1.2% daily
+                  </div>
+                  <a href="/buy-power/" class="btn btn-primary">Buy hashrate</a>
+                </div>
+              </div>
+            </div>
+            <div class="col d-none d-sm-block text-end">
+              <div class="server_img position-absolute top-0 end-0 me-5 mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+
+
+
+
+<div class="row justify-content-center cur_array wow fadeInUp animated" data-wow-duration=".7s" data-wow-delay=".1s" style="visibility: visible; animation-duration: 0.7s; animation-delay: 0.1s; animation-name: fadeInUp;">
+															<div class="col-12 col-lg-6 pb-4">
+		<div class="card shadow-lg">
+			<div class="card-body card-mining">
+				
+        <div class="row justify-content-center align-items-center">
+					<div class="col-12 d-flex flex-row">
+						<img src="/img/currencies/kas.png" style="height:4rem;width:4rem;" class="me-2">
+            <div>
+              <span class="fs-4 align-top text-uppercase">Kaspa</span>
+              <br>
+              <small>≈ $0.00</small>            </div>
+					</div>
+
+					<div class="col-12 text-center mt-3">
+						<div class="profit_div">
+						<span class="profit profit_kas fs-1 inter" style="font-variant-numeric: tabular-nums;">0.00125198</span> <small class="ml-2 mt-1">KAS</small>
+						</div>
+					</div>
+				</div>	
+        
+					
+				<div class="row">
+					<div class="col m-4">
+						<div class="mining_slider_div">
+							<div id="mining_slider_kas" class="mining_slider power_kas noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr" data-curency="kas">
+								<input type="hidden" class="custom-slider-input" name="custom-slider-value" value="0.00">
+							<div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.2, 1);"></div></div><div class="noUi-origin" style="transform: translate(-80%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="100.0" aria-valuenow="20.0" aria-valuetext="20.00"><div class="noUi-touch-area"></div></div></div></div></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col">
+                        
+            <small class="position-absolute end-0 me-3 top-0 mt-3 opacity-75" data-toggle="tooltip" data-bs-html="true" data-placement="top" data-bs-original-title="Change in 24 hours: <span class='text-success'>+7.47%</span>">1 KAS = $0.112767</small>
+						<div class="row">
+							<div class="col fs-5 text-white">
+								Your profit
+							</div>
+						</div>
+						<div class="row calc text-white opacity-75">
+							<div class="col-6">
+								<small>per hour:</small><br><span id="profit_hour_kas" class="inter">0.00073899</span> <small>KAS</small><br>
+								<small class="opacity-50" id="profit_hour_kas_usd">≈ $0.00</small>
+							</div>
+							<div class="col">
+								<small>per day:</small><br><span id="profit_day_kas" class="inter">0.01773569</span> <small>KAS</small><br>
+								<small class="opacity-50" id="profit_day_kas_usd">≈ $0.00</small>
+							</div>
+							<div class="col-6">
+								<small>per month:</small><br><span id="profit_month_kas" class="inter">0.53207060</span> <small>KAS</small><br>
+								<small class="opacity-50" id="profit_month_kas_usd">≈ $0.06</small>
+							</div>
+							<div class="col">
+								<small>in year:</small><br><span id="profit_year_kas" class="inter">6.38484720</span> <small>KAS</small><br>
+								<small class="opacity-50" id="profit_year_kas_usd">≈ $0.72</small>
+							</div>
+													</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+
+				  <input type="hidden" name="color" value="#ababab">
+								<div class="circle kas"></div>
+								<div class="icons_curency kas"></div>
+			</div>
+			</div>
+
+
+
+	</div>
+												</div>
+	
+	</div>
+			
+<div class="tab-pane fade show active SHA-256 algorithm pb-4" id="algorithmSHA-256" role="tabpanel" aria-labelledby="#tabAlgorithmSHA-256">
+			
+	
+	
+	<input type="hidden" name="algorithm" value="SHA-256">
+	<input type="hidden" name="algorithm_unit" value="TH/s">
+
+	<input type="hidden" name="available_power_warning" value="Use 100% of purchased power for maximum profit">
+	<input type="hidden" name="spent_power_warning" value="Mining is stopped">
+  
+  <div class="row">
+    <div class="col mb-4">
+      <div class="card shadow-lg overflow-hidden wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s" style="visibility: visible; animation-duration: 0.7s; animation-delay: 0s; animation-name: fadeInUp;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col col-sm-8">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="mb-4 pb-2 opacity-75">Your daily profit:</div>
+                  <div class="lvl mt-5">
+                    <div class="progress">
+                      <div style="width:00%;"></div>
                     </div>
+                    <div class="d-flex justify-content-between align-middle lvl-table">
+                                          <div class="item ratio ratio-1x1 active" data-lvl="0">
+                        <div>
+                        <span class="text-success fs-4" style="top:-2.2rem;">1%</span>
+                        <span>0 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="1">
+                        <div>
+                        <span>1.2%</span>
+                        <span>1 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="2">
+                        <div>
+                        <span>1.5%</span>
+                        <span>2 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="3">
+                        <div>
+                        <span>2%</span>
+                        <span>3 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="4">
+                        <div>
+                        <span>2.2%</span>
+                        <span>4 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="5">
+                        <div>
+                        <span>2.5%</span>
+                        <span>5 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="6">
+                        <div>
+                        <span>3%</span>
+                        <span>6 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="7">
+                        <div>
+                        <span>3.5%</span>
+                        <span>7 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="8">
+                        <div>
+                        <span>4%</span>
+                        <span>8 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="9">
+                        <div>
+                        <span>4.5%</span>
+                        <span>9 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="10">
+                        <div>
+                        <span>5%</span>
+                        <span>10 Level</span>
+                        </div>
+                      </div>
+                                        </div>
+                  </div>
                 </div>
-            </div>
-            
-        </div>
-               @endforeach
-                                @else
-                                    <p style="color: #000;">@lang('No bill history available.')</p>
-                                @endif
-            </div>
+                
+                <div class="col">
+                  <div>
+                    <span class="opacity-75">Power in stock:</span><br><i class="lnil lnil-server-8 text-success" style="font-size:2rem;"></i> <span class="in_stock text-success inter" style="font-size:2rem;">1.00</span> <span class="text-success" style="font-size:1rem;">TH/s</span>
+                  </div>
+                  <div class="py-3 my-md-0 opacity-75">
+                    Available power:<br><span class="available_power inter text-warning" style="font-size:2rem;width:100%;"><i class="lnil lnil-alert-server"></i> 40% <small>(0.4 TH/s)</small></span>
+                  </div>
+                  <div class="opacity-75">
+                    Power used:<br><span class="spent_power inter text-warning" style="font-size:2rem;width:100%;"><i class="lnil lnil-spinner-7 fa-spin"></i> 60% <small>(0.6 TH/s)</small></span>
+                  </div>
+
                 </div>
+                <div class="col position-relative" style="z-index:10;">
+                                    <div class="my-md-0">
+                    <span class="opacity-75">Bonus daily profit:</span><br><span class="profit_daily text-success inter" style="font-size:2rem;width:100%;">+0%</span><br>
+                    <small>For accumulated days without withdrawal</small>
+                  </div>
+
+                  <div class="py-4 my-md-0 opacity-75">
+                    Buy 9.00 TH/s to earn 1.2% daily
+                  </div>
+                  <a href="/buy-power/" class="btn btn-primary">Buy hashrate</a>
+                </div>
+              </div>
             </div>
+            <div class="col d-none d-sm-block text-end">
+              <div class="server_img position-absolute top-0 end-0 me-5 mt-4"></div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+    
+
+
+
+
+
+<div class="row justify-content-center cur_array wow fadeInUp" data-wow-duration=".7s" data-wow-delay=".1s" style="visibility: visible; animation-duration: 0.7s; animation-delay: 0.1s; animation-name: fadeInUp;">
+			<div class="col-12 col-lg-6 pb-4">
+		<div class="card shadow-lg">
+			<div class="card-body card-mining">
+				
+        <div class="row justify-content-center align-items-center">
+					<div class="col-12 d-flex flex-row">
+						<img src="/img/currencies/btc.png" style="height:4rem;width:4rem;" class="me-2">
+            <div>
+              <span class="fs-4 align-top text-uppercase">Bitcoin</span>
+              <br>
+              <small>≈ $0.00</small>            </div>
+					</div>
+
+					<div class="col-12 text-center mt-3">
+						<div class="profit_div">
+						<span class="profit profit_btc fs-1 inter" style="font-variant-numeric: tabular-nums;">0.00000000</span> <small class="ml-2 mt-1">BTC</small>
+						</div>
+					</div>
+				</div>	
+        
+					
+				<div class="row">
+					<div class="col m-4">
+						<div class="mining_slider_div">
+							<div id="mining_slider_btc" class="mining_slider power_btc noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr" data-curency="btc">
+								<input type="hidden" class="custom-slider-input" name="custom-slider-value" value="0.00">
+							<div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.2, 1);"></div></div><div class="noUi-origin" style="transform: translate(-80%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="60.0" aria-valuenow="20.0" aria-valuetext="20.00"><div class="noUi-touch-area"></div></div></div></div></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col">
+                        
+            <small class="position-absolute end-0 me-3 top-0 mt-3 opacity-75" data-toggle="tooltip" data-bs-html="true" data-placement="top" data-bs-original-title="Change in 24 hours: <span class='text-success'>+2.18%</span>">1 BTC = $105253.89</small>
+						<div class="row">
+							<div class="col fs-5 text-white">
+								Your profit
+							</div>
+						</div>
+						<div class="row calc text-white opacity-75">
+							<div class="col-6">
+								<small>per hour:</small><br><span id="profit_hour_btc" class="inter">0.00000000</span> <small>BTC</small><br>
+								<small class="opacity-50" id="profit_hour_btc_usd">≈ $0.00</small>
+							</div>
+							<div class="col">
+								<small>per day:</small><br><span id="profit_day_btc" class="inter">0.00000002</span> <small>BTC</small><br>
+								<small class="opacity-50" id="profit_day_btc_usd">≈ $0.00</small>
+							</div>
+							<div class="col-6">
+								<small>per month:</small><br><span id="profit_month_btc" class="inter">0.00000057</span> <small>BTC</small><br>
+								<small class="opacity-50" id="profit_month_btc_usd">≈ $0.06</small>
+							</div>
+							<div class="col">
+								<small>in year:</small><br><span id="profit_year_btc" class="inter">0.00000684</span> <small>BTC</small><br>
+								<small class="opacity-50" id="profit_year_btc_usd">≈ $0.72</small>
+							</div>
+													</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+
+				  <input type="hidden" name="color" value="#ac6830">
+								<div class="circle btc"></div>
+								<div class="icons_curency btc"></div>
+			</div>
+			</div>
+
+
+
+	</div>
+				<div class="col-12 col-lg-6 pb-4">
+		<div class="card shadow-lg">
+			<div class="card-body card-mining">
+				
+        <div class="row justify-content-center align-items-center">
+					<div class="col-12 d-flex flex-row">
+						<img src="/img/currencies/bch.png" style="height:4rem;width:4rem;" class="me-2">
+            <div>
+              <span class="fs-4 align-top text-uppercase">Bitcoin Cash</span>
+              <br>
+              <small>≈ $0.00</small>            </div>
+					</div>
+
+					<div class="col-12 text-center mt-3">
+						<div class="profit_div">
+						<span class="profit profit_bch fs-1 inter" style="font-variant-numeric: tabular-nums;">0.00000036</span> <small class="ml-2 mt-1">BCH</small>
+						</div>
+					</div>
+				</div>	
+        
+					
+				<div class="row">
+					<div class="col m-4">
+						<div class="mining_slider_div">
+							<div id="mining_slider_bch" class="mining_slider power_bch noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr" data-curency="bch">
+								<input type="hidden" class="custom-slider-input" name="custom-slider-value" value="0.00">
+							<div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.2, 1);"></div></div><div class="noUi-origin" style="transform: translate(-80%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="60.0" aria-valuenow="20.0" aria-valuetext="20.00"><div class="noUi-touch-area"></div></div></div></div></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col">
+                        
+            <small class="position-absolute end-0 me-3 top-0 mt-3 opacity-75" data-toggle="tooltip" data-bs-html="true" data-placement="top" data-bs-original-title="Change in 24 hours: <span class='text-success'>+1.37%</span>">1 BCH = $389.193144</small>
+						<div class="row">
+							<div class="col fs-5 text-white">
+								Your profit
+							</div>
+						</div>
+						<div class="row calc text-white opacity-75">
+							<div class="col-6">
+								<small>per hour:</small><br><span id="profit_hour_bch" class="inter">0.00000021</span> <small>BCH</small><br>
+								<small class="opacity-50" id="profit_hour_bch_usd">≈ $0.00</small>
+							</div>
+							<div class="col">
+								<small>per day:</small><br><span id="profit_day_bch" class="inter">0.00000514</span> <small>BCH</small><br>
+								<small class="opacity-50" id="profit_day_bch_usd">≈ $0.00</small>
+							</div>
+							<div class="col-6">
+								<small>per month:</small><br><span id="profit_month_bch" class="inter">0.00015417</span> <small>BCH</small><br>
+								<small class="opacity-50" id="profit_month_bch_usd">≈ $0.06</small>
+							</div>
+							<div class="col">
+								<small>in year:</small><br><span id="profit_year_bch" class="inter">0.00184998</span> <small>BCH</small><br>
+								<small class="opacity-50" id="profit_year_bch_usd">≈ $0.72</small>
+							</div>
+													</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+
+				  <input type="hidden" name="color" value="#1f6e3b">
+								<div class="circle bch"></div>
+								<div class="icons_curency bch"></div>
+			</div>
+			</div>
+
+
+
+	</div>
+										<div class="col-12 col-lg-6 pb-4">
+		<div class="card shadow-lg">
+			<div class="card-body card-mining">
+				
+        <div class="row justify-content-center align-items-center">
+					<div class="col-12 d-flex flex-row">
+						<img src="/img/currencies/xec.png" style="height:4rem;width:4rem;" class="me-2">
+            <div>
+              <span class="fs-4 align-top text-uppercase">eCash</span>
+              <br>
+              <small>≈ $0.00</small>            </div>
+					</div>
+
+					<div class="col-12 text-center mt-3">
+						<div class="profit_div">
+						<span class="profit profit_xec fs-1 inter" style="font-variant-numeric: tabular-nums;">6.32364010</span> <small class="ml-2 mt-1">XEC</small>
+						</div>
+					</div>
+				</div>	
+        
+					
+				<div class="row">
+					<div class="col m-4">
+						<div class="mining_slider_div">
+							<div id="mining_slider_xec" class="mining_slider power_xec noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr" data-curency="xec">
+								<input type="hidden" class="custom-slider-input" name="custom-slider-value" value="0.00">
+							<div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.2, 1);"></div></div><div class="noUi-origin" style="transform: translate(-80%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="60.0" aria-valuenow="20.0" aria-valuetext="20.00"><div class="noUi-touch-area"></div></div></div></div></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col">
+                        
+            <small class="position-absolute end-0 me-3 top-0 mt-3 opacity-75" data-toggle="tooltip" data-bs-html="true" data-placement="top" data-bs-original-title="Change in 24 hours: <span class='text-success'>+1.31%</span>">1 XEC = $0.000022</small>
+						<div class="row">
+							<div class="col fs-5 text-white">
+								Your profit
+							</div>
+						</div>
+						<div class="row calc text-white opacity-75">
+							<div class="col-6">
+								<small>per hour:</small><br><span id="profit_hour_xec" class="inter">3.74363582</span> <small>XEC</small><br>
+								<small class="opacity-50" id="profit_hour_xec_usd">≈ $0.00</small>
+							</div>
+							<div class="col">
+								<small>per day:</small><br><span id="profit_day_xec" class="inter">89.84725966</span> <small>XEC</small><br>
+								<small class="opacity-50" id="profit_day_xec_usd">≈ $0.00</small>
+							</div>
+							<div class="col-6">
+								<small>per month:</small><br><span id="profit_month_xec" class="inter">2,695.41778976</span> <small>XEC</small><br>
+								<small class="opacity-50" id="profit_month_xec_usd">≈ $0.06</small>
+							</div>
+							<div class="col">
+								<small>in year:</small><br><span id="profit_year_xec" class="inter">32,345.01347709</span> <small>XEC</small><br>
+								<small class="opacity-50" id="profit_year_xec_usd">≈ $0.72</small>
+							</div>
+													</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+
+				  <input type="hidden" name="color" value="#">
+								<div class="circle xec"></div>
+								<div class="icons_curency xec"></div>
+			</div>
+			</div>
+
+
+
+	</div>
+														</div>
+	
+	</div>
+			
+<div class="tab-pane fade SCRYPT algorithm pb-4" id="algorithmSCRYPT" role="tabpanel" aria-labelledby="#tabAlgorithmSCRYPT">
+			
+	
+	
+	<input type="hidden" name="algorithm" value="SCRYPT">
+	<input type="hidden" name="algorithm_unit" value="GH/s">
+
+	<input type="hidden" name="available_power_warning" value="Use 100% of purchased power for maximum profit">
+	<input type="hidden" name="spent_power_warning" value="Mining is stopped">
+  
+  <div class="row">
+    <div class="col mb-4">
+      <div class="card shadow-lg overflow-hidden wow fadeInUp animated" data-wow-duration=".7s" data-wow-delay="0s" style="visibility: visible; animation-duration: 0.7s; animation-delay: 0s; animation-name: fadeInUp;">
+        <div class="card-body">
+          <div class="row">
+            <div class="col col-sm-8">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="mb-4 pb-2 opacity-75">Your daily profit:</div>
+                  <div class="lvl mt-5">
+                    <div class="progress">
+                      <div style="width:00%;"></div>
+                    </div>
+                    <div class="d-flex justify-content-between align-middle lvl-table">
+                                          <div class="item ratio ratio-1x1 active" data-lvl="0">
+                        <div>
+                        <span class="text-success fs-4" style="top:-2.2rem;">1%</span>
+                        <span>0 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="1">
+                        <div>
+                        <span>1.2%</span>
+                        <span>1 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="2">
+                        <div>
+                        <span>1.5%</span>
+                        <span>2 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="3">
+                        <div>
+                        <span>2%</span>
+                        <span>3 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="4">
+                        <div>
+                        <span>2.2%</span>
+                        <span>4 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="5">
+                        <div>
+                        <span>2.5%</span>
+                        <span>5 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="6">
+                        <div>
+                        <span>3%</span>
+                        <span>6 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="7">
+                        <div>
+                        <span>3.5%</span>
+                        <span>7 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="8">
+                        <div>
+                        <span>4%</span>
+                        <span>8 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="9">
+                        <div>
+                        <span>4.5%</span>
+                        <span>9 Level</span>
+                        </div>
+                      </div>
+                                          <div class="item ratio ratio-1x1" data-lvl="10">
+                        <div>
+                        <span>5%</span>
+                        <span>10 Level</span>
+                        </div>
+                      </div>
+                                        </div>
+                  </div>
+                </div>
+                
+                <div class="col">
+                  <div>
+                    <span class="opacity-75">Power in stock:</span><br><i class="lnil lnil-server-8 text-success" style="font-size:2rem;"></i> <span class="in_stock text-success inter" style="font-size:2rem;">2.00</span> <span class="text-success" style="font-size:1rem;">GH/s</span>
+                  </div>
+                  <div class="py-3 my-md-0 opacity-75">
+                    Available power:<br><span class="available_power inter text-warning" style="font-size:2rem;width:100%;"><i class="lnil lnil-alert-server"></i> 60% <small>(1.2 GH/s)</small></span>
+                  </div>
+                  <div class="opacity-75">
+                    Power used:<br><span class="spent_power inter text-warning" style="font-size:2rem;width:100%;"><i class="lnil lnil-spinner-7 fa-spin"></i> 40% <small>(0.8 GH/s)</small></span>
+                  </div>
+
+                </div>
+                <div class="col position-relative" style="z-index:10;">
+                                    <div class="my-md-0">
+                    <span class="opacity-75">Bonus daily profit:</span><br><span class="profit_daily text-success inter" style="font-size:2rem;width:100%;">+0%</span><br>
+                    <small>For accumulated days without withdrawal</small>
+                  </div>
+
+                  <div class="py-4 my-md-0 opacity-75">
+                    Buy 18.00 GH/s to earn 1.2% daily
+                  </div>
+                  <a href="/buy-power/" class="btn btn-primary">Buy hashrate</a>
+                </div>
+              </div>
+            </div>
+            <div class="col d-none d-sm-block text-end">
+              <div class="server_img position-absolute top-0 end-0 me-5 mt-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+
+
+
+
+<div class="row justify-content-center cur_array wow fadeInUp animated" data-wow-duration=".7s" data-wow-delay=".1s" style="visibility: visible; animation-duration: 0.7s; animation-delay: 0.1s; animation-name: fadeInUp;">
+											<div class="col-12 col-lg-6 pb-4">
+		<div class="card shadow-lg">
+			<div class="card-body card-mining">
+				
+        <div class="row justify-content-center align-items-center">
+					<div class="col-12 d-flex flex-row">
+						<img src="/img/currencies/doge.png" style="height:4rem;width:4rem;" class="me-2">
+            <div>
+              <span class="fs-4 align-top text-uppercase">Dogecoin</span>
+              <br>
+              <small>≈ $0.00</small>            </div>
+					</div>
+
+					<div class="col-12 text-center mt-3">
+						<div class="profit_div">
+						<span class="profit profit_doge fs-1 inter" style="font-variant-numeric: tabular-nums;">0.00063684</span> <small class="ml-2 mt-1">DOGE</small>
+						</div>
+					</div>
+				</div>	
+        
+					
+				<div class="row">
+					<div class="col m-4">
+						<div class="mining_slider_div">
+							<div id="mining_slider_doge" class="mining_slider power_doge noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr" data-curency="doge">
+								<input type="hidden" class="custom-slider-input" name="custom-slider-value" value="0.00">
+							<div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.2, 1);"></div></div><div class="noUi-origin" style="transform: translate(-80%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="80.0" aria-valuenow="20.0" aria-valuetext="20.00"><div class="noUi-touch-area"></div></div></div></div></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col">
+                        
+            <small class="position-absolute end-0 me-3 top-0 mt-3 opacity-75" data-toggle="tooltip" data-bs-html="true" data-placement="top" data-bs-original-title="Change in 24 hours: <span class='text-success'>+1.60%</span>">1 DOGE = $0.220924</small>
+						<div class="row">
+							<div class="col fs-5 text-white">
+								Your profit
+							</div>
+						</div>
+						<div class="row calc text-white opacity-75">
+							<div class="col-6">
+								<small>per hour:</small><br><span id="profit_hour_doge" class="inter">0.00037720</span> <small>DOGE</small><br>
+								<small class="opacity-50" id="profit_hour_doge_usd">≈ $0.00</small>
+							</div>
+							<div class="col">
+								<small>per day:</small><br><span id="profit_day_doge" class="inter">0.00905289</span> <small>DOGE</small><br>
+								<small class="opacity-50" id="profit_day_doge_usd">≈ $0.00</small>
+							</div>
+							<div class="col-6">
+								<small>per month:</small><br><span id="profit_month_doge" class="inter">0.27158677</span> <small>DOGE</small><br>
+								<small class="opacity-50" id="profit_month_doge_usd">≈ $0.06</small>
+							</div>
+							<div class="col">
+								<small>in year:</small><br><span id="profit_year_doge" class="inter">3.25904123</span> <small>DOGE</small><br>
+								<small class="opacity-50" id="profit_year_doge_usd">≈ $0.72</small>
+							</div>
+													</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+
+				  <input type="hidden" name="color" value="#af8e2f">
+								<div class="circle doge"></div>
+								<div class="icons_curency doge"></div>
+			</div>
+			</div>
+
+
+
+	</div>
+								<div class="col-12 col-lg-6 pb-4">
+		<div class="card shadow-lg">
+			<div class="card-body card-mining">
+				
+        <div class="row justify-content-center align-items-center">
+					<div class="col-12 d-flex flex-row">
+						<img src="/img/currencies/ltc.png" style="height:4rem;width:4rem;" class="me-2">
+            <div>
+              <span class="fs-4 align-top text-uppercase">Litecoin</span>
+              <br>
+              <small>≈ $0.00</small>            </div>
+					</div>
+
+					<div class="col-12 text-center mt-3">
+						<div class="profit_div">
+						<span class="profit profit_ltc fs-1 inter" style="font-variant-numeric: tabular-nums;">0.00000150</span> <small class="ml-2 mt-1">LTC</small>
+						</div>
+					</div>
+				</div>	
+        
+					
+				<div class="row">
+					<div class="col m-4">
+						<div class="mining_slider_div">
+							<div id="mining_slider_ltc" class="mining_slider power_ltc noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr" data-curency="ltc">
+								<input type="hidden" class="custom-slider-input" name="custom-slider-value" value="20.00">
+							<div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(0.2, 1);"></div></div><div class="noUi-origin" style="transform: translate(-80%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="80.0" aria-valuenow="20.0" aria-valuetext="20.00"><div class="noUi-touch-area"></div></div></div></div></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col">
+                        
+            <small class="position-absolute end-0 me-3 top-0 mt-3 opacity-75" data-toggle="tooltip" data-bs-html="true" data-placement="top" data-bs-original-title="Change in 24 hours: <span class='text-danger'>-2.26%</span>">1 LTC = $93.552389</small>
+						<div class="row">
+							<div class="col fs-5 text-white">
+								Your profit
+							</div>
+						</div>
+						<div class="row calc text-white opacity-75">
+							<div class="col-6">
+								<small>per hour:</small><br><span id="profit_hour_ltc" class="inter">0.00000089</span> <small>LTC</small><br>
+								<small class="opacity-50" id="profit_hour_ltc_usd">≈ $0.00</small>
+							</div>
+							<div class="col">
+								<small>per day:</small><br><span id="profit_day_ltc" class="inter">0.00002138</span> <small>LTC</small><br>
+								<small class="opacity-50" id="profit_day_ltc_usd">≈ $0.00</small>
+							</div>
+							<div class="col-6">
+								<small>per month:</small><br><span id="profit_month_ltc" class="inter">0.00064135</span> <small>LTC</small><br>
+								<small class="opacity-50" id="profit_month_ltc_usd">≈ $0.06</small>
+							</div>
+							<div class="col">
+								<small>in year:</small><br><span id="profit_year_ltc" class="inter">0.00769622</span> <small>LTC</small><br>
+								<small class="opacity-50" id="profit_year_ltc_usd">≈ $0.72</small>
+							</div>
+													</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+
+				  <input type="hidden" name="color" value="#ababab">
+								<div class="circle ltc"></div>
+								<div class="icons_curency ltc"></div>
+			</div>
+			</div>
+
+
+
+	</div>
+										</div>
+	
+	</div>
+					
+			
+				
+				
+		
+		</div>
+	</div>
+	
+	</div>
+</div>
+		
 
 </div>
-<div class="offcanvas offcanvas-start text-white d-md-none" tabindex="-1" id="mobileMenu"
-    aria-labelledby="mobileMenuLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
-        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"
-            aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-                <a href="{{route('user.dashboard')}}" class="nav-link text-white">
-                    <i class="fas fa-user fa-fw me-2"></i>Account
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('user.invest')}}" class="nav-link text-white">
-                    <i class="fas fa-download fa-fw me-2"></i>Deposit
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('user.Withdraw')}}" class="nav-link text-white">
-                    <i class="fas fa-upload fa-fw me-2"></i>Withdraw
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{route('user.DepositHistory')}}" class="nav-link text-white">
-                    <i class="fas fa-history fa-fw me-2"></i>History
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('user.level-team')}}" class="nav-link text-white">
-                    <i class="fas fa-users fa-fw me-2"></i>Referrals
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{route('user.ChangePass')}}" class="nav-link text-white">
-                    <i class="fas fa-shield-alt fa-fw me-2"></i>Security
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('user.profile')}}" class="nav-link text-white">
-                    <i class="fas fa-user-edit fa-fw me-2"></i>Edit Account
-                </a>
-            </li>
-            <li class="nav-item mt-auto">
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                    class="nav-link text-warning" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
-                    <i class="fas fa-sign-out-alt fa-fw"></i><span class="sidebar-text ms-2">Logout</span>
-                </a>
-            </li>
-        </ul>
-    </div>
 </div>
-
-
-
-
-
-<!---->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
-<script src="{{asset('')}}assets/js/dash.js"></script>
-
-
-<script>
-    window.addEventListener('load', function () {
-        // All resources (images, scripts, stylesheets, etc.) are loaded
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer) {
-            // Add the 'hidden' class to trigger the fade-out animation
-            preloaderContainer.classList.add('hidden');
-
-            // Optional: If you want to completely remove the preloader from the DOM
-            // after the transition, you can listen for the 'transitionend' event.
-            preloaderContainer.addEventListener('transitionend', function () {
-                if (preloaderContainer.style.opacity === '0' || getComputedStyle(
-                        preloaderContainer).opacity === '0') {
-                    preloaderContainer.style.display =
-                        'none'; // Or preloaderContainer.remove();
-                }
-            }, {
-                once: true
-            }); // {once: true} ensures the event listener is removed after it fires
-        }
-
-        if (content) {
-            content.style.display = 'block'; // Or any other display type you need, e.g., 'flex'
-            // If you used opacity for content:
-            // content.style.opacity = '1';
-            // content.style.visibility = 'visible';
-        }
-    });
-
-    // Fallback in case 'load' event doesn't fire or takes too long (e.g., for broken images)
-    // You might want to adjust the timeout duration
-    setTimeout(function () {
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer && !preloaderContainer.classList.contains('hidden')) {
-            console.warn("Preloader timeout reached. Forcing hide.");
-            preloaderContainer.classList.add('hidden');
-            if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer)
-                .opacity === '0') {
-                preloaderContainer.style.display = 'none';
-            }
-            if (content) {
-                content.style.display = 'block';
-            }
-        }
-    }, 10000); // 10 seconds timeout as an example
-
-</script>
-<script>
-    function copyReferralLink() {
-        const copyText = document.getElementById('refLink');
-        navigator.clipboard.writeText(copyText.value).then(function () {
-            alert("Link copied: " + copyText.value); // optional feedback
-        }, function (err) {
-            alert("Failed to copy link!");
-        });
-    }
-
-</script>
-</body>
-
-</html>
