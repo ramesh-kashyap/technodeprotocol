@@ -139,25 +139,25 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
           <ul class="navbar-nav mx-auto text-center">
             <li class="nav-item active">
-              <a class="nav-link" aria-current="page" href="#home">Home</a>
+              <a class="nav-link" href="{{ url('/#home') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#marketing">Marketing</a>
+<a class="nav-link" href="{{ url('/#marketing') }}">Marketing</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#calculation">Calculator</a>
+<a class="nav-link" href="{{ url('/#calculation') }}">Calculator</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#partners">Partners</a>
+<a class="nav-link" href="{{ url('/#partners') }}">Partners</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#statistics">Statistics</a>
+<a class="nav-link" href="{{ url('/#statistics') }}">Statistics</a>
             </li>
                         <li class="nav-item">
-              <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
+<a class="nav-link" href="{{ route('faq') }}">FAQ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('contact-us') }}">Support</a>
+<a class="nav-link" href="{{ route('contact-us') }}">Support</a>
             </li>
           </ul>
   

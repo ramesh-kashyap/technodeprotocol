@@ -1,57 +1,8 @@
 
                           @include('layouts.mainsite.header')
 
-<div class="overflow-hidden">
-<header class="position-relative" style="z-index:4">
-	<div class="container-lg">
-    <nav class="navbar fixed-top navbar-expand-md navbar-main" style="z-index: 999; backdrop-filter: blur(1rem);">
-      <div class="container-lg">
-        <a class="navbar-brand d-flex flex-row" href="/">
-          <img src="/img/logo.png" style="height:3.5rem;">
-                    <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">synox
-            <div style="font-size:1rem;margin-top:1.5rem;" class="text-end">mining</div>
-          </div>
-        </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Переключатель навигации">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarToggler">
-          <ul class="navbar-nav mx-auto text-center">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#marketing">Marketing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#calculation">Calculator</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#partners">Partners</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#statistics">Statistics</a>
-            </li>
-                        <li class="nav-item">
-              <a class="nav-link" href="/faq/">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/support/">Support</a>
-            </li>
-          </ul>
-  
-          <div class="nav-item language">
-            <button class="btn btn-link nohover language en me-3 px-0" data-bs-toggle="modal" data-bs-target="#language-modal"><span class="ms-2 d-md-none d-xl-inline">en</span></button>
-          </div>
-                      <a class="btn btn-light me-2" href="/login/">Login</a>
-            <a class="btn btn-light" href="/signup/">Sign up</a>
-                  </div>
-      </div>
-    </nav>
-    <div style="height:6.125rem;"></div>
-  </div>
-</header><div id="faq" class="faq">
+          <div id="faq" class="faq">
   <div class="container">
 
     <div class="row">
