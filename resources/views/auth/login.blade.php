@@ -21,10 +21,11 @@
       <div class="col-12">
         <div class="card wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUp;">
           <div class="card-body" id="login">
-          <form action="/login/" class="login">
+          <form action="{{ route('login') }}" method="POST" class="login">
+              {{ csrf_field() }}
             <div class="row">
               <div class="col-12">
-                  <input type="text" class="form-control mt-1" name="user_email" id="user_email" placeholder="Your username or email">
+                  <input type="text" class="form-control mt-1" name="email" id="user_email" placeholder="Your username or email">
               </div>
 
               <div class="col-12 mt-3">

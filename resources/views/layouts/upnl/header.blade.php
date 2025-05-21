@@ -1,10 +1,10 @@
 <html class="no-js" lang="en"><head>
 	<meta charset="UTF-8">
-    <link rel="shortcut icon" href="/img/logo.png">
-	<link rel="apple-touch-icon" href="/img/logo.png">
-	  <meta name="msapplication-square70x70logo" content="/img/logo.png">
-  <meta name="msapplication-square150x150logo" content="/img/logo.png">
-  <meta name="msapplication-wide310x150logo" content="/img/logo.png">
+    <link rel="shortcut icon" href="{{asset('')}}assets/img/logo.png">
+	<link rel="apple-touch-icon" href="{{asset('')}}assets/img/logo.png">
+	  <meta name="msapplication-square70x70logo" content="{{asset('')}}assets/img/logo.png">
+  <meta name="msapplication-square150x150logo" content="{{asset('')}}assets/img/logo.png">
+  <meta name="msapplication-wide310x150logo" content="{{asset('')}}assets/img/logo.png">
   
   <meta name="theme-color" content="#05102C">
   <meta name="apple-mobile-web-app-status-bar-style" content="#05102C">
@@ -13,13 +13,13 @@
 
 	<meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{asset('')}}assets/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/fa/css/all.min.css">
-  <link rel="stylesheet" href="/css/animate.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/noty.css">
-	<link rel="stylesheet" type="text/css" href="/css/nouislider.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<script type="text/javascript" src="/js/core/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{asset('')}}assets/css/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('')}}assets/css/noty.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('')}}assets/css/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('')}}assets/css/style.css">
+	<script type="text/javascript" src="{{asset('')}}assets/js/core/jquery.min.js"></script>
     <script src="https://js.hcaptcha.com/1/api.js" async="" defer=""></script>
     
     <script src="/js/wow.min.js"></script>
@@ -47,49 +47,49 @@
         <div class="d-flex flex-wrap justify-content-center align-self-stretch">
                     <div>
             <a href="/set-language/de/" class="py-1 px-3 d-inline-block text-center">
-              <img src="/img/flags/de_.png">
+              <img src="{{asset('')}}assets/img/flags/de_.png">
               <div>Deutsche</div>
             </a>
           </div>
                     <div>
             <a href="/set-language/en/" class="py-1 px-3 active d-inline-block text-center">
-              <img src="/img/flags/en_.png">
+              <img src="{{asset('')}}assets/img/flags/en_.png">
               <div>English</div>
             </a>
           </div>
                     <div>
             <a href="/set-language/es/" class="py-1 px-3 d-inline-block text-center">
-              <img src="/img/flags/es_.png">
+              <img src="{{asset('')}}assets/img/flags/es_.png">
               <div>Español</div>
             </a>
           </div>
                     <div>
             <a href="/set-language/fr/" class="py-1 px-3 d-inline-block text-center">
-              <img src="/img/flags/fr_.png">
+              <img src="{{asset('')}}assets/img/flags/fr_.png">
               <div>Française</div>
             </a>
           </div>
                     <div>
             <a href="/set-language/ja/" class="py-1 px-3 d-inline-block text-center">
-              <img src="/img/flags/ja_.png">
+              <img src="{{asset('')}}assets/img/flags/ja_.png">
               <div>日本語</div>
             </a>
           </div>
                     <div>
             <a href="/set-language/pt/" class="py-1 px-3 d-inline-block text-center">
-              <img src="/img/flags/pt_.png">
+              <img src="{{asset('')}}assets/img/flags/pt_.png">
               <div>Portuguesa</div>
             </a>
           </div>
                     <div>
             <a href="/set-language/ru/" class="py-1 px-3 d-inline-block text-center">
-              <img src="/img/flags/ru_.png">
+              <img src="{{asset('')}}assets/img/flags/ru_.png">
               <div>Русский</div>
             </a>
           </div>
                     <div>
             <a href="/set-language/zh/" class="py-1 px-3 d-inline-block text-center">
-              <img src="/img/flags/zh_.png">
+              <img src="{{asset('')}}assets/img/flags/zh_.png">
               <div>中文</div>
             </a>
           </div>
@@ -124,7 +124,7 @@
     <nav class="navbar fixed-top navbar-expand-md navbar-main" style="z-index: 999; backdrop-filter: blur(1rem);">
       <div class="container-lg">
         <a class="navbar-brand d-flex flex-row" href="/">
-          <img src="/img/logo.png" style="height:3.5rem;">
+          <img src="{{asset('')}}assets/img/logo.png" style="height:3.5rem;">
                     <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">synox
             <div style="font-size:1rem;margin-top:1.5rem;" class="text-end">mining</div>
           </div>
