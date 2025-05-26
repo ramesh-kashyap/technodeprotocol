@@ -27,40 +27,42 @@ class Cron extends Controller
     protected $signature = 'roi:generate';
     protected $description = 'Generate ROI income for eligible users';
 
-   public function handle()
+public function generate_roi()
 {
     $today = Carbon::today();
-
     $investments = Investment::where('cycle', '<=', 21)
                              ->where('status', 'Active')
                              ->get();
 
     foreach ($investments as $investment) {
         $startDate = Carbon::parse($investment->sdate);
-        $nextCycleDays = 10 + ($investment->cycle); 
-
+        $nextCycleDays = 0 + ($investment->cycle); 
         $nextCycleDate = $startDate->copy()->addDays($nextCycleDays);
 
         if ($today->greaterThanOrEqualTo($nextCycleDate)) {
             DB::beginTransaction();
             try {
-                $roiAmount = $investment->amount * 0.08; // 8% ROI
+                $roiAmount = $investment->amount * 0.08; 
 
-                Income::create([
+             Income::create([
                     'user_id' => $investment->user_id,
                     'comm' => $roiAmount,
+                    'amt' => $investment->amount,
+                    'level'=>1,
                     'remarks' => 'ROI Income',
                     'ttime' => now(),
                 ]);
-
                 $investment->cycle += 1;
-                $investment->days = $nextCycleDays;
+
+                $investment->days = $nextCycleDate->toDateString();
 
                 if ($investment->cycle > 21) {
                     $investment->status = 'Pending'; 
                 }
 
                 $investment->save();
+
+                $this->level_roi_income($investment->user_id, $roiAmount);
 
                 DB::commit();
             } catch (\Exception $e) {
@@ -69,8 +71,62 @@ class Cron extends Controller
             }
         }
     }
+}
 
-    $this->info('ROI income generation completed.');
+
+
+
+public function level_roi_income($user_id, $roi_bonus)
+{
+    $user = User::find($user_id);
+
+    if (!$user) {
+        return false;
+    }
+
+    $sponsor_id = $user->sponsor;
+    $level = 1;
+
+    while ($sponsor_id && $level <= 11) {
+        $sponsor = User::find($sponsor_id);
+
+        if (!$sponsor) {
+            break;
+        }
+
+        $directs = User::where('sponsor', $sponsor->id)
+                       ->where('active_status', 'Active')
+                       ->count();
+
+        if ($directs >= $level) {
+            if ($level <= 3) {
+                $percentage = 5;
+            } elseif ($level <= 7) {
+                $percentage = 3;
+            } else {
+                $percentage = 2;
+            }
+
+            $commission = ($roi_bonus * $percentage) / 100;
+
+            Income::create([
+                'user_id' => $sponsor->id,
+                'user_id_fk' => $sponsor->username,
+                'amt' => $roi_bonus,
+                'comm' => $commission,
+                'remarks' => 'Level Income Roi',
+                'level' => $level,
+                'rname' => $user->username,
+                'fullname' => $user->name,
+                'ttime' => date("Y-m-d"),
+            ]);
+        }
+
+        $sponsor_id = $sponsor->sponsor;
+        $level++;
+    }
+
+    return true;
 }
 
 
@@ -192,90 +248,90 @@ if ($allResult)
 
 
 
-public function generate_roi()
-{
+// public function generate_roi()
+// {
 
-$allResult=Investment::where('status','Active')->where('roiCandition',0)->get();
-$todays=Date("Y-m-d");
-$day=Date("l");
+// $allResult=Investment::where('status','Active')->where('roiCandition',0)->get();
+// $todays=Date("Y-m-d");
+// $day=Date("l");
 
-if ($allResult)
-{
+// if ($allResult)
+// {
 
- foreach ($allResult as $key => $value)
- {
+//  foreach ($allResult as $key => $value)
+//  {
 
-  $userID=$value->user_id;
-   $joining_amt = $value->amount;
-   $plan = $value->plan;
-   $startDate = $value->sdate;
+//   $userID=$value->user_id;
+//    $joining_amt = $value->amount;
+//    $plan = $value->plan;
+//    $startDate = $value->sdate;
 
-  $userDetails=User::where('id',$userID)->where('active_status','Active')->first();
-  $today=date("Y-m-d");
-   $previous_date =date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $today) ) ));
+//   $userDetails=User::where('id',$userID)->where('active_status','Active')->first();
+//   $today=date("Y-m-d");
+//    $previous_date =date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $today) ) ));
 
-  if ($userDetails)
-  {
+//   if ($userDetails)
+//   {
      
      
-        $total_get=$joining_amt*200/100;
-        $total_profit_b = Income::where('user_id', $userID)->sum('comm');
-        $total_profit=($total_profit_b)?$total_profit_b:0;
+//         $total_get=$joining_amt*200/100;
+//         $total_profit_b = Income::where('user_id', $userID)->sum('comm');
+//         $total_profit=($total_profit_b)?$total_profit_b:0;
    
-          $percent= 2.5;
+//           $percent= 2.5;
         
-          if ($joining_amt>=50 && $joining_amt<=800) 
-           {
-            $percent= 2.5;
-           }
-           elseif($joining_amt>=1000 && $joining_amt<=5000)
-           {
-            $percent= 3;
-           }
+//           if ($joining_amt>=50 && $joining_amt<=800) 
+//            {
+//             $percent= 2.5;
+//            }
+//            elseif($joining_amt>=1000 && $joining_amt<=5000)
+//            {
+//             $percent= 3;
+//            }
          
            
        
-       $roi = ($joining_amt*$percent/100);
+//        $roi = ($joining_amt*$percent/100);
 
-       $max_income=$total_get;
-       $n_m_t = $max_income - $total_profit;
-       // dd($total_received);
-         if($roi >= $n_m_t)
-         {
-             $roi = $n_m_t;
-         }  
+//        $max_income=$total_get;
+//        $n_m_t = $max_income - $total_profit;
+//        // dd($total_received);
+//          if($roi >= $n_m_t)
+//          {
+//              $roi = $n_m_t;
+//          }  
        
-      if ($roi>0)
-      {
+//       if ($roi>0)
+//       {
 
-        echo "ID:".$userDetails->username." Package:".$joining_amt." Roi:".$roi."<br>";
-         $data['remarks'] = 'Trading Income';
-        $data['comm'] = $roi;
-        $data['amt'] = $joining_amt;
-        $data['invest_id']=$value->id;
-        $data['level']=0;
-        $data['ttime'] = date("Y-m-d");
-        $data['user_id_fk'] = $userDetails->username;
-        $data['user_id']=$userDetails->id;
-       $income = Income::firstOrCreate(['remarks' => 'Trading Income','ttime'=>date("Y-m-d"),'user_id'=>$userID,'invest_id'=>$value->id],$data);
-       add_leadership_bonus($userDetails->id,$roi);
-      }
-      else
-      {
-      Investment::where('id',$value->id)->update(['roiCandition' => 1]);
-      }
+//         echo "ID:".$userDetails->username." Package:".$joining_amt." Roi:".$roi."<br>";
+//          $data['remarks'] = 'Trading Income';
+//         $data['comm'] = $roi;
+//         $data['amt'] = $joining_amt;
+//         $data['invest_id']=$value->id;
+//         $data['level']=0;
+//         $data['ttime'] = date("Y-m-d");
+//         $data['user_id_fk'] = $userDetails->username;
+//         $data['user_id']=$userDetails->id;
+//        $income = Income::firstOrCreate(['remarks' => 'Trading Income','ttime'=>date("Y-m-d"),'user_id'=>$userID,'invest_id'=>$value->id],$data);
+//        add_leadership_bonus($userDetails->id,$roi);
+//       }
+//       else
+//       {
+//       Investment::where('id',$value->id)->update(['roiCandition' => 1]);
+//       }
       
 
-  }
+//   }
 
- }
+//  }
  
-}
+// }
 
 
 
 
-}
+// }
 
 
 

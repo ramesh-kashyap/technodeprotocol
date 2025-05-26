@@ -76,8 +76,8 @@
 
     <option style="background-color: #1f1f1f;" value="{{ route('user.reward-bonus') }}" 
         {{ Request::routeIs('user.reward-bonus') ? 'selected' : '' }}>Direct Income</option> 
-           <option style="background-color: #1f1f1f;" value="{{ route('user.activitiesBonus') }}" 
-        {{ Request::routeIs('user.activitiesBonus') ? 'selected' : '' }}>Rank & Reward Income</option>
+           <!-- <option style="background-color: #1f1f1f;" value="{{ route('user.activitiesBonus') }}" 
+        {{ Request::routeIs('user.activitiesBonus') ? 'selected' : '' }}>Rank & Reward Income</option> -->
 
     <option style="background-color: #1f1f1f;" value="{{ route('user.dailyIncentive') }}" 
         {{ Request::routeIs('user.dailyIncentive') ? 'selected' : '' }}>Royalty Income</option>  
