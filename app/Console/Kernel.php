@@ -8,14 +8,14 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
 
-      protected $commands = [
-        \app\Http\Controllers\Cron::class,
-];
+//       protected $commands = [
+//         \app\Http\Controllers\Cron::class,
+// ];
 
-protected function schedule(Schedule $schedule)
-{
-    $schedule->command('roi:generate')->daily(); // Run daily
-}
+// protected function schedule(Schedule $schedule)
+// {
+//     $schedule->command('roi:generate')->daily(); // Run daily
+// }
     /**
      * Define the application's command schedule.
      *

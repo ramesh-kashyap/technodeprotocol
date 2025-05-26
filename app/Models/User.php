@@ -94,7 +94,7 @@ class User extends Authenticatable
         
     public function level_bonus()
     {
-        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Direct Income');
+        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Level Income');
     } 
       
     public function trading_profit()
@@ -123,14 +123,14 @@ class User extends Authenticatable
     return $balance;
     }      
           
-    public function reward_bonus()
+    public function roi_bonus()
     {
-        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Royalty Bonus');
+        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Roi Bonus');
     } 
 
     public function booster_bonus()
     {
-        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Booster Income');
+        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Matching Bonus');
     } 
     
     public function club_bonus()

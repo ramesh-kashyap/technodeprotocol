@@ -262,11 +262,11 @@ table#example {
                 <!--    </ul>-->
                 <!--</li>-->
 
-                <li><a href="{{route('admin.add-price')}}" class="ai-icon" aria-expanded="false">
+                <!-- <li><a href="{{route('admin.add-price')}}" class="ai-icon" aria-expanded="false">
                            <i class="flaticon-072-printer"></i>
                         <span class="nav-text">Settings </span>
                     </a>
-                </li>
+                </li> -->
                     
 
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -274,13 +274,13 @@ table#example {
 							<span class="nav-text">Profit Summary</span>
 						</a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('admin.roi-bonus') }}">Trading  Income</a></li>
+                            <li><a href="{{ route('admin.roi-bonus') }}">Roi Bonus</a></li>
                           
-                            <li><a href="{{ route('admin.level-bonus') }}">Level Income</a></li>
-                            <li><a href="{{route('admin.reward-bonus')}}">Rank & Reward Bonus</a></li>
+                            <li><a href="{{ route('admin.level-bonus') }}">Level Bonus</a></li>
+                            <li><a href="{{route('admin.matching_bonus')}}">Matching Bonus</a></li>
                             <!--<li><a href="{{route('admin.booster-bonus')}}">Daily Incentive</a></li>-->
                             <li><a href="{{route('admin.club-bonus')}}">Direct  Income</a></li>
-                            <li><a href="{{route('admin.activities-bonus')}}">Royalty Bonus</a></li>
+                            <li><a href="{{route('admin.salary_bonus')}}">Salary Bonus</a></li>
 
                         </ul>
                     </li>
@@ -324,7 +324,7 @@ table#example {
                 </ul>
 
 				<div class="copyright">
-					<p><strong>{{siteName()}}</strong> © 2023 All Rights Reserved</p>
+					<p><strong>{{siteName()}}</strong> © 2025 All Rights Reserved</p>
 					<p class="fs-12">Made with <span class="heart"></span> by {{siteName()}}</p>
 				</div>
 			</div>
