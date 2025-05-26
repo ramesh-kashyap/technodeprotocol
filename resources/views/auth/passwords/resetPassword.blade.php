@@ -1,154 +1,70 @@
-
 @include('layouts.mainsite.header')
 
-<div class="hero">
-    <div class="container text-center">
-        <h1>Welcome to  <span class="gradient-text">{{siteName()}}</span></h1>
-        <!-- <p class="lead mt-4 mb-5" style="color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto;">
-            Sign in to access your secure investment dashboard
-        </p> -->
-    </div>
-</div>
+<div class="regpage">
+  <div class="container">
+    <div class="regimg wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: fadeInLeft;"></div>
+    <div class="regimg2 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: fadeInRight;"></div>
 
-<section class="unique-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="card bento-card">
-                    <div class="card-body p-4">
-
-                        <script language=javascript>
-                            function checkform() {
-                                if (document.mainform.username.value == '') {
-                                    alert("Please type your username!");
-                                    document.mainform.username.focus();
-                                    return false;
-                                }
-                                if (document.mainform.password.value == '') {
-                                    alert("Please type your password!");
-                                    document.mainform.password.focus();
-                                    return false;
-                                }
-                                return true;
-                            }
-
-                        </script>
-
-
-
-                        <form method="post" action="{{route('submitResetPassword')}}" name=mainform 
-                            class="login-form">
-                                                        {{ csrf_field() }}
-
-
-
-                            <div class="form-group mb-4">
-                                <label class="mb-2">Password</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class='bx bx-user'></i>
-                                    </span>
-                                    <input type="password" name="password" value="" placeholder="New Password" class="form-control"
-                                        autofocus="autofocus">
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label class="mb-2">Confirm Password</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class='bx bx-lock-alt'></i>
-                                    </span>
-                                    <input type="password" name="password_confirmation" value="" placeholder="Confirm Password" class="form-control">
-                                </div>
-                            </div>
-
-
-
-                            <div class="d-grid mt-4">
-                                <button type="submit" class="button">Submit</button>
-                            </div>
-
-                            <div class="text-center mt-4">
-                                Copyright © 2022 etriton.co All rights reserved
-                            </div>
-                        </form>
-                            @include('partials.notify')
-
-                    </div>
-                </div>
-
-               
-            </div>
+    <div class="row">
+      <div class="col-12 my-5 wow fadeIn" data-wow-duration="2.5s" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 2.5s; animation-delay: 0.3s; animation-name: fadeIn;">
+        <div class="text-center">
+          <h1>Welcome back</h1>
+          <span class="fs-4">Login to your account</span>
         </div>
+      </div>
     </div>
-</section>
+    <div class="row justify-content-center">
+      <div class="col col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 
+    <div class="row">
+      
+      <div class="col-12">
+        <div class="card wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUp;">
+          <div class="card-body" id="login">
+          <form action="{{route('submitResetPassword')}}" method="POST" class="login">
+              {{ csrf_field() }}
+            <div class="row">
+              <div class="col-12">
+                  <input type="password" class="form-control mt-1" name="password" id="user_email" placeholder="New Password">
+              </div>
+              <div class="col-12 mt-3">
+                  <input type="password" class="form-control mt-1" name="password_confirmation" id="user_email" placeholder="Confirm Password">
+              </div>
+              
+              
+               <div class="col-12 mt-3 d-grid">
+                <button type="submit" class="btn btn-primary py-3">Submit</button>
+              </div>
+            </div>
+          </form>
+           
+          </div>
+              @include('partials.notify')
+
+          <div class="card-body" id="login2fa" style="display:none;">
+            <form action="/login/" class="login2fa">
+              <div class="row">
+                <div class="col-12 mt-4">
+                    <label for="code2fa">Authenticator Code</label>
+                    <input type="text" class="form-control mt-1 text-center" name="code2fa" id="code2fa" placeholder="Enter the 6-digit code from Google Authenticator" maxlength="6">
+                </div>
+                <div class="col-12 mt-3 d-grid">
+                  <button type="submit" class="btn btn-primary py-3" disabled="">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col text-center my-5 fs-2 pb-5 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.7s" style="position: relative; z-index: 4; visibility: hidden; animation-duration: 1s; animation-delay: 0.7s; animation-name: none;">
+        Do not you have an account? <a href="/signup/">Sign up</a>
+      </div>
+    </div>
+  </div>
+</div>
 @include('layouts.mainsite.footer')
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
-</script>
-<script src="{{asset('')}}assets/js/gsap.min.js"></script>
-<script src="{{asset('')}}assets/js/ScrollTrigger.min.js"></script>
-<script src="{{asset('')}}assets/js/SplitText.min.js"></script>
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<script src="{{asset('')}}assets/js/app.js"></script>
-
-
-<script>
-    window.addEventListener('load', function () {
-        // All resources (images, scripts, stylesheets, etc.) are loaded
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer) {
-            // Add the 'hidden' class to trigger the fade-out animation
-            preloaderContainer.classList.add('hidden');
-
-            // Optional: If you want to completely remove the preloader from the DOM
-            // after the transition, you can listen for the 'transitionend' event.
-            preloaderContainer.addEventListener('transitionend', function () {
-                if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer)
-                    .opacity === '0') {
-                    preloaderContainer.style.display = 'none'; // Or preloaderContainer.remove();
-                }
-            }, {
-                once: true
-            }); // {once: true} ensures the event listener is removed after it fires
-        }
-
-        if (content) {
-            content.style.display = 'block'; // Or any other display type you need, e.g., 'flex'
-            // If you used opacity for content:
-            // content.style.opacity = '1';
-            // content.style.visibility = 'visible';
-        }
-    });
-
-    // Fallback in case 'load' event doesn't fire or takes too long (e.g., for broken images)
-    // You might want to adjust the timeout duration
-    setTimeout(function () {
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer && !preloaderContainer.classList.contains('hidden')) {
-            console.warn("Preloader timeout reached. Forcing hide.");
-            preloaderContainer.classList.add('hidden');
-            if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer).opacity ===
-                '0') {
-                preloaderContainer.style.display = 'none';
-            }
-            if (content) {
-                content.style.display = 'block';
-            }
-        }
-    }, 10000); // 10 seconds timeout as an example
-
-</script>
-
-
-</body>
-
-</html>

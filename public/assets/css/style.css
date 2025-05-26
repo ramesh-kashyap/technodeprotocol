@@ -965,7 +965,7 @@ hr{
 }
 .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback):not(.input-group-append){
   padding-left:3rem;
-  border-radius:.625rem 0 0 .625rem;
+  /* border-radius:.625rem 0 0 .625rem; */
 }
 .input-group .btn{
   border-radius:0 .625rem .625rem 0;

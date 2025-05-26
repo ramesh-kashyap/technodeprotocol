@@ -1,4 +1,3 @@
- @include('layouts.upnl.header')
 <script>
 $(function() {
   $('.SHA-256 .circle-progress').circleProgress({
@@ -216,7 +215,7 @@ var course = {
   .server_img:after{
     content:'';
     display:block;
-    background-image:url(/img/srv.png);
+    background-image:url(/assets/img/srv.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 100% 0;
@@ -242,31 +241,8 @@ var course = {
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0 w-100">
-                  <li class="nav-item">
-                    <a href="/mining/" class="active">Mining</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/partners/">Partners</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/deposit/">Deposit</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/buy-power/">Buy hashrate</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/exchange/">Exchange</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/withdraw/">Withdraw</a>
-                  </li>
-                  <li class="nav-item ms-auto">
-                    <a href="/bitcoin-faucet/"><i class="far fa-coin-vertical fa-lg text-warning me-1" style="bottom: 2.3rem;"></i> Free BTC</a>
-                  </li>
-                </ul>
-              </div>
+                                                     @include('layouts.upnl.navbar')
+
             </div>
           </nav>
 				</div>
@@ -438,7 +414,7 @@ var course = {
 				
         <div class="row justify-content-center align-items-center">
 					<div class="col-12 d-flex flex-row">
-						<img src="/img/currencies/kas.png" style="height:4rem;width:4rem;" class="me-2">
+						<img src="{{asset('')}}assets/img/currencies/kas.png" style="height:4rem;width:4rem;" class="me-2">
             <div>
               <span class="fs-4 align-top text-uppercase">Kaspa</span>
               <br>
@@ -651,7 +627,7 @@ var course = {
 				
         <div class="row justify-content-center align-items-center">
 					<div class="col-12 d-flex flex-row">
-						<img src="/img/currencies/btc.png" style="height:4rem;width:4rem;" class="me-2">
+						<img src="{{asset('')}}assets/img/currencies/btc.png" style="height:4rem;width:4rem;" class="me-2">
             <div>
               <span class="fs-4 align-top text-uppercase">Bitcoin</span>
               <br>
@@ -726,7 +702,7 @@ var course = {
 				
         <div class="row justify-content-center align-items-center">
 					<div class="col-12 d-flex flex-row">
-						<img src="/img/currencies/bch.png" style="height:4rem;width:4rem;" class="me-2">
+						<img src="{{asset('')}}assets/img/currencies/bch.png" style="height:4rem;width:4rem;" class="me-2">
             <div>
               <span class="fs-4 align-top text-uppercase">Bitcoin Cash</span>
               <br>
@@ -801,7 +777,7 @@ var course = {
 				
         <div class="row justify-content-center align-items-center">
 					<div class="col-12 d-flex flex-row">
-						<img src="/img/currencies/xec.png" style="height:4rem;width:4rem;" class="me-2">
+						<img src="{{asset('')}}assets/img/currencies/xec.png" style="height:4rem;width:4rem;" class="me-2">
             <div>
               <span class="fs-4 align-top text-uppercase">eCash</span>
               <br>
@@ -1014,7 +990,7 @@ var course = {
 				
         <div class="row justify-content-center align-items-center">
 					<div class="col-12 d-flex flex-row">
-						<img src="/img/currencies/doge.png" style="height:4rem;width:4rem;" class="me-2">
+						<img src="{{asset('')}}assets\img\currencies\doge.png" style="height:4rem;width:4rem;" class="me-2">
             <div>
               <span class="fs-4 align-top text-uppercase">Dogecoin</span>
               <br>
@@ -1089,7 +1065,7 @@ var course = {
 				
         <div class="row justify-content-center align-items-center">
 					<div class="col-12 d-flex flex-row">
-						<img src="/img/currencies/ltc.png" style="height:4rem;width:4rem;" class="me-2">
+						<img src="{{asset('')}}assets/img/currencies/ltc.png" style="height:4rem;width:4rem;" class="me-2">
             <div>
               <span class="fs-4 align-top text-uppercase">Litecoin</span>
               <br>

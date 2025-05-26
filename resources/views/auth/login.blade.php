@@ -39,7 +39,7 @@
                 </div>
               </div>
               <div class="col-6 mt-3 text-end">
-                  <a href="/recovery/">Forgot Password?</a>
+                  <a href="{{route('forgot-password')}}">Forgot Password?</a>
               </div>
               <div class="col-12 mt-3 text-center">
                <div class="h-captcha d-flex justify-content-center" id="h-captcha-login-m" data-sitekey="bee4c716-97a4-43ac-8aa8-fca04de80a80"><iframe src="https://newassets.hcaptcha.com/captcha/v1/3d86f84f0763959329e7e143f693dec441c0c973/static/hcaptcha.html#frame=checkbox&amp;id=08n5ohyq3owt&amp;host=synox.cc&amp;sentry=true&amp;reportapi=https%3A%2F%2Faccounts.hcaptcha.com&amp;recaptchacompat=true&amp;custom=false&amp;hl=en&amp;tplinks=on&amp;andint=off&amp;pstissuer=https%3A%2F%2Fpst-issuer.hcaptcha.com&amp;sitekey=bee4c716-97a4-43ac-8aa8-fca04de80a80&amp;theme=light&amp;origin=https%3A%2F%2Fsynox.cc" tabindex="0" frameborder="0" scrolling="no" allow="private-state-token-issuance 'src'; private-state-token-redemption 'src'" title="Widget containing checkbox for hCaptcha security challenge" data-hcaptcha-widget-id="08n5ohyq3owt" data-hcaptcha-response="" style="pointer-events: auto; background-color: rgba(255, 255, 255, 0); border-radius: 4px; width: 302px; height: 76px; overflow: hidden;"></iframe><textarea id="g-recaptcha-response-08n5ohyq3owt" name="g-recaptcha-response" style="display: none;"></textarea><textarea id="h-captcha-response-08n5ohyq3owt" name="h-captcha-response" style="display: none;"></textarea></div>
@@ -50,7 +50,8 @@
             </div>
           </form>
           </div>
-          
+              @include('partials.notify')
+
           <div class="card-body" id="login2fa" style="display:none;">
             <form action="/login/" class="login2fa">
               <div class="row">

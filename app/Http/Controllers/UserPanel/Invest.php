@@ -15,6 +15,8 @@ use Log;
 use Redirect;
 use Hash;
 use Helper;
+use App\Models\BuyFund; // Import your model
+
 class Invest extends Controller
 {
 
@@ -26,7 +28,7 @@ class Invest extends Controller
     $refId = $userInfo->phone;
     $url = 'https://api.cryptapi.io/bep20/usdt/create/';
     $queryParams = [
-        'callback'      => 'https://rrpranjal.com/cryptapicallback?refid=' . $refId,
+        'callback'      => 'http://127.0.0.1:8000/cryptapicallback?refid=' . $refId,
         'address'       => '0x29EFD41e774E88E3374Eb741572e14076816F413',
         'pending'       => 0,
         'confirmations' => 1,   
@@ -51,6 +53,27 @@ unset($data['callback_url']); // remove callback_url
     }  
 
 
+public function cryptapiCallback(Request $request)
+{
+    $refId = $request->get('refid'); 
+    $value = $request->get('value_coin'); 
+    $txid = $request->get('txid'); 
+
+    $user = \App\Models\User::where('phone', $refId)->first();
+
+    if ($user && $value) {
+        BuyFund::create([
+            'user_id' => $user->id,
+            'user_id_fk' => $user->username,
+            'amount' => $value,
+            'txn_no' => $txid,
+            'status' => 'Pending', 
+            'bdate' => now(),
+        ]);
+    }
+
+    return response('Payment received & recorded', 200);
+}
    
     public function deposit()
     {
@@ -62,6 +85,19 @@ unset($data['callback_url']); // remove callback_url
         return $this->dashboard_layout();
     }
 
+public function buy_hashrate()
+    {
+        
+ $this->data['page'] = 'user.coin.hasrate';
+        return $this->dashboard_layout();
+    }
+
+    public function exchange()
+    {
+        
+ $this->data['page'] = 'user.coin.exchange';
+        return $this->dashboard_layout();
+    }
 
 
 public function cancel_payment($id)
@@ -411,7 +447,7 @@ public function cancel_payment($id)
     if($validation->fails()) {
         Log::info($validation->getMessageBag()->first());
 
-        return redirect()->route('user.invest')->withErrors($validation->getMessageBag()->first())->withInput();
+        return redirect()->route('user.deposit')->withErrors($validation->getMessageBag()->first())->withInput();
     }
 
  
@@ -424,41 +460,15 @@ public function cancel_payment($id)
        $invest_check=Investment::where('user_id',$user_detail->id)->where('status','!=','Decline')->orderBy('id','desc')->limit(1)->first();
        $invoice = substr(str_shuffle("0123456789"), 0, 7);
        $joining_amt =$request->amount;
-        $plan ='BEGINNER';
-       if ($joining_amt>=50 && $joining_amt<=200) 
-       {
-        $plan ='BEGINNER';
-       }
-       elseif($joining_amt>=400 && $joining_amt<=800)
-       {
-        $plan ='STANDARD';
-       }
-       elseif($joining_amt>=1000 && $joining_amt<=2000)
-       {
-        $plan ='EXCLUSIVE';
-       }
-       elseif($joining_amt>=2500 && $joining_amt<=5000)
-       {
-        $plan ='ULTIMATE';
-       }
+          $balance = $user->fund_balance();
 
-       elseif($joining_amt>=5000 && $joining_amt<=10000)
-       {
-        $plan ='PREMIUM';
-       }
-
-       elseif($joining_amt>=5000)
-       {
-        $plan ='PREMIUM';
-       }
-      
 
 
       $last_package = ($invest_check)?$invest_check->amount:0;
+        if ($balance >= $request->amount) {
 
         
            $data = [
-                'plan' => $plan,
                 'transaction_id' =>$request->transaction_id,
                 'user_id' => $user_detail->id,
                 'user_id_fk' => $user_detail->username,
@@ -472,8 +482,10 @@ public function cancel_payment($id)
             
 
         $notify[] = ['success','Deposit request submitted successfully'];
-        return redirect()->route('user.invest')->withNotify($notify);
-
+        return redirect()->route('user.deposit')->withNotify($notify);
+ } else {
+            return Redirect::back()->withErrors(['Insufficient balance in your account.']);
+        }
    
 
   }
@@ -482,7 +494,7 @@ public function cancel_payment($id)
     Log::info($e->getMessage());
     print_r($e->getMessage());
     die("hi");
-    return  redirect()->route('user.invest')->withErrors('error', $e->getMessage())->withInput();
+    return  redirect()->route('user.deposit')->withErrors('error', $e->getMessage())->withInput();
       }
 
  }

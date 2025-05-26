@@ -20,6 +20,9 @@ protected $fillable = [
     'sdate',
     'active_from',
     'edate', // if used
+    'days',
+    'cycle',
+    'last_date',
 ];
 
     public function user()
