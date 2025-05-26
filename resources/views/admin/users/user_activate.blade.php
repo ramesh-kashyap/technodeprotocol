@@ -63,69 +63,7 @@
        </div>
    </div>
    
-     <script src="https://code.jquery.com//jquery-3.3.1.min.js"></script>
-             <script>
-                 function amtValue() {
-                     var amt = document.getElementById('PACKAGE_AMT').value;
-                     if (amt % 100 == 0) {
-                         return true;
-                     } else {
-                         alert('Please enter valid amount Multiple of $ 100  ');
-                         return false;
-                     }
-                 }
-         
-         
-         
-                 $('.check_sponsor_exist').keyup(function(e) {
-                     var ths = $(this);
-                     var res_area = $(ths).attr('data-response');
-                     var sponsor = $(this).val();
-                     // alert(sponsor); 
-                     $.ajax({
-                         type: "POST"
-                         , url: "{{ route('getUserName') }}"
-                         , data: {
-                             "user_id": sponsor
-                             , "_token": "{{ csrf_token() }}"
-                         , }
-                         , success: function(response) {
-                             // alert(response);      
-                             if (response != 1) {
-                                 // alert("hh");
-                                 $(".submit-btn").prop("disabled", false);
-                                 $('#' + res_area).html(response).css('color', '#000').css('font-weight', '800')
-                                     .css('margin-buttom', '10px');
-                             } else {
-                                 // alert("hi");
-                                 $(".submit-btn").prop("disabled", true);
-                                 $('#' + res_area).html("User Not exists!").css('color', 'red').css(
-                                     'margin-buttom', '10px');
-                             }
-                         }
-                     });
-                 });
-
-
-                 $('.check_amount').keyup(function(e) {
-                     var ths = $(this);
-                     var res_area = $(ths).attr('data-response');
-                     var amt = $(this).val();
-                     if (amt % 100 == 0) 
-                     {
-                        $('#' + res_area).html("");
-                        $(".submit-btn").prop("disabled", false);
-                     }
-                     else{
-                        $(".submit-btn").prop("disabled", true);
-                        $('#' + res_area).html("Please enter valid amount Multiple of $ 100!").css('color', 'red').css(
-                                     'margin-buttom', '10px');
-                     }
-                     
-                   
-                    });
-         
-             </script>
+   
          
    <!--**********************************
             Content body end

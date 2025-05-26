@@ -158,9 +158,9 @@ $(function() {
     <option style="background-color: #08132e
 ;" value="{{ route('user.reward-bonus') }}" 
         {{ Request::routeIs('user.reward-bonus') ? 'selected' : '' }}>Direct Income</option> 
-           <!-- <option style="background-color: #08132e
+           <option style="background-color: #08132e
 ;" value="{{ route('user.activitiesBonus') }}" 
-        {{ Request::routeIs('user.activitiesBonus') ? 'selected' : '' }}>Rank & Reward Income</option> -->
+        {{ Request::routeIs('user.activitiesBonus') ? 'selected' : '' }}>Rank & Reward Income</option>
 
     <option style="background-color: #08132e
 ;" value="{{ route('user.dailyIncentive') }}" 

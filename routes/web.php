@@ -28,7 +28,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/generate_roi', [App\Http\Controllers\Cron::class, 'generate_roi'])->name('generate_roi');
 Route::get('/rank-update', [App\Http\Controllers\Cron::class, 'rank_update'])->name('rank-update');
 Route::get('/reward_bonus', [App\Http\Controllers\Cron::class, 'reward_bonus'])->name('reward_bonus');
@@ -233,8 +232,8 @@ Route::get('Roi-bonus', [App\Http\Controllers\Admin\BonusController::class, 'roi
 Route::get('level-bonus', [App\Http\Controllers\Admin\BonusController::class, 'level_bonus'])->name('admin.level-bonus');
 Route::get('booster-bonus', [App\Http\Controllers\Admin\BonusController::class, 'booster_bonus'])->name('admin.booster-bonus');
 Route::get('club-bonus', [App\Http\Controllers\Admin\BonusController::class, 'club_bonus'])->name('admin.club-bonus');
-Route::get('reward-bonus', [App\Http\Controllers\Admin\BonusController::class, 'reward_bonus'])->name('admin.reward-bonus');
-Route::get('royalty-bonus', [App\Http\Controllers\Admin\BonusController::class, 'activities_bonus'])->name('admin.activities-bonus');
+Route::get('matching_bonus', [App\Http\Controllers\Admin\BonusController::class, 'reward_bonus'])->name('admin.matching_bonus');
+Route::get('salary_bonus', [App\Http\Controllers\Admin\BonusController::class, 'activities_bonus'])->name('admin.salary_bonus');
 
 
 // withdraw
