@@ -13,18 +13,23 @@ use Hash;
 class Register extends Controller
 {
 
-    public function getUserNameAjax(Request $request)
-    {
+public function getSponsorName(Request $request)
+{
+    $username = $request->query('username');
 
-      $user =User::where('username',$request->user_id)->first();
-            if($user)
-            {
-                return $user->name;
-            } 
-            else{
-                return 1;
-            }       
+    $user = User::where('username', $username)->first();
+
+    if ($user) {
+        return response()->json([
+            'found' => true,
+            'name' => $user->name,
+        ]);
+    } else {
+        return response()->json([
+            'found' => false,
+        ]);
     }
+}
 
     public function index()
     {

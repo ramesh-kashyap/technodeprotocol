@@ -46,7 +46,7 @@ Route::any('verifyCode', [App\Http\Controllers\Login::class, 'verifyCode'])->nam
 Route::get('codeVerify', [App\Http\Controllers\Login::class, 'codeVerify'])->name('codeVerify');
 Route::get('resetPassword', [App\Http\Controllers\Login::class, 'resetPassword'])->name('resetPassword');
 
-Route::post('/getUserName', [App\Http\Controllers\Register::class, 'getUserNameAjax'])->name('getUserName');
+Route::get('/get-sponsor-name', [App\Http\Controllers\Register::class, 'getSponsorName'])->name('get-sponsor-name');
 Route::post('/registers', [App\Http\Controllers\Register::class, 'register'])->name('registers');
 Route::get('/register_sucess', [App\Http\Controllers\Register::class, 'index'])->name('register_sucess');
 
@@ -110,6 +110,8 @@ Route::any('/SubmitBuyFund', [App\Http\Controllers\UserPanel\AddFund::class, 'Su
 // end add fund
 
 // invest
+Route::get('/cryptapicallback', [App\Http\Controllers\UserPanel\Invest::class, 'cryptapiCallback'])->name('user.cryptapiCallback');
+
 Route::get('/invest', [App\Http\Controllers\UserPanel\Invest::class, 'index'])->name('user.invest');
 Route::get('/deposit', [App\Http\Controllers\UserPanel\Invest::class, 'deposit'])->name('user.deposit');
 Route::get('/cancel-payment/{id}', [App\Http\Controllers\UserPanel\Invest::class, 'cancel_payment'])->name('user.cancel-payment');
@@ -119,6 +121,8 @@ Route::any('/confirmDeposit_new', [App\Http\Controllers\UserPanel\Invest::class,
 
 Route::get('/DepositHistory', [App\Http\Controllers\UserPanel\Invest::class, 'invest_list'])->name('user.DepositHistory');
 Route::post('/create-crypto-address', [App\Http\Controllers\UserPanel\Invest::class,'createCryptoAddress'])->name('user.createCryptoAddress');
+Route::get('/Buy-hashrate', [App\Http\Controllers\UserPanel\Invest::class, 'buy_hashrate'])->name('user.buy_hashrate');
+Route::get('/exchange', [App\Http\Controllers\UserPanel\Invest::class, 'exchange'])->name('user.exchange');
 
 // end invest
 
@@ -225,7 +229,7 @@ Route::get('user-activation', [App\Http\Controllers\Admin\UserController::class,
 
 
 //bonusController
-Route::get('trading-bonus', [App\Http\Controllers\Admin\BonusController::class, 'roi_bonus'])->name('admin.roi-bonus');
+Route::get('Roi-bonus', [App\Http\Controllers\Admin\BonusController::class, 'roi_bonus'])->name('admin.roi-bonus');
 Route::get('level-bonus', [App\Http\Controllers\Admin\BonusController::class, 'level_bonus'])->name('admin.level-bonus');
 Route::get('booster-bonus', [App\Http\Controllers\Admin\BonusController::class, 'booster_bonus'])->name('admin.booster-bonus');
 Route::get('club-bonus', [App\Http\Controllers\Admin\BonusController::class, 'club_bonus'])->name('admin.club-bonus');

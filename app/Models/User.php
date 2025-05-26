@@ -151,6 +151,11 @@ class User extends Authenticatable
     $balance = (Auth::user()->users_incomes()) - (Auth::user()->withdraw());
     return $balance;
     } 
+    public function fund_balance()
+    {
+    $balance = (Auth::user()->buy_fund()) - (Auth::user()->principleBalance());
+    return $balance;
+    } 
 
     public function principleBalance()
     {
@@ -169,6 +174,10 @@ class User extends Authenticatable
         return  Income::where('user_id',Auth::user()->id)->sum('comm');
     } 
     
+      public function buy_fund()
+    {
+        return  BuyFund::where('user_id',Auth::user()->id)->sum('amount');
+    } 
 
     public function withdraw()
     {

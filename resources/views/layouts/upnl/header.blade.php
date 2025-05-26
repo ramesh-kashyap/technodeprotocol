@@ -14,24 +14,47 @@
 	<meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="{{asset('')}}assets/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/fa/css/all.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="{{asset('')}}assets/css/all.min.css"> -->
   <link rel="stylesheet" href="{{asset('')}}assets/css/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('')}}assets/css/noty.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('')}}assets/css/nouislider.min.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('')}}assets/css/style.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
 	<script type="text/javascript" src="{{asset('')}}assets/js/core/jquery.min.js"></script>
     <script src="https://js.hcaptcha.com/1/api.js" async="" defer=""></script>
-    
-    <script src="/js/wow.min.js"></script>
+
+    <script src="{{asset('')}}assets/js/wow.min.js"></script>
     <script type="text/javascript">
       new WOW().init();
     </script>
+      <style>
+.bounce-vertical {
+  animation: bounceTopBottom 1s infinite;
+}
+
+@keyframes bounceTopBottom {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+</style>
+
 </head>
+
+
 
 <body>
 
-
-	
+	<div class="preloader" style="">
+  <div class="loader">
+		<div class="lds-circle2" style="background-position: 0px -18rem;"><div></div></div>
+  </div>
+</div>
 	
 <div class="modal fade" id="language-modal" tabindex="-1" role="">
   <div class="modal-dialog modal-lg">
@@ -111,11 +134,7 @@
 <![endif]-->
 
 
-<div class="preloader" style="display: none;">
-  <div class="loader">
-		<div class="lds-circle2" style="background-position: 0px -24rem;"><div></div></div>
-  </div>
-</div>
+
 
   
 <div class="overflow-hidden">
@@ -125,8 +144,8 @@
       <div class="container-lg">
         <a class="navbar-brand d-flex flex-row" href="/">
           <img src="{{asset('')}}assets/img/logo.png" style="height:3.5rem;">
-                    <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">synox
-            <div style="font-size:1rem;margin-top:1.5rem;" class="text-end">mining</div>
+                    <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">
+            <div style="font-size:1rem;margin-top:1.5rem;" class="text-end"></div>
           </div>
         </a>
 
@@ -167,11 +186,18 @@
           <div class="dropdown">
             <a class="btn btn-light dropdown-toggle" id="user-dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" data-scroll-nav="0" rel="nofollow"><i class="fa-duotone fa-solid fa-user-tie fa-lg"></i>            </a>
             <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="/profile/"><i class="lni lni-idea-setting me-2"></i>Settings</a></li>
-              <li><a class="dropdown-item " href="/profile/#security" data-hash="security"><i class="lni lni-shield-alt-1 me-2"></i>Security</a></li>
-              <li><a class="dropdown-item" href="/history/"><i class="lni lni-history me-2"></i>History</a></li>
+                            <li><a class="dropdown-item" href="{{route('user.profile')}}">Settings</a></li>
+              <li><a class="dropdown-item" href="{{route('user.Withdraw-History')}}">History</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/logout/"><i class="lni lni-exit me-2"></i>Log out</a></li>
+       <form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <li>
+        <button type="submit" class="dropdown-item" style="background: none; border: none; padding: 0;">
+            <i class="lni lni-exit me-2"></i> Log out
+        </button>
+    </li>
+</form>
+
             </ul>
           </div>
                   </div>

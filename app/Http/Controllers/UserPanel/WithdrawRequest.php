@@ -48,7 +48,7 @@ class WithdrawRequest extends Controller
             'amount' => 'required|numeric|min:10',
             'PSys' => 'required',
             'walletAddress' => 'required',
-            'code' => 'required'
+            // 'code' => 'required'
 
         ]);
 
@@ -59,23 +59,18 @@ class WithdrawRequest extends Controller
 
     $user = Auth::user();
 
-    // Check OTP from password_resets table
-    $record = DB::table('password_resets')
-        ->where('email', $user->email)
-        ->where('token', $request->code)
-        ->first();
-
-    if (!$record) {
-        return back()->withErrors(['code' => 'Invalid or expired OTP']);
-    }
-
+   
     $balance = $user->available_balance();
         $account = '';
 
-        if ($request->PSys == "USDT.BEP20") {
-            $account = $user->usdtBep20;
-            $paymentMode = "USDT_BSC";
-        }
+       if ($request->PSys == "USDT.BEP20") {
+    $account = $user->usdtBep20;
+    $paymentMode = "USDT_BSC";
+} elseif ($request->PSys == "USDT.TRC20") {
+    $account = $user->usdtTrc20;
+    $paymentMode = "USDT_TRC";
+}
+
 
         if ($balance >= $request->amount) {
             $todayWithdraw = Withdraw::where('user_id', $user->id)

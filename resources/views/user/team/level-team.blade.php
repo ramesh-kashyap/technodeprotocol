@@ -1,93 +1,184 @@
 
 
 
-<div id="main-content" class="flex-grow-1 m-3">
-    <nav class="navbar navbar-expand-lg sticky-top shadow-sm main-header">
-        <div class="container-fluid">
-            <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#mobileMenu" aria-controls="mobileMenu">
-                <i class="fas fa-bars"></i>
-            </button>
+<script>
+var rb_conf = {
+	'max': 5,
+};
+	
+$(function() {
+	var copyCode = new ClipboardJS('#btn_ref_link');
 
-            <button id="sidebarToggle" class="btn btn-outline-secondary d-none d-md-inline-block me-3">
-                <i class="fas fa-bars"></i>
-            </button>
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		new Noty({
+			type: 'success',
+			text: '<i class="fal fa-check"></i> '+tl.Copied,
+			timeout: 3000,
+			progressBar: true,
+			theme: 'relax',
+			layout: 'topRight',
+		}).show();
+	});
+});
+</script>
+<style>
+  #promoModal .form-control{
+    padding:5px;
+  }
+</style>
 
-            <span class="navbar-brand text-capitalize text-white mb-0 h1 d-none d-sm-inline-block">referals</span>
+<div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="promoModalLabel">Promotional materials</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row align-items-center">
+                            <div class="col-12 text-center">
+              <div class="row promo">
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/bg.gif" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bg.gif" /></a></textarea>
+                      
+                  </div>
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/bg.png" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bg.png" /></a></textarea>
+                  </div>
+                  
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/sg.gif" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sg.gif" /></a></textarea>
+                  </div>
+                  
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/sg.png" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sg.png" /></a></textarea>
+                  </div>
+                  
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/bv.gif" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bv.gif" /></a></textarea>
+                      <br />
+                  </div>
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/bv.png" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bv.png" /></a></textarea>
+                      <br />
+                  </div>
 
-             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mb-0 dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user-circle fa-lg me-1"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
-                        <li><a class="dropdown-item" href="{{route('user.GenerateTicket')}}"><i
-                                    class="fas fa-headset fa-fw me-2"></i>Support</a></li>
-                        <li><a class="dropdown-item" href="{{route('user.profile')}}"><i
-                                    class="fas fa-user-edit fa-fw me-2"></i>Edit Account</a></li>
-                        <li><a class="dropdown-item" href="{{route('user.ChangePass')}}"><i
-                                    class="fas fa-shield-alt fa-fw me-2"></i>Security</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                            class="d-none">
-                            @csrf
-                        </form>
-                        <li><a class="dropdown-item text-danger" href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                                    class="fas fa-sign-out-alt fa-fw me-2"></i>Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/sm.gif" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sm.gif" /></a></textarea>
+                      <br />
+                  </div>
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/sm.png" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sm.png" /></a></textarea>
+                      <br />
+                  </div>
+              </div>
+      </div>
         </div>
-    </nav>
-    <div class="top-video">
-        <video class="top" src="video/top.mp4" type="video/mp4" muted autoplay loop plays-inline
-            poster="video/poster.png"></video>
     </div>
+	      </div>
+</div>
+</div>
 
-    
-    <div class="card mt-3">
-        <div class="card-header">
-            <h3>Total Team List</h3>
-        </div>
-        <div class="card-body">
+<div id="partners" class="account partners partners-page pt-md-4 py-lg-5">
 
-            <div class="row mb-4">
-                <div style="margin-bottom:16px" class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Total Team</h5>
-<h2 class="mb-0">{{ $totalTeam }}</h2>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-bottom:16px" class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Active Referrals</h5>
-<h2 class="mb-0">{{ $activetotalTeam }}</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>Total Commission</h5>
-                            <h2 class="mb-0">${{ number_format(Auth::user()->sponsorship_bonus->sum('comm'), 2) }}  {{generalDetail()->cur_text}}</h2>
-                        </div>
-                    </div>
-                </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 py-4">
+				<div class="card wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+          <div class="total-balance">
+              Total Balance: <span class="inter">$0.01</span>
+          </div>
+          <nav class="navbar navbar-account navbar-expand-md bg-body-tertiary p-0">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                                                     @include('layouts.upnl.navbar')
+
             </div>
+          </nav>
+				</div>
+			</div>
+      
+      <div class="col-12 pb-4 wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
 
+		<div class="card mb-4">
+			
+			<div class="card-body pb-4">
+								
+				
+				<div class="row">
+					<div class="col-4 text-center">1st level partners</div>
+					<div class="col-4 text-center">2nd level partners</div>
+					<div class="col-4 text-center">3rt level partners</div>
+					
+					<div class="col-4 text-center">
+						<i class="lnil lnil-add-user me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+					</div>
+					<div class="col-4 text-center">
+						<i class="lnil lnil-add-group me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+					</div>
+					<div class="col-4 text-center">
+						<i class="lnil lnil-add-group-alt me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+					</div>
+				</div>
+        <div class="row align-items-end">
+					<div class="col-12 col-md-6 mt-4">
+						Your referral link:
+          <div class="input-copy">
+						  <input type="text" class="form-control copy" style="cursor:pointer;" value="{{ url('/register') }}?ref={{ auth()->user()->username }}" data-clipboard-target="#btn_ref_link" id="btn_ref_link" data-toggle="tooltip" data-placement="bottom" title="Copy" readonly>
+            </div>
+					</div>
+          
+          <div class="col-12 col-md-6 mt-4">
+            <div class="d-grid">
+						  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#promoModal">Promotional materials</button>
+            </div>
+					</div>
+				</div>
+                
+			</div>
+			<div class="card-footer">
+			<div class="row justify-content-between">
+          <div class="col">
+            <span class="opacity-50">You are invited by:</span><br>
+            <i class="lni lni-user-star me-1"></i>Missing          </div>
+					<div class="col text-end">
+						Total partners:<br>
+						<span class="text-white" style="font-size:2em;line-height: 1">{{ $totalTeam }}</span><br>
+						<small class="opacity-50">Invite partners and increase your profit</small>
+					</div>
+				</div>
+			</div>
+			
+			<i class="lni lni-friends"></i>
+		</div>
+	</div>
+  </div>
+				
 
-            <h4 class="mb-4 mt-5">Total Team List</h4>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
+					<div class="col pb-5">
+						<div  class="card shadow-lg wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+                            <div class="card-body">
+                                <div class="mb-2">Your partners</div>
+								<div class="table-responsive">
+									<table class="table table-striped history table-responsive-md referrals mb-0 text-right">
+										<thead>
+											<tr>
+												<th>Name</th>
 
                             <th>Username</th>
                             <th>Email</th>
@@ -96,22 +187,18 @@
 
 
                             <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- Logged-in User Info --}}
-                        <!-- <tr>
-                            <td><b>{{ Auth::user()->username }}</b></td>
-                            <td><a href="mailto:{{ Auth::user()->email }}"
-                                    class="themed-link">{{ Auth::user()->email }}</a></td>
-                            <td><span class="text-success">Logged In User</span></td>
-                        </tr> -->
-
+											</tr>
+										</thead>
+										<tbody>
+                                            
                         {{-- Direct Team Members --}}
                         @if(is_array($direct_team) || is_object($direct_team))
                         @foreach ($direct_team as $value)
-                        <tr>
-                            <td>{{ $value->name }}</td>
+                      
+																						<tr>
+
+
+                                                                                             <td>{{ $value->name }}</td>
 
                             <td><b>{{ $value->username }}</b></td>
                             <td><a href="mailto:{{ $value->email }}" class="themed-link">{{ $value->email }}</a></td>
@@ -125,8 +212,8 @@
                             @endif
                             </td>
 
-                        </tr>
-                        <tr>
+											</tr>
+                                            <tr>
                             <td colspan="3">
                                 <small>
                                     
@@ -136,138 +223,25 @@
                         </tr>
                         @endforeach
                         @endif
-                    </tbody>
-                   
-                </table>
-
-                {{-- Pagination --}}
-                <div class="pagination justify-content-center mt-3">
-                    {{ $direct_team->links('pagination::bootstrap-4') }}
-                </div>
-
-            </div>
-        </div>
+																					</tbody>
+									</table>
+               <div class="d-flex justify-content-center mt-4">
+        {{ $direct_team->links('pagination::bootstrap-4') }}
     </div>
 
+								</div>
+							</div>
+							                        </div>
+					</div>
+				</div>
+				
+	</div>
 </div>
-<div class="offcanvas offcanvas-start text-white d-md-none" tabindex="-1" id="mobileMenu"
-    aria-labelledby="mobileMenuLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
-        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"
-            aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-         <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a href="{{route('user.dashboard')}}" class="nav-link text-white">
-                            <i class="fas fa-user fa-fw me-2"></i>Account
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('user.invest')}}" class="nav-link text-white">
-                            <i class="fas fa-download fa-fw me-2"></i>Deposit
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('user.Withdraw')}}" class="nav-link text-white">
-                            <i class="fas fa-upload fa-fw me-2"></i>Withdraw
-                        </a>
-                    </li>
-                   
-                    <li class="nav-item">
-                        <a href="{{route('user.DepositHistory')}}" class="nav-link text-white">
-                            <i class="fas fa-history fa-fw me-2"></i>History
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('user.level-team')}}" class="nav-link text-white">
-                            <i class="fas fa-users fa-fw me-2"></i>Referrals
-                        </a>
-                    </li>
-                  
-                    <li class="nav-item">
-                        <a href="{{route('user.ChangePass')}}" class="nav-link text-white">
-                            <i class="fas fa-shield-alt fa-fw me-2"></i>Security
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('user.profile')}}" class="nav-link text-white">
-                            <i class="fas fa-user-edit fa-fw me-2"></i>Edit Account
-                        </a>
-                    </li>
-                   <li class="nav-item mt-auto">
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                            class="d-none">
-                            @csrf
-                        </form>
-                    <a href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link text-warning" title="Logout" data-bs-toggle="tooltip"
-                        data-bs-placement="right">
-                        <i class="fas fa-sign-out-alt fa-fw"></i><span class="sidebar-text ms-2">Logout</span>
-                    </a>
-                </li>
-                </ul>
-    </div>
+		
+		
+		</div>
+		</div>
+
+
+	
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
-<script src="{{asset('')}}assets/js/dash.js"></script>
-
-
-<script>
-    window.addEventListener('load', function () {
-        // All resources (images, scripts, stylesheets, etc.) are loaded
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer) {
-            // Add the 'hidden' class to trigger the fade-out animation
-            preloaderContainer.classList.add('hidden');
-
-            // Optional: If you want to completely remove the preloader from the DOM
-            // after the transition, you can listen for the 'transitionend' event.
-            preloaderContainer.addEventListener('transitionend', function () {
-                if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer)
-                    .opacity === '0') {
-                    preloaderContainer.style.display = 'none'; // Or preloaderContainer.remove();
-                }
-            }, {
-                once: true
-            }); // {once: true} ensures the event listener is removed after it fires
-        }
-
-        if (content) {
-            content.style.display = 'block'; // Or any other display type you need, e.g., 'flex'
-            // If you used opacity for content:
-            // content.style.opacity = '1';
-            // content.style.visibility = 'visible';
-        }
-    });
-
-    // Fallback in case 'load' event doesn't fire or takes too long (e.g., for broken images)
-    // You might want to adjust the timeout duration
-    setTimeout(function () {
-        const preloaderContainer = document.querySelector('.preloader-container');
-        const content = document.querySelector('.content');
-
-        if (preloaderContainer && !preloaderContainer.classList.contains('hidden')) {
-            console.warn("Preloader timeout reached. Forcing hide.");
-            preloaderContainer.classList.add('hidden');
-            if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer).opacity ===
-                '0') {
-                preloaderContainer.style.display = 'none';
-            }
-            if (content) {
-                content.style.display = 'block';
-            }
-        }
-    }, 10000); // 10 seconds timeout as an example
-
-</script>
-
-</body>
-
-</html>

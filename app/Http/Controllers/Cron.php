@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Console\Command;
 
 use Illuminate\Http\Request;
 use App\Models\Investment;
@@ -17,11 +18,62 @@ use DateInterval;
 use DatePeriod;
 use Carbon\Carbon;
 use Helper;
+use DB;
+
 use Plisio\PlisioSdkLaravel\Payment;
 use Illuminate\Support\Facades\Log;
 class Cron extends Controller
 {
-    
+    protected $signature = 'roi:generate';
+    protected $description = 'Generate ROI income for eligible users';
+
+   public function handle()
+{
+    $today = Carbon::today();
+
+    $investments = Investment::where('cycle', '<=', 21)
+                             ->where('status', 'Active')
+                             ->get();
+
+    foreach ($investments as $investment) {
+        $startDate = Carbon::parse($investment->sdate);
+        $nextCycleDays = 10 + ($investment->cycle); 
+
+        $nextCycleDate = $startDate->copy()->addDays($nextCycleDays);
+
+        if ($today->greaterThanOrEqualTo($nextCycleDate)) {
+            DB::beginTransaction();
+            try {
+                $roiAmount = $investment->amount * 0.08; // 8% ROI
+
+                Income::create([
+                    'user_id' => $investment->user_id,
+                    'comm' => $roiAmount,
+                    'remarks' => 'ROI Income',
+                    'ttime' => now(),
+                ]);
+
+                $investment->cycle += 1;
+                $investment->days = $nextCycleDays;
+
+                if ($investment->cycle > 21) {
+                    $investment->status = 'Pending'; 
+                }
+
+                $investment->save();
+
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollBack();
+                \Log::error('ROI generation failed: '.$e->getMessage());
+            }
+        }
+    }
+
+    $this->info('ROI income generation completed.');
+}
+
+
 public function __construct()
 {
 date_default_timezone_set("Asia/Kolkata");   //India time (GMT+5:30)

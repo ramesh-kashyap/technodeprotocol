@@ -1,263 +1,327 @@
 
-
-        <div id="main-content" class="flex-grow-1 m-3">
-            <nav class="navbar navbar-expand-lg sticky-top shadow-sm main-header">
-                <div class="container-fluid">
-                    <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
-                        <i class="fas fa-bars"></i>
-                    </button>
-
-                    <button id="sidebarToggle" class="btn btn-outline-secondary d-none d-md-inline-block me-3">
-                        <i class="fas fa-bars"></i>
-                    </button>
-
-                    <span class="navbar-brand text-capitalize text-white mb-0 h1 d-none d-sm-inline-block">referals</span>
-
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mb-0 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle fa-lg me-1"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
-                                <li><a class="dropdown-item" href="?a=support"><i class="fas fa-headset fa-fw me-2"></i>Support</a></li>
-                                <li><a class="dropdown-item" href="?a=edit_account"><i class="fas fa-user-edit fa-fw me-2"></i>Edit Account</a></li>
-                                <li><a class="dropdown-item" href="?a=security"><i class="fas fa-shield-alt fa-fw me-2"></i>Security</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="?a=logout"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="top-video">
-            <video class="top" src="video/top.mp4" type="video/mp4" muted autoplay loop plays-inline poster="video/poster.png"></video>
-        </div>
-
-<div class="card mt-3">
-  <div class="card-header">
-    <h3>Your Referrals</h3>
-  </div>
-  <div class="card-body">
-    
-    <div class="row mb-4">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Total Referrals</h5>
-            <h2 class="mb-0">0</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Active Referrals</h5>
-            <h2 class="mb-0">0</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Total Commission</h5>
-            <h2 class="mb-0">$0.00</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-              </div>
-</div>
-<div class="card mt-3">
-  <div class="card-header">
-    <h3>Your Referrals</h3>
-  </div>
-  <div class="card-body">
-    
-    <div class="row mb-4">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Total Referrals</h5>
-            <h2 class="mb-0">2</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Active Referrals</h5>
-            <h2 class="mb-0">0</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Total Commission</h5>
-            <h2 class="mb-0">$0.00</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-            <h4 class="mb-4 mt-5">Your Referral List</h4>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-                    <tr>
-            <td><b>Ronik036</b></td>
-            <td><a href="mailto:arkashyap1772@gmail.com" class="themed-link">arkashyap1772@gmail.com</a></td>
-            <td><span class="text-warning">No deposit yet</span></td>
-          </tr>
-                    <tr>
-            <td colspan="3">
-              <small>
-                User referrals:
-                                <span class="badge bg-primary">0 active of 1 on level 1</span>                              </small>
-            </td>
-          </tr>
-                                        <tr>
-            <td><b>11223344</b></td>
-            <td><a href="mailto:sagartyagi1024@gmail.com" class="themed-link">sagartyagi1024@gmail.com</a></td>
-            <td><span class="text-warning">No deposit yet</span></td>
-          </tr>
-                                      </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3">
-              <div class="d-flex justify-content-between align-items-center">
-                <div><b>2-10 level referrals:</b> 1</div>
-                <div><b>2-10 level active referrals:</b> 0</div>
-              </div>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-          </div>
-</div>
-00
-</div>
-    <div class="offcanvas offcanvas-start text-white d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
-        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-         <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-                <a href="?a=account" class="nav-link text-white">
-                    <i class="fas fa-user fa-fw me-2"></i>Account
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="?a=deposit" class="nav-link text-white">
-                    <i class="fas fa-download fa-fw me-2"></i>Deposit
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="?a=withdraw" class="nav-link text-white">
-                    <i class="fas fa-upload fa-fw me-2"></i>Withdraw
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="?a=deposit_list" class="nav-link text-white">
-                    <i class="fas fa-list-alt fa-fw me-2"></i>Deposit List
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="?a=history" class="nav-link text-white">
-                    <i class="fas fa-history fa-fw me-2"></i>History
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="?a=referals" class="nav-link text-white">
-                    <i class="fas fa-users fa-fw me-2"></i>Referrals
-                </a>
-            </li>
-             <li class="nav-item">
-                <a href="?a=referallinks" class="nav-link text-white">
-                    <i class="fas fa-link fa-fw me-2"></i>Banners
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="?a=security" class="nav-link text-white">
-                    <i class="fas fa-shield-alt fa-fw me-2"></i>Security
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="?a=edit_account" class="nav-link text-white">
-                    <i class="fas fa-user-edit fa-fw me-2"></i>Edit Account
-                </a>
-            </li>
-             <li class="nav-item mt-auto">
-                <a href="?a=logout" class="nav-link text-warning">
-                    <i class="fas fa-sign-out-alt fa-fw me-2"></i>Logout
-                </a>
-            </li>
-        </ul>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="{{asset('')}}assets/js/dash.js"></script>
-    
-
 <script>
-    window.addEventListener('load', function() {
-    // All resources (images, scripts, stylesheets, etc.) are loaded
-    const preloaderContainer = document.querySelector('.preloader-container');
-    const content = document.querySelector('.content');
+var rb_conf = {
+	'max': 5,
+};
+	
+$(function() {
+	var copyCode = new ClipboardJS('#btn_ref_link');
 
-    if (preloaderContainer) {
-        // Add the 'hidden' class to trigger the fade-out animation
-        preloaderContainer.classList.add('hidden');
-
-        // Optional: If you want to completely remove the preloader from the DOM
-        // after the transition, you can listen for the 'transitionend' event.
-        preloaderContainer.addEventListener('transitionend', function() {
-            if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer).opacity === '0') {
-                 preloaderContainer.style.display = 'none'; // Or preloaderContainer.remove();
-            }
-        }, { once: true }); // {once: true} ensures the event listener is removed after it fires
-    }
-
-    if (content) {
-        content.style.display = 'block'; // Or any other display type you need, e.g., 'flex'
-        // If you used opacity for content:
-        // content.style.opacity = '1';
-        // content.style.visibility = 'visible';
-    }
+	copyCode.on('success', function(event) {
+		event.clearSelection();
+		new Noty({
+			type: 'success',
+			text: '<i class="fal fa-check"></i> '+tl.Copied,
+			timeout: 3000,
+			progressBar: true,
+			theme: 'relax',
+			layout: 'topRight',
+		}).show();
+	});
 });
-
-// Fallback in case 'load' event doesn't fire or takes too long (e.g., for broken images)
-// You might want to adjust the timeout duration
-setTimeout(function() {
-    const preloaderContainer = document.querySelector('.preloader-container');
-    const content = document.querySelector('.content');
-
-    if (preloaderContainer && !preloaderContainer.classList.contains('hidden')) {
-        console.warn("Preloader timeout reached. Forcing hide.");
-        preloaderContainer.classList.add('hidden');
-        if (preloaderContainer.style.opacity === '0' || getComputedStyle(preloaderContainer).opacity === '0') {
-            preloaderContainer.style.display = 'none';
-        }
-        if (content) {
-            content.style.display = 'block';
-        }
-    }
-}, 10000); // 10 seconds timeout as an example
 </script>
+<style>
+  #promoModal .form-control{
+    padding:5px;
+  }
+</style>
 
-</body>
-</html>
+<div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="promoModalLabel">Promotional materials</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row align-items-center">
+                            <div class="col-12 text-center">
+              <div class="row promo">
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/bg.gif" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bg.gif" /></a></textarea>
+                      
+                  </div>
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/bg.png" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bg.png" /></a></textarea>
+                  </div>
+                  
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/sg.gif" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sg.gif" /></a></textarea>
+                  </div>
+                  
+                  <div class="col-12">
+                      <img src="{{asset('')}}assets/img/sg.png" style="max-width:100%;margin:0 auto;" />
+                      <textarea style="width:100%;min-height:41px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sg.png" /></a></textarea>
+                  </div>
+                  
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/bv.gif" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bv.gif" /></a></textarea>
+                      <br />
+                  </div>
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/bv.png" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2 mb-4"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/bv.png" /></a></textarea>
+                      <br />
+                  </div>
+
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/sm.gif" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sm.gif" /></a></textarea>
+                      <br />
+                  </div>
+                  <div class="col-6">
+                      <img src="{{asset('')}}assets/img/sm.png" style="max-width:100%;margin:0 auto;" />
+                      
+                      <textarea style="width:100%;min-height:90px;" class="form-control mt-2"><a href="https://synox.cc/partner/maticdefi08"><img src="https://synox.cc/img/a/sm.png" /></a></textarea>
+                      <br />
+                  </div>
+              </div>
+      </div>
+        </div>
+    </div>
+	      </div>
+</div>
+</div>
+
+<div id="partners" class="account partners partners-page pt-md-4 py-lg-5">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12 py-4">
+				<div class="card wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+          <div class="total-balance">
+              Total Balance: <span class="inter">$0.01</span>
+          </div>
+          <nav class="navbar navbar-account navbar-expand-md bg-body-tertiary p-0">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                                                     @include('layouts.upnl.navbar')
+
+            </div>
+          </nav>
+				</div>
+			</div>
+      
+      <div class="col-12 pb-4 wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+
+		<div class="card mb-4">
+			
+			<div class="card-body pb-4">
+								
+				
+				<div class="row">
+					<div class="col-4 text-center">1st level partners</div>
+					<div class="col-4 text-center">2nd level partners</div>
+					<div class="col-4 text-center">3rt level partners</div>
+					
+					<div class="col-4 text-center">
+						<i class="lnil lnil-add-user me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+					</div>
+					<div class="col-4 text-center">
+						<i class="lnil lnil-add-group me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+					</div>
+					<div class="col-4 text-center">
+						<i class="lnil lnil-add-group-alt me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+					</div>
+				</div>
+        <div class="row align-items-end">
+					<div class="col-12 col-md-6 mt-4">
+						Your referral link:
+          <div class="input-copy">
+						  <input type="text" class="form-control copy" style="cursor:pointer;" value="https://synox.cc/partner/maticdefi08" data-clipboard-target="#btn_ref_link" id="btn_ref_link" data-toggle="tooltip" data-placement="bottom" title="Copy" readonly>
+            </div>
+					</div>
+          
+          <div class="col-12 col-md-6 mt-4">
+            <div class="d-grid">
+						  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#promoModal">Promotional materials</button>
+            </div>
+					</div>
+				</div>
+                
+			</div>
+			<div class="card-footer">
+			<div class="row justify-content-between">
+          <div class="col">
+            <span class="opacity-50">You are invited by:</span><br>
+            <i class="lni lni-user-star me-1"></i>Missing          </div>
+					<div class="col text-end">
+						Total partners:<br>
+						<span class="text-white" style="font-size:2em;line-height: 1">0</span><br>
+						<small class="opacity-50">Invite partners and increase your profit</small>
+					</div>
+				</div>
+			</div>
+			
+			<i class="lni lni-friends"></i>
+		</div>
+	</div>
+  </div>
+				
+
+				
+
+<!-- <div class="row">
+  <div class="col col-md-6 pb-4 wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+    <div class="card mb-4">
+      
+      <div class="card-body">
+        <div class="mb-3">
+          <i class="fab fa-youtube fa-lg text-danger me-1"></i> Record a video on YouTube
+        </div>
+        <form method="post" action="" class="send_video">
+          <input type="hidden" name="platform" value="youtube">
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-prepend">
+                  <span class="input-group-text"><i class="fal fa-link"></i></span>
+                </span>
+                <input type="text" class="form-control" id="link" name="link" placeholder="Link to video">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer py-2">
+        <small class="opacity-50">Record a video about the project where you make your deposit and get 10% of the purchased power. This function is available every 7 days.</small>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col col-md-6 pb-4 wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+    <div class="card mb-4">
+      
+      <div class="card-body">
+        <div class="mb-3">
+          <i class="fab fa-tiktok fa-lg me-1"></i> Record a video on TikTok
+        </div>
+        <form  action="" class="send_video">
+          <input type="hidden" name="platform" value="tiktok">
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-prepend">
+                  <span class="input-group-text"><i class="fal fa-link"></i></span>
+                </span>
+                <input type="text" class="form-control" id="link" name="link" placeholder="Link to video">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer py-2">
+        <small class="opacity-50">Record a video of at least 15 seconds, tell about Synox Mining or demonstrate our site in any format convenient for you. Be sure to include your referral link in the description. Reward from $1 to $2000. This function is available every 7 days.</small>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div class="row">
+  <!-- <div class="col-12 pb-4">
+    <div  class="card shadow-lg wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+                    <div class="card-body">
+                        <div class="opacity-50 mb-2">Total stats</div>
+        <div class="table-responsive">
+          <table class="table table-striped history table-responsive-md mb-0 text-right">
+            <thead>
+              <tr>
+                <th class="text-left">Name</th>
+                <th>Users</th>
+                                <th>KHEAVYHASH</th>
+                                <th>SHA-256</th>
+                                <th>SCRYPT</th>
+                              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">1st level partners</td>
+                <td>0</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 GH/s</td>
+                              </tr>
+              <tr>
+                <td class="text-left">2nd level partners</td>
+                <td>0</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 GH/s</td>
+                              </tr>
+              <tr>
+                <td class="text-left">3rd level partners</td>
+                <td>0</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 GH/s</td>
+                              </tr>
+              <tr>
+                <td class="text-left">All partners</td>
+                <td>0</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 TH/s</td>
+                                <td>0.0000 GH/s</td>
+                              </tr>
+            </tbody>
+          </table>
+        </div>
+                    </div>
+                </div>
+  </div> -->
+  
+					<div class="col pb-5">
+						<div  class="card shadow-lg wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
+                            <div class="card-body">
+                                <div class="mb-2">Your partners</div>
+								<div class="table-responsive">
+									<table class="table table-striped history table-responsive-md referrals mb-0 text-right">
+										<thead>
+											<tr>
+												<th class="text-left">User</th>
+												<th>Deposit</th>
+												<th>Your profit</th>
+												<th>Level 2</th>
+												<th>Level 3</th>
+											</tr>
+										</thead>
+										<tbody>
+                      
+																						<tr>
+												<td colspan="5" class="text-center">No data</td>
+											</tr>
+																					</tbody>
+									</table>
+								</div>
+							</div>
+							                        </div>
+					</div>
+				</div>
+				
+	</div>
+</div>
+		
+		
+		</div>
+		</div>
+
+
+	
+</div>

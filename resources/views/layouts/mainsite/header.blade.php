@@ -128,8 +128,8 @@
       <div class="container-lg">
         <a class="navbar-brand d-flex flex-row" href="index.html">
           <img src="{{asset('')}}assets/img/logo.png" style="height:3.5rem;" />
-                    <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">synox
-            <div style="font-size:1rem;margin-top:1.5rem;" class="text-end">mining</div>
+                    <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">
+            <div style="font-size:1rem;margin-top:1.5rem;" class="text-end"></div>
           </div>
         </a>
 

@@ -633,7 +633,7 @@ $user_mid = $data->id;
                 $total_profit =0;
                 $total_get =0;
               }
-             $percent = 10;
+             $percent = 5;
 
              if($sp_status=="Active")
                {
