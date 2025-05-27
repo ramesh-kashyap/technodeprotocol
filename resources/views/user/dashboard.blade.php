@@ -876,7 +876,7 @@
 
                             </div>
 
-
+<!-- 
                             <div class="tab-pane fade SCRYPT algorithm pb-4" id="algorithmSCRYPT" role="tabpanel"
                                 aria-labelledby="#tabAlgorithmSCRYPT">
 
@@ -1275,7 +1275,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
 
 
 
