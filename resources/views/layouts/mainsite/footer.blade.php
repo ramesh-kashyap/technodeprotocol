@@ -11,8 +11,8 @@
           >
             <a class="navbar-brand d-flex flex-row me-4 me-md-0" href="index.html">
               <img src="{{asset('')}}assets/img/logo.png" style="height:3.5rem;" />
-                            <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">synox
-                <div style="font-size:1rem;margin-top:1.5rem;" class="text-end">mining</div>
+                            <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">teachnode
+                <div style="font-size:1rem;margin-top:1.5rem;" class="text-end"></div>
               </div>
             </a>
 
@@ -55,7 +55,7 @@
     <div class="footer-copyright">
       <div class="row">
         <div class="col py-5 inter opacity-50 fw-light">
-          2025 © Synox Mining. All rights reserved.
+          2025 © {{siteName()}}. All rights reserved.
         </div>
       </div>
     </div>
