@@ -9,7 +9,7 @@
       <div class="col-12 my-5 wow fadeIn" data-wow-duration="2.5s" data-wow-delay="0.3s" style="visibility: visible; animation-duration: 2.5s; animation-delay: 0.3s; animation-name: fadeIn;">
         <div class="text-center">
           <h1>Welcome back</h1>
-          <span class="fs-4">Login to your account</span>
+          <span class="fs-4">Forgot Password to your account</span>
         </div>
       </div>
     </div>

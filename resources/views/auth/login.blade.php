@@ -25,7 +25,7 @@
               {{ csrf_field() }}
             <div class="row">
               <div class="col-12">
-                  <input type="text" class="form-control mt-1" name="email" id="user_email" placeholder="Your username or email">
+                  <input type="text" class="form-control mt-1" name="email" id="user_email" placeholder="Enter Your email">
               </div>
 
               <div class="col-12 mt-3">
