@@ -47,7 +47,7 @@
     <div class="footer-copyright">
       <div class="row">
         <div class="col py-5 inter opacity-50 fw-light">
-          2025 © Synox Mining. All rights reserved.
+          2025 © {{siteName()}}. All rights reserved.
         </div>
       </div>
     </div>
