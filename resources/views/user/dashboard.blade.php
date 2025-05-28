@@ -1,3 +1,6 @@
+
+@include('partials.notify')
+
 <script>
     $(function () {
         $('.SHA-256 .circle-progress').circleProgress({
@@ -695,10 +698,13 @@
                                                         </div>
 
                                                         <div class="py-4 my-md-0 opacity-75">
-                                                            Buy 9.00 TH/s to earn 1.2% daily
+                                                        Balance:{{ currency() }}{{ number_format(Auth::user()->cleam_bonus(), 2) }}
                                                         </div>
-                                                        <a href="/buy-power/" class="btn btn-primary">Buy hashrate</a>
-                                                    </div>
+                                                        <form action="{{ route('user.cleam') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-primary">Roi Cleam</button>
+</form>
+                                                        </div>
                                                 </div>
                                             </div>
                                             <div class="col d-none d-sm-block text-end">

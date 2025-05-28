@@ -64,7 +64,8 @@ Route::get('/home', [App\Http\Controllers\UserPanel\Dashboard::class, 'index'])-
 Route::prefix('user')->group(function ()
 {
 Route::middleware('auth')->group(function ()
-{
+{Route::post('/roi-cleam', [App\Http\Controllers\UserPanel\Dashboard::class, 'roiCleam'])->name('user.cleam');
+
 Route::get('/dashboard', [App\Http\Controllers\UserPanel\Dashboard::class, 'index'])->name('user.dashboard');
 Route::get('/tradeOn', [App\Http\Controllers\UserPanel\Dashboard::class, 'tradeOn'])->name('user.tradeOn');
 Route::get('/market', [App\Http\Controllers\UserPanel\Dashboard::class, 'market'])->name('user.market');
