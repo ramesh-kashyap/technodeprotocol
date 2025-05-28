@@ -450,9 +450,13 @@ public function cancel_payment($id)
         return redirect()->route('user.deposit')->withErrors($validation->getMessageBag()->first())->withInput();
     }
 
- 
+  $user = Auth::user();
 
-       $user=Auth::user();
+        if ($request->transaction_id !== $user->TPSR) {
+            return Redirect::back()->withErrors(['Transaction password is incorrect.'])->withInput();
+        }
+
+
        
        $plan="1";
 

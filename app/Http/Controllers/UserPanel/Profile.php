@@ -123,10 +123,8 @@ public function BankDetail()
     {
         try{
             $validation =  Validator::make($request->all(), [
-                'email' => 'required|string',
-                'name' => 'required|string',
-                'username' => 'required|string',
-                'phone' => 'required|numeric'
+           'name' => 'required|string',
+               
 
             ]);
             if($validation->fails()) {
@@ -141,9 +139,7 @@ public function BankDetail()
           $post_array  = $request->all();
 
           $update_data['name']=$post_array['name'];
-          $update_data['email']=$post_array['email'];
-          $update_data['username']=$post_array['username'];
-          $update_data['phone']=$post_array['phone'];
+      
           $user =  User::where('id',$id)->update($update_data);
 
         $notify[] = ['success', 'Profile Updated successfully'];

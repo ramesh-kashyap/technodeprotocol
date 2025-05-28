@@ -1,3 +1,5 @@
+
+
 <script type="text/javascript">
 
 $(function() {
@@ -403,7 +405,7 @@ function next_slide(a, back) {
       <div class="col-12 py-4">
 				<div class="card wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
           <div class="total-balance">
-              Total Balance: <span class="inter">$0.04</span>
+              Total Balance: <span class="inter">{{ currency() }}{{ number_format(Auth::user()->available_balance(), 2) }}</span>
           </div>
           <nav class="navbar navbar-account navbar-expand-md bg-body-tertiary p-0">
             <div class="container-fluid">
@@ -436,15 +438,19 @@ function next_slide(a, back) {
     <div class="card shadow-lg mb-4 wow fadeInUp" data-wow-duration=".8s" data-wow-delay=".2s">
       <div class="card-body">
         <div class="row">
-          <div class="col mb-3">
-            <div class="text-center">
-              <i class="far fa-user-tie opacity-75 mb-2" style="font-size:4rem;"></i>
-              <br>
-              <h2 class="d-inline">maticdefi08</h2>
-               
-              <div class="mb-2 pt-3"><i class="fal fa-mailbox me-1"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5b8b4a1bcb6b1b0b3bce5ed95b2b8b4bcb9fbb6bab8">[email&#160;protected]</a></div>
-            </div>
-          </div>
+         <div class="col mb-3">
+  <div class="text-center">
+    <i class="fas fa-user-tie opacity-75 mb-2" style="font-size:4rem;"></i> <!-- Changed 'far' to 'fas' -->
+    <br>
+    <h2 class="d-inline">{{ Auth::user()->name }}</h2>
+    
+    <div class="mb-2 pt-3">
+      <i class="fas fa-envelope me-1"></i> <!-- Updated icon for email -->
+      <a href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
       <div class="card-footer d-none d-md-block">
@@ -493,7 +499,7 @@ function next_slide(a, back) {
             <div class="col-md-6 mt-3">
               <div class="form-group">
                 <label for="lastname">Email</label>
-                <input id="lastname" name="email" class="form-control" type="text" value="{{ $profile_data ? $profile_data->email : '' }}">
+                <input id="lastname" name="email" class="form-control" type="text" value="{{ $profile_data ? $profile_data->email : '' }}" readonly>
               </div>
             </div>
           </div>
@@ -502,13 +508,13 @@ function next_slide(a, back) {
              <div class="col-md-6 mt-3">
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input id="phone" name="phone" class="form-control" type="tel" value="{{ $profile_data ? $profile_data->phone : '' }}">
+                <input id="phone" name="phone" class="form-control" type="tel" value="{{ $profile_data ? $profile_data->phone : '' }}"readonly>
               </div>
             </div>
             <div class="col-md-6 mt-3">
               <div class="form-group">
                 <label for="phone">User Id</label>
-                <input id="phone" name="username" class="form-control" type="tel" value="{{ $profile_data ? $profile_data->username : '' }}">
+                <input id="phone" name="username" class="form-control" type="tel" value="{{ $profile_data ? $profile_data->username : '' }}"readonly>
               </div>
             </div>
           </div>
@@ -531,30 +537,30 @@ function next_slide(a, back) {
           @csrf
           <div class="row">
             <div class="col mt-4">
-              <div class="alert alert-danger">
+              <!-- <div class="alert alert-danger">
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" role="switch" id="checkEnable2fa">
                   <label class="form-check-label" for="checkEnable2fa">Two-Factor Authentication - Google Authenticator (2FA) <b>Recommended</b></label>
                 </div>
-              </div>
+              </div> -->
             </div>
 
             <div class="col-12 mb-3">
               <div class="form-group">
                 <label for="old_password">Old password</label>
-                <input id="old_password" name="old_password" class="form-control" type="password">
+                <input id="old_password" name="old_password" placeholder="Enter Old Password" class="form-control" type="password">
               </div>
             </div>
             <div class="col-12 col-md-6 mb-3 mb-md-0">
               <div class="form-group">
                 <label for="password">New password</label>
-                <input id="password" name="password" class="form-control" type="password">
+                <input id="password" name="password" class="form-control" Placeholder="Enter New Password" type="password">
               </div>
             </div>
             <div class="col col-md-6">
               <div class="form-group">
                 <label for="password2">Repeat new password</label>
-                <input id="password2" name="confirmation_password" class="form-control" type="password">
+                <input id="password2" name="confirmation_password" class="form-control" Placeholder="Enter Confirm Password" type="password">
               </div>
             </div>
 

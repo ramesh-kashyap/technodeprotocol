@@ -99,7 +99,7 @@ $(function() {
 			<div class="col-12 py-4">
 				<div class="card wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
           <div class="total-balance">
-              Total Balance: <span class="inter">$0.01</span>
+              Total Balance: <span class="inter">{{ currency() }}{{ number_format(Auth::user()->available_balance(), 2) }}</span>
           </div>
           <nav class="navbar navbar-account navbar-expand-md bg-body-tertiary p-0">
             <div class="container-fluid">
@@ -158,13 +158,9 @@ $(function() {
     <option style="background-color: #08132e
 ;" value="{{ route('user.reward-bonus') }}" 
         {{ Request::routeIs('user.reward-bonus') ? 'selected' : '' }}>Direct Income</option> 
-           <!-- <option style="background-color: #08132e
-;" value="{{ route('user.activitiesBonus') }}" 
-        {{ Request::routeIs('user.activitiesBonus') ? 'selected' : '' }}>Rank & Reward Income</option> -->
-
-    <option style="background-color: #08132e
-;" value="{{ route('user.dailyIncentive') }}" 
-        {{ Request::routeIs('user.dailyIncentive') ? 'selected' : '' }}>Royalty Income</option>  
+           <option style="background-color: #08132e
+;" value="{{ route('user.matchingBonus') }}" 
+        {{ Request::routeIs('user.matchingBonus') ? 'selected' : '' }}> Matching Income</option>
 </select>
 
 </div>
@@ -221,7 +217,7 @@ $(function() {
                                         <td>User ID: {{ $income->rname }}</td>
                                         <td><b>${{ number_format($income->comm, 2) }}</b></td>
                                         <td><b>{{ ($income->fullname) }}</b></td>
-                                        <td><a href="" class="themed-link">{{ \Carbon\Carbon::parse($income->created_at)->format('M-d-Y h:i:s A') }}</a></td>
+                                        <td><a href="" class="themed-link">{{ \Carbon\Carbon::parse($income->created_at)->format('M-d-Y') }}</a></td>
 
 						          </tr>
                                <tr>

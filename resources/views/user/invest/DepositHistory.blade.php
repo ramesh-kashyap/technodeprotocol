@@ -99,7 +99,7 @@ $(function() {
 			<div class="col-12 py-4">
 				<div class="card wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
           <div class="total-balance">
-              Total Balance: <span class="inter">$0.01</span>
+              Total Balance: <span class="inter">{{ currency() }}{{ number_format(Auth::user()->available_balance(), 2) }}</span>
           </div>
           <nav class="navbar navbar-account navbar-expand-md bg-body-tertiary p-0">
             <div class="container-fluid">
@@ -159,12 +159,8 @@ $(function() {
 ;" value="{{ route('user.reward-bonus') }}" 
         {{ Request::routeIs('user.reward-bonus') ? 'selected' : '' }}>Direct Income</option> 
            <option style="background-color: #08132e
-;" value="{{ route('user.activitiesBonus') }}" 
-        {{ Request::routeIs('user.activitiesBonus') ? 'selected' : '' }}>Rank & Reward Income</option>
-
-    <option style="background-color: #08132e
-;" value="{{ route('user.dailyIncentive') }}" 
-        {{ Request::routeIs('user.dailyIncentive') ? 'selected' : '' }}>Royalty Income</option>  
+;" value="{{ route('user.matchingBonus') }}" 
+        {{ Request::routeIs('user.matchingBonus') ? 'selected' : '' }}> Matching Income</option>
 </select>
 
 </div>
@@ -209,7 +205,7 @@ $(function() {
                                              <th>Amount</th>
                                               <th>Status</th>
 
-                                              <th>Created_at</th>
+                                              <th>Created At</th>
                            
 											</tr>
 										</thead>
@@ -219,27 +215,25 @@ $(function() {
 
                       
 						            <tr>
-                                        <td>Payment Mode: {{ $deposit->payment_mode }}</td>
+                                        <td> {{ $deposit->payment_mode }}</td>
                                         <td><b>${{ number_format($deposit->amount, 2) }}</b></td>
                                         
                                       <td>{{ $deposit->status }}</td>
 
-                                       <td><a href="" class="themed-link">{{ \Carbon\Carbon::parse($deposit->created_at)->format('M-d-Y h:i:s A') }}</a></td>
+                                       <td><a href="" class="themed-link">{{ \Carbon\Carbon::parse($deposit->created_at)->format('M-d-Y') }}</a></td>
 
 						          </tr>
                                <tr>
-                                  <td colspan="3">
-                                    <small>
-                                    
-                                       <span class="badge bg-primary"></span>
-                                   </small>
-                                 </td>
-                               </tr>
-                         @empty
-        <div class="col-12">
-                No Withdraw data found.
-        </div>
-    @endforelse</tbody>
+                <td colspan="5">
+                    <small><span class="badge bg-primary"></span></small>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="6">No Income data found.</td>
+            </tr>
+        @endforelse
+  </tbody>
 									</table>
                <div class="d-flex justify-content-center mt-4">
         {{ $deposit_list->links('pagination::bootstrap-4') }}

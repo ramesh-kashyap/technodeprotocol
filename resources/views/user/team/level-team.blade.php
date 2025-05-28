@@ -1,5 +1,6 @@
 
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <script>
 var rb_conf = {
@@ -121,34 +122,100 @@ $(function() {
 								
 				
 				<div class="row">
-					<div class="col-4 text-center">1st level partners</div>
-					<div class="col-4 text-center">2nd level partners</div>
-					<div class="col-4 text-center">3rt level partners</div>
+					<div class="col-4 text-center">Total User</div>
+					<div class="col-4 text-center">Total Active User</div>
+					<div class="col-4 text-center">Your Active Investment</div>
 					
 					<div class="col-4 text-center">
-						<i class="lnil lnil-add-user me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+						<i class="lnil lnil-add-user me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">{{ $totalTeam }}</span>
 					</div>
 					<div class="col-4 text-center">
-						<i class="lnil lnil-add-group me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+						<i class="lnil lnil-add-group me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">{{$activetotalTeam}}</span>
 					</div>
 					<div class="col-4 text-center">
-						<i class="lnil lnil-add-group-alt me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">0</span>
+						<i class="lnil lnil-add-group-alt me-2" style="font-size:3em;vertical-align:middle;line-height: 0;"></i><span style="font-weight:300;font-size:2em">{{$totalInvestment }}</span>
 					</div>
 				</div>
-        <div class="row align-items-end">
-					<div class="col-12 col-md-6 mt-4">
-						Your referral link:
-          <div class="input-copy">
-						  <input type="text" class="form-control copy" style="cursor:pointer;" value="{{ url('/register') }}?ref={{ auth()->user()->username }}" data-clipboard-target="#btn_ref_link" id="btn_ref_link" data-toggle="tooltip" data-placement="bottom" title="Copy" readonly>
-            </div>
-					</div>
-          
-          <div class="col-12 col-md-6 mt-4">
-            <div class="d-grid">
-						  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#promoModal">Promotional materials</button>
-            </div>
-					</div>
-				</div>
+      @php
+    $refLink = url('/register') . '?ref=' . auth()->user()->username;
+    $encodedLink = urlencode($refLink);
+    $encodedText = urlencode("Join me on this amazing platform using my referral link:");
+@endphp
+
+<div class="row align-items-end">
+  <div class="col-12 col-md-6 mt-4">
+    <label><strong>Your referral link:</strong></label>
+    <div class="input-copy">
+      <input type="text" class="form-control" id="btn_ref_link" value="{{ $refLink }}" readonly>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 mt-4">
+    <div class="d-grid">
+      <button class="btn btn-primary" onclick="openSharePopup()">
+        <i class="fas fa-share-alt me-1"></i> Share
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Share Popup Modal -->
+<div id="sharePopup" class="custom-modal" style="display:none;">
+  <div class="custom-modal-content">
+  <span class="close" onclick="closeSharePopup()">&times;</span>
+  <h5>Share Your Referral Link</h5>
+
+  @php
+    $referralLink = url('/register') . '?ref=' . auth()->user()->username;
+    $encodedLink = urlencode($referralLink);
+    $encodedText = urlencode("Join me using my referral link:");
+  @endphp
+
+  <div class="share-icons">
+    <!-- WhatsApp -->
+    <a href="https://api.whatsapp.com/send?text={{ $encodedText }}%20{{ $encodedLink }}" target="_blank" class="share-btn whatsapp" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedLink }}" target="_blank" class="share-btn facebook" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <!-- Telegram -->
+    <a href="https://t.me/share/url?url={{ $encodedLink }}&text={{ $encodedText }}" target="_blank" class="share-btn telegram" title="Telegram">
+      <i class="fab fa-telegram-plane"></i>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:?subject=Join Now&body={{ $encodedText }}%20{{ $encodedLink }}" target="_blank" class="share-btn email" title="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $encodedLink }}" target="_blank" class="share-btn linkedin" title="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+
+    <!-- Twitter -->
+    <a href="https://twitter.com/intent/tweet?url={{ $encodedLink }}&text={{ $encodedText }}" target="_blank" class="share-btn twitter" title="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+
+    <!-- Reddit -->
+    <a href="https://www.reddit.com/submit?url={{ $encodedLink }}&title={{ $encodedText }}" target="_blank" class="share-btn reddit" title="Reddit">
+      <i class="fab fa-reddit-alien"></i>
+    </a>
+
+    <!-- Pinterest -->
+    <a href="https://pinterest.com/pin/create/button/?url={{ $encodedLink }}&description={{ $encodedText }}" target="_blank" class="share-btn pinterest" title="Pinterest">
+      <i class="fab fa-pinterest-p"></i>
+    </a>
+  </div>
+</div>
+
+</div>
+
                 
 			</div>
 			<div class="card-footer">
@@ -245,3 +312,71 @@ $(function() {
 
 	
 </div>
+<style>
+.custom-modal {
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-modal-content {
+  background: #142040;
+
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+}
+.custom-modal .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.share-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.whatsapp  { background: #25D366; }
+.facebook  { background: #3b5998; }
+.telegram  { background: #0088cc; }
+.email     { background: #6c757d; }
+.linkedin  { background: #0077b5; }
+.twitter   { background: #1da1f2; }
+.reddit    { background: #ff4500; }
+.pinterest { background: #bd081c; }
+
+.share-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+</style>
+<script>
+function openSharePopup() {
+  document.getElementById("sharePopup").style.display = "flex";
+}
+function closeSharePopup() {
+  document.getElementById("sharePopup").style.display = "none";
+}
+</script>

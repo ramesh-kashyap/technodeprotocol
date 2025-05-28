@@ -13,6 +13,7 @@ use Session;
 use Redirect;
 use Hash;
 use Validator;
+use App\Models\Investment;
 
 class Team extends Controller
 {
@@ -76,7 +77,9 @@ class Team extends Controller
     public function LevelTeam(Request $request)
     {
       $user=Auth::user();
-      // print_r($user->username);die();
+       $totalInvestment = Investment::where('user_id', $user->id)
+        ->where('status', 'Active')
+        ->sum('amount');
       $ids=$this->my_level_team_count($user->id);
 
 
@@ -94,7 +97,6 @@ $totalTeam=$toatll->count();
 $activetotalTeam=$toatll->where('active_status','Active')->count();
 ;
 
-      // print_r($ids);die;
         $limit = $request->limit ? $request->limit : paginationLimit();
             $status = $request->status ? $request->status : null;
             $search = $request->search ? $request->search : null;
@@ -109,7 +111,6 @@ $activetotalTeam=$toatll->where('active_status','Active')->count();
     }
   }else{$query->where('id',null);}
 })->orderBy('id', 'DESC');
-
 
 
        if($search <> null && $request->reset!="Reset"){
@@ -127,6 +128,7 @@ $activetotalTeam=$toatll->where('active_status','Active')->count();
                 ->appends([
                     'limit' => $limit
                 ]);
+        $this->data['totalInvestment'] =$totalInvestment;
 
         $this->data['direct_team'] =$notes;
         $this->data['search'] =$search;

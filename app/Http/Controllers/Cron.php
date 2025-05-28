@@ -46,10 +46,11 @@ public function generate_roi()
 
              Income::create([
                     'user_id' => $investment->user_id,
+                    'user_id_fk' => $investment->user_id_fk,
                     'comm' => $roiAmount,
                     'amt' => $investment->amount,
                     'level'=>1,
-                    'remarks' => 'ROI Income',
+                    'remarks' => 'ROI Bonus',
                     'ttime' => now(),
                 ]);
                 $investment->cycle += 1;
@@ -114,7 +115,7 @@ public function level_roi_income($user_id, $roi_bonus)
                 'user_id_fk' => $sponsor->username,
                 'amt' => $roi_bonus,
                 'comm' => $commission,
-                'remarks' => 'Level Income Roi',
+                'remarks' => 'Level Bonus',
                 'level' => $level,
                 'rname' => $user->username,
                 'fullname' => $user->name,

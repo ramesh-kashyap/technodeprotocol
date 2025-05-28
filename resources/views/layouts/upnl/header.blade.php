@@ -177,11 +177,11 @@
             </li>
           </ul>
   
-          <div class="nav-item language">
+          <!-- <div class="nav-item language">
             <button class="btn btn-link nohover language en me-3 px-0" data-bs-toggle="modal" data-bs-target="#language-modal"><span class="ms-2 d-md-none d-xl-inline">en</span></button>
-          </div>
-                    <a class="btn btn-light me-2" data-scroll-nav="0" href="/mining/" rel="nofollow">Mining
-          </a>
+          </div> -->
+                    <!-- <a class="btn btn-light me-2" data-scroll-nav="0" href="/mining/" rel="nofollow">Mining
+          </a> -->
 
           <div class="dropdown">
             <a class="btn btn-light dropdown-toggle" id="user-dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" data-scroll-nav="0" rel="nofollow"><i class="fa-duotone fa-solid fa-user-tie fa-lg"></i>            </a>

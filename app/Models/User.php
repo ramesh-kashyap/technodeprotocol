@@ -72,7 +72,7 @@ class User extends Authenticatable
 
     public function dailyIncentive()
     {
-        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Trading Income');
+        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Trading Bonus');
     } 
 
     public function user_direct()
@@ -89,12 +89,12 @@ class User extends Authenticatable
     
     public function leadership_bonus()
     {
-        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Leadership Income');
+        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Leadership Bonus');
     } 
         
     public function level_bonus()
     {
-        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Level Income');
+        return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Level Bonus');
     } 
       
     public function trading_profit()

@@ -5,10 +5,10 @@
                     <a href="{{route('user.dashboard')}}">Account</a>
                   </li>
                     <li class="nav-item">
-                    <a href="{{route('user.deposit')}}">Top Up</a>
+                    <a href="{{route('user.invest')}}">Top Up</a>
                   </li> 
                    <li class="nav-item">
-                    <a href="{{route('user.invest')}}">Add Fund</a>
+                    <a href="{{route('user.deposit')}}">Deposit</a>
                   </li>
                   <li class="nav-item">
                     <a href="{{route('user.Withdraw')}}">Withdraw</a>
@@ -17,7 +17,7 @@
                     <a href="{{route('user.level-team')}}">Partners</a>
                   </li>          
                    <li class="nav-item">
-                    <a href="{{route('user.Withdraw-History')}}">Transaction</a>
+                    <a href="{{route('user.DepositHistory')}}">Transaction</a>
                   </li>
                   
                   <li class="nav-item ms-auto">

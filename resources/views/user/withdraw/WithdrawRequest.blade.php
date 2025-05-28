@@ -199,19 +199,19 @@ $(function() {
 											
                     <div class="col-12">
                       <div class="input-group input-group-lg">
-                        <input type="text"  class="form-control amount inter" id="amount_btc" name="amount" value="0" placeholder="Enter Amount">
+                        <input type="text"  class="form-control amount inter" id="amount_btc" name="amount" value="" placeholder="Enter Amount">
                       </div>
-                      <small class="d-block mt-2">Minimum withdraw of: 0.0005 BTC</small>
-											<div class="form-group mt-4">
-  <select class="form-control wallet inter" id="wallet_btc" name="PSys">
-    <option class="form2" value="USDT.BEP20">USDT.BEP20</option>
-    <option  class="form2"value="USDT.TRC20">USDT.TRC20</option>
-  </select>
-</div>
+                      <small class="d-block mt-2">Minimum withdraw of: 5 USDT</small>
+		               <div style="margin-top:6px" class="input-group input-group-lg">
+                        <input type="text"  class="form-control amount inter" id="amount_btc" name="PSys" value="USDT(BEP20)" readonly>
+                      </div>
 
-											<div class="form-group mt-4">
+						<div class="form-group mt-4">
                         <input type="text"  class="form-control wallet inter" id="wallet_btc" name="walletAddress" value="{{Auth::user()->usdtBep20}}"  readonly placeholder="0">
-											</div>
+						</div>
+						<div class="form-group mt-4">
+                        <input type="text"  class="form-control amount inter" id="amount_btc" name="trx_password" value="" placeholder="Enter Transaction Password">
+                      </div>
                       <div class="mt-4 d-grid">
                         <button type="submit" class="btn btn-primary go_pay_usd" data-curency="btc">Withdraw</button>
                       </div>

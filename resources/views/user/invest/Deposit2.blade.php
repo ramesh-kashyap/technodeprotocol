@@ -200,17 +200,14 @@ $(function() {
 											
                     <div class="col-12">
                       <div class="input-group input-group-lg">
-                        <input type="text"  class="form-control amount inter" id="amount_btc" name="amount" value="0" placeholder="Enter Amount">
+                        <input type="text"  class="form-control amount inter" id="amount_btc" name="amount" value="" placeholder="Enter Amount">
                       </div>
-                      <small class="d-block mt-2">Minimum investment of: 50 BTC</small>
+                      <small class="d-block mt-2">Minimum investment of: 5 USDT</small>
+									<div class="form-group mt-4">
+                        <input type="text"  class="form-control wallet inter" id="wallet_btc" name="paymentMode" value="USDT (BEP20)"    placeholder="USDT(BEP20)">
+											</div>
 											<div class="form-group mt-4">
-                     <select class="form-control wallet inter" id="wallet_btc" name="paymentMode">
-                     <option class="form2" value="USDT_BSC">USDT.BEP20</option>
-                      <option  class="form2"value="USDT_TRX">USDT.TRC20</option>
-                    </select>
-                    </div>
-											<div class="form-group mt-4">
-                        <input type="text"  class="form-control wallet inter" id="wallet_btc" name="transaction_id" value=""   placeholder="">
+                        <input type="text"  class="form-control wallet inter" id="wallet_btc" name="transaction_id" value=""    placeholder="Enter Transaction Password">
 											</div>
                       <div class="mt-4 d-grid">
                         <button type="submit" class="btn btn-primary go_pay_usd" data-curency="btc">Submit</button>

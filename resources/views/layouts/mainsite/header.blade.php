@@ -170,11 +170,11 @@
                                 </li>
                             </ul>
 
-                            <div class="nav-item language">
+                            <!-- <div class="nav-item language">
                                 <button class="btn btn-link nohover language en me-3 px-0" data-bs-toggle="modal"
                                     data-bs-target="#language-modal"><span
                                         class="ms-2 d-md-none d-xl-inline">en</span></button>
-                            </div>
+                            </div> -->
                             <a class="btn btn-light me-2" href="{{ route('login') }}">Login</a>
                             <a class="btn btn-light" href="{{ route('register') }}">Sign up</a>
                         </div>

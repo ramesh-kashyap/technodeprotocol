@@ -47,8 +47,7 @@ class WithdrawRequest extends Controller
         $validation = Validator::make($request->all(), [
             'amount' => 'required|numeric|min:10',
             'PSys' => 'required',
-            'walletAddress' => 'required',
-            // 'code' => 'required'
+            'trx_password' => 'required'
 
         ]);
 
@@ -57,7 +56,11 @@ class WithdrawRequest extends Controller
             return Redirect::back()->withErrors($validation->getMessageBag()->first())->withInput();
         }
 
-    $user = Auth::user();
+   $user = Auth::user();
+
+        if ($request->trx_password !== $user->TPSR) {
+            return Redirect::back()->withErrors(['Transaction password is incorrect.'])->withInput();
+        }
 
    
     $balance = $user->available_balance();
@@ -66,10 +69,7 @@ class WithdrawRequest extends Controller
        if ($request->PSys == "USDT.BEP20") {
     $account = $user->usdtBep20;
     $paymentMode = "USDT_BSC";
-} elseif ($request->PSys == "USDT.TRC20") {
-    $account = $user->usdtTrc20;
-    $paymentMode = "USDT_TRC";
-}
+} 
 
 
         if ($balance >= $request->amount) {
@@ -90,7 +90,7 @@ class WithdrawRequest extends Controller
 
             if (!empty($account)) {
                 $data = [
-                    'txn_id' => md5(time() . rand()),
+                    'txn_id' => $request->trx_password,
                     'user_id' => $user->id,
                     'user_id_fk' => $user->username,
                     'amount' => $request->amount,

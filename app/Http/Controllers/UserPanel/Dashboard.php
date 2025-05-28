@@ -50,7 +50,7 @@ class Dashboard extends Controller
         $transaction_data = Income::where('user_id',$user->id)->orderBy('id', 'desc')->take(10)->get();
          $total_team=User::whereIn('id',(!empty($tolteam)?$tolteam:array()))->where('active_status','Active')->count();
         $this->data['weekly_profit'] =$weekly_profit;
-            $this->data['total_team'] =$total_team;
+        $this->data['total_team'] =$total_team;
         $this->data['transaction_data'] =$transaction_data;
         $this->data['deposit_report'] =$deposit_report;
         $this->data['user_direct'] =$user_direct;

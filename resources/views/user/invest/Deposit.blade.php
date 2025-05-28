@@ -219,7 +219,7 @@ $(function() {
                       <div class="qrcode text-center">
  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($data['address_in']) }}" alt="QR Code" style="max-width: 200px;">                    </div>
 <div class="mt-3 text-center text-muted">
-    <strong>Minimum deposit:</strong> 0.0005 BTC
+    <strong>Minimum deposit:</strong> 5 USDT
   </div>                      </div>
                     </div>
 

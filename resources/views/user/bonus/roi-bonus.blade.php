@@ -99,7 +99,7 @@ $(function() {
 			<div class="col-12 py-4">
 				<div class="card wow fadeInUp" data-wow-duration=".7s" data-wow-delay="0s">
           <div class="total-balance">
-              Total Balance: <span class="inter">$0.01</span>
+              Total Balance: <span class="inter">{{ currency() }}{{ number_format(Auth::user()->available_balance(), 2) }}</span>
           </div>
           <nav class="navbar navbar-account navbar-expand-md bg-body-tertiary p-0">
             <div class="container-fluid">
@@ -158,13 +158,9 @@ $(function() {
     <option style="background-color: #08132e
 ;" value="{{ route('user.reward-bonus') }}" 
         {{ Request::routeIs('user.reward-bonus') ? 'selected' : '' }}>Direct Income</option> 
-           <option style="background-color: #08132e
-;" value="{{ route('user.activitiesBonus') }}" 
-        {{ Request::routeIs('user.activitiesBonus') ? 'selected' : '' }}>Rank & Reward Income</option>
-
-    <option style="background-color: #08132e
-;" value="{{ route('user.dailyIncentive') }}" 
-        {{ Request::routeIs('user.dailyIncentive') ? 'selected' : '' }}>Royalty Income</option>  
+            <option style="background-color: #08132e
+;" value="{{ route('user.matchingBonus') }}" 
+        {{ Request::routeIs('user.matchingBonus') ? 'selected' : '' }}> Matching Income</option>
 </select>
 
 </div>
@@ -190,7 +186,7 @@ $(function() {
                             <div class="card-body">
                                 <div class="mb-2"> Roi Income</div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-    <form action="{{ route('admin.roi-bonus') }}" method="GET" class="d-flex ms-auto" style="width: 350px;">
+    <form action="{{ route('user.roi-bonus') }}" method="GET" class="d-flex ms-auto" style="width: 350px;">
         <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
             <button class="btn btn-outline-secondary" type="submit" style="border-left: none;background-color:#0493CA;color:#fff">
@@ -201,43 +197,40 @@ $(function() {
 </div>
 
 								<div class="table-responsive">
-									<table class="table table-striped history table-responsive-md referrals mb-0 text-right">
-										<thead>
-											<tr>
-											<th>UserId</th>
+								<table class="table table-striped history table-responsive-md referrals mb-0 text-right">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>From Id</th>
+            <th>Amount</th>
+            <th>Remark</th>
 
-                                             <th>Amount</th>
-                                              <th>Name</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse($level_income as $income)
+            <tr>
+                <td>{{ $loop->iteration }}</td> <!-- Serial Number -->
+                <td> {{ $income->user_id_fk }}</td>
+                <td><b>${{ number_format($income->comm, 2) }}</b></td>
+                  <td><b>{{ $income->remarks }}</b></td>
 
-                                              <th>Created_at</th>
-                           
-											</tr>
-										</thead>
-										<tbody>
-                                            
-                        @forelse($level_income as $income)
-                      
-						            <tr>
-                                        <td>User ID: {{ $income->rname }}</td>
-                                        <td><b>${{ number_format($income->comm, 2) }}</b></td>
-                                        <td><b>{{ ($income->fullname) }}</b></td>
-                                        <td><a href="" class="themed-link">{{ \Carbon\Carbon::parse($income->created_at)->format('M-d-Y h:i:s A') }}</a></td>
+                <td><a href="" class="themed-link">{{ \Carbon\Carbon::parse($income->created_at)->format('M-d-Y') }}</a></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <small><span class="badge bg-primary"></span></small>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="6">No Income data found.</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
 
-						          </tr>
-                               <tr>
-                                  <td colspan="3">
-                                    <small>
-                                    
-                                       <span class="badge bg-primary"></span>
-                                   </small>
-                                 </td>
-                               </tr>
-                         @empty
-        <div class="col-12">
-                No Income data found.
-        </div>
-    @endforelse</tbody>
-									</table>
                <div class="d-flex justify-content-center mt-4">
         {{ $level_income->links('pagination::bootstrap-4') }}
     </div>
