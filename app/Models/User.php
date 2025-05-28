@@ -138,6 +138,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Income','user_id','id')->where('remarks','Club Income');
     } 
     
+
+    public function cleam_bonus()
+    {
+        return $this->hasMany('App\Models\Income', 'user_id', 'id')->where('remarks', 'ROI Bonus')->where('credit_type', 1)->sum('comm');
+         
+           
+           
+    }
+
      
     public function totalIncome()
     {

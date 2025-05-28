@@ -19,7 +19,9 @@ use App\Models\Contract;
 use Log;
 use Hash;
 use Helper;
-class Dashboard extends Controller
+use DB;
+
+class Dashboard extends Controller 
 {
 
     public function __construct()
@@ -29,6 +31,8 @@ class Dashboard extends Controller
 
 
     public function index()
+
+
     {
    
       $user=Auth::user();
@@ -210,6 +214,47 @@ if ($latest->isEmpty()) {
 
 
     }
+
+
+
+
+   
+public function roiCleam()
+{
+    $user = Auth::user();
+
+    if ($user) {
+        // Check if ROI Bonus is available
+        $hasRoi = Income::where('user_id', $user->id)
+                        ->where('remarks', 'Roi Bonus')
+                        ->where('credit_type', 1)
+                        ->exists(); 
+
+        if (!$hasRoi) {
+            $notify[] = ['error', 'You can’t claim because your ROI balance is not available.'];
+            return redirect()->back()->withNotify($notify);
+        }
+
+        Income::where('user_id', $user->id)
+            ->where('remarks', 'Roi Bonus')
+            ->where('credit_type', 1)
+            ->update([
+                'credit_type' => 0,
+            ]);
+
+        Investment::where('user_id', $user->id)->update([
+            'days' => DB::raw('days + 1'),
+            'cycle' => DB::raw('cycle + 1'),
+            'last_date' => Carbon::now(),
+        ]);
+
+        $notify[] = ['success', 'ROI claimed successfully!'];
+        return redirect()->back()->withNotify($notify);
+    }
+
+    return redirect()->back()->with('error', 'User not authenticated.');
+}
+
 
 
 
