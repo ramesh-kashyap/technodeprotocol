@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\GeneralSetting;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,10 @@ Route::get('/clear', function() {
 });
 
 Route::get('/', function () {
-    return view('main.home');
+    $settings = GeneralSetting::select('days_online', 'users', 'total_deposit', 'total_withdraw')->first();
+    return view('main.home', compact('settings'));
 });
+
 
 Auth::routes();
 Route::get('/generate_roi', [App\Http\Controllers\Cron::class, 'generate_roi'])->name('generate_roi');
@@ -105,14 +108,14 @@ Route::post('/change-trxpasswword', [App\Http\Controllers\UserPanel\Profile::cla
 // add fund
 
 Route::get('/AddFund', [App\Http\Controllers\UserPanel\AddFund::class, 'index'])->name('user.AddFund');
-Route::get('/fundHistory', [App\Http\Controllers\UserPanel\AddFund::class, 'fundHistory'])->name('user.fundHistory');
+Route::get('/fundHistory', [App\Http\Controllers\UserPanel\AddFund::class, 'fund_list'])->name('user.fundHistory');
 Route::any('/SubmitBuyFund', [App\Http\Controllers\UserPanel\AddFund::class, 'SubmitBuyFund'])->name('user.SubmitBuyFund');
 // end add fund
 
 // invest
 Route::get('/cryptapicallback', [App\Http\Controllers\UserPanel\Invest::class, 'cryptapiCallback'])->name('user.cryptapiCallback');
 
-Route::get('/invest', [App\Http\Controllers\UserPanel\Invest::class, 'index'])->name('user.invest');
+Route::get('/top-up', [App\Http\Controllers\UserPanel\Invest::class, 'index'])->name('user.invest');
 Route::get('/deposit', [App\Http\Controllers\UserPanel\Invest::class, 'deposit'])->name('user.deposit');
 Route::get('/cancel-payment/{id}', [App\Http\Controllers\UserPanel\Invest::class, 'cancel_payment'])->name('user.cancel-payment');
 Route::post('/fundActivation', [App\Http\Controllers\UserPanel\Invest::class, 'fundActivation'])->name('user.fundActivation');
@@ -192,6 +195,8 @@ Route::group(['middleware' => ['admin']], function ()
  Route::post('/add_debit', [App\Http\Controllers\Admin\Dashboard::class, 'add_debit'])->name('admin.add_debit');
  
  Route::post('/change-password-post', [App\Http\Controllers\Admin\Dashboard::class, 'change_password_post'])->name('admin.change-password-post');
+ Route::get('/general-setting', [App\Http\Controllers\Admin\Dashboard::class, 'general_setting'])->name('admin.general_setting');
+ Route::post('/general-setting-post', [App\Http\Controllers\Admin\Dashboard::class, 'general_setting_post'])->name('admin.general-setting-post');
 
  // active users controller
 

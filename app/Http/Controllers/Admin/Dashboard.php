@@ -8,10 +8,13 @@ use App\Models\Trade;
 use App\Models\User;
 use App\Models\Income;
 use App\Models\Debit;
+use App\Models\GeneralSetting;
+
 use Validator;
 use DB;
 use Redirect;
 use Auth;
+use Log;
 
 class Dashboard extends Controller
 {
@@ -28,6 +31,13 @@ class Dashboard extends Controller
      
     } 
 
+     public function general_setting()
+    {     
+     
+     $this->data['page'] = 'admin.setting.general-setting';
+     return $this->admin_dashboard();
+     
+    } 
 
     public function changePassword()
     {     
@@ -120,6 +130,49 @@ class Dashboard extends Controller
         }
 
     }
+
+
+    public function general_setting_post(Request $request)
+{
+    try {
+        $validation = Validator::make($request->all(), [
+            'days' => 'required',
+            'users' => 'required',
+            'deposit' => 'required',
+            'withdraw' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            Log::info($validation->getMessageBag()->first());
+            return redirect()->route('admin.general_setting')
+                ->withErrors($validation->getMessageBag()->first())
+                ->withInput();
+        }
+
+        // Fetch the existing record (assuming only one row exists)
+        $setting = GeneralSetting::first();
+
+        if ($setting) {
+            // Update existing
+            $setting->update([
+                'days_online'     => $request->days,
+                'users'           => $request->users,
+                'total_deposit'   => $request->deposit,
+                'total_withdraw'  => $request->withdraw,
+            ]);
+        } 
+
+        $notify[] = ['success', 'Data updated successfully'];
+        return redirect()->route('admin.general_setting')->withNotify($notify);
+
+    } catch (\Exception $e) {
+        Log::error('General setting update error: ' . $e->getMessage());
+        return redirect()->route('admin.general_setting')
+            ->withErrors('Error: ' . $e->getMessage())
+            ->withInput();
+    }
+}
+
 
 
     public function add_wallet(Request $request)

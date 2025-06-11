@@ -161,6 +161,9 @@ $(function() {
            <option style="background-color: #08132e
 ;" value="{{ route('user.matchingBonus') }}" 
         {{ Request::routeIs('user.matchingBonus') ? 'selected' : '' }}> Matching Income</option>
+        <option style="background-color: #08132e
+;" value="{{ route('user.fundHistory') }}" 
+        {{ Request::routeIs('user.fundHistory') ? 'selected' : '' }}> Fund History</option>
 
    
 </select>
@@ -203,7 +206,6 @@ $(function() {
 										 <thead>
         <tr>
             <th>S.No</th>
-            <th>From Id</th>
             <th>Amount</th>
             <th>Remark</th>
 
@@ -214,7 +216,6 @@ $(function() {
         @forelse($level_income as $income)
             <tr>
                 <td>{{ $loop->iteration }}</td> <!-- Serial Number -->
-                <td> {{ $income->rname }}</td>
                 <td><b>${{ number_format($income->comm, 2) }}</b></td>
                   <td><b>{{ $income->remarks }}</b></td>
 

@@ -541,7 +541,7 @@
                 <div class="row">
                   <div class="col-12 mb-5">
                     <div class="mb-4 pb-2">Daily profitability</div>
-                    <div class="lvl mt-5">
+                    <!-- <div class="lvl mt-5">
                       <div class="progress">
                         <div style="width:30%;"></div>
                       </div>
@@ -613,7 +613,7 @@
                           </div>
                         </div>
                                             </div>
-                    </div>
+                    </div> -->
                   </div>
 
                   <div class="col-6 mb-5 text-center">
@@ -705,7 +705,7 @@
           data-wow-delay=".15s" style="min-height:auto;">
           <div class="card-body d-flex my-2 align-items-center">
             <div>
-              <div class="spin spin-2">3%</div>
+              <div class="spin spin-2">5%</div>
             </div>
             <div class="ms-4">
               <div class="fs-5 inter">2 Level</div>
@@ -720,7 +720,7 @@
           data-wow-delay=".3s" style="min-height:auto;">
           <div class="card-body d-flex my-2 align-items-center">
             <div>
-              <div class="spin spin-3">1%</div>
+              <div class="spin spin-3">5%</div>
             </div>
             <div class="ms-4">
               <div class="fs-5 inter">3 Level</div>
@@ -761,7 +761,7 @@
               </div>
             Days online
             </div>
-            <div class="counter">67</div>
+            <div class="counter">{{ $settings->days_online }}</div>
                 
             </div>
           </div>
@@ -780,7 +780,7 @@
               </div>
             Users
             </div>
-            <div class="counter">3,689</div>
+            <div class="counter">{{ $settings->users }}</div>
                 
             </div>
           </div>
@@ -798,7 +798,7 @@
               </div>
             Total deposits
             </div>
-            <div class="counter">113,010<small>usd</small></div>
+            <div class="counter">{{ $settings->total_deposit }}</div>
                 
             </div>
           </div>
@@ -816,7 +816,7 @@
               </div>
             Total withdrawals
             </div>
-            <div class="counter">11,701<small>usd</small></div>
+            <div class="counter">{{$settings->total_withdraw}}</div>
                 
             </div>
           </div>
@@ -880,7 +880,7 @@
   </div>
 </section>
 
-<section id="statistics3" class="py-5">
+<!-- <section id="statistics3" class="py-5">
   <div class="lt"></div>
   <div class="container pt-5">
     <div class="row">
@@ -1070,7 +1070,7 @@
     </div>
   </div>
 </section>
-	
+	 -->
 </div>
 
 @include('layouts.mainsite.footer')

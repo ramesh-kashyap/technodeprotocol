@@ -5,13 +5,10 @@
       <div class="row justify-content-between">
         <div class="col col-lg-5 col-md-6 col-sm-8 col-xl-4">
           <div class="footer-about wow fadeIn d-flex d-md-block" data-wow-duration="1s" data-wow-delay="0s" style="visibility: visible; animation-duration: 1s; animation-delay: 0s; animation-name: fadeIn;">
-            <a class="navbar-brand d-flex flex-row me-4 me-md-0" href="/">
-              <img src="{{asset('')}}assets/img/logo.png" style="height:3.5rem;">
-                            <div class="text-white fs-1 fw-semibold ms-2 pt-4" style="line-height:0;">synox
-                <div style="font-size:1rem;margin-top:1.5rem;" class="text-end">mining</div>
-              </div>
+            <a  href="/">
+              <img src="{{asset('')}}assets\img\logo.png" style="height:3.5rem;">
+                          
             </a>
-
             
           
             <div class="row mobile_app">
@@ -31,8 +28,8 @@
             <div class="footer-title opacity-50">
               <h4>Contact Us</h4>
             </div>
-            <div class="mt-3 mt-md-5 opacity-50">support@synox.cc</div>
-            <div class="my-3 opacity-50">www.synox.cc</div>
+            <div class="mt-3 mt-md-5 opacity-50">info@technodeprotocol.com</div>
+            <div class="my-3 opacity-50">www.technodeprotocol.com</div>
             <div class="opacity-50">85 Dunstall Hill, Wolverhampton, England, WV6 0SR</div>
             <div>
               <a href="https://find-and-update.company-information.service.gov.uk/company/16144191" target="_blank" class="btn btn-outline-primary py-2 mt-3 _blank"><i class="far fa-building-magnifying-glass me-2"></i>Check the company</a>

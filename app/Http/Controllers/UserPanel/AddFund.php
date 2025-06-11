@@ -35,7 +35,7 @@ public function fundHistory(Request $request)
     if($search <> null && $request->reset!="Reset"){
     $notes = $notes->where(function($q) use($search){
     $q->Where('buyer_name', 'LIKE', '%' . $search . '%')          
-    ->orWhere('txn_id', 'LIKE', '%' . $search . '%')
+    ->orWhere('txn_no', 'LIKE', '%' . $search . '%')
     ->orWhere('address', 'LIKE', '%' . $search . '%')
     ->orWhere('amount_total_fiat', 'LIKE', '%' . $search . '%')
     ->orWhere('coin', 'LIKE', '%' . $search . '%');
@@ -115,6 +115,33 @@ public function SubmitBuyFund(Request $request)
 
 }
 
+
+        public function fund_list(Request $request){
+
+        $user=Auth::user();
+       $limit = $request->limit ? $request->limit : paginationLimit();
+        $status = $request->status ? $request->status : null;
+        $search = $request->search ? $request->search : null;
+        $notes = BuyFund::where('user_id',$user->id);
+        if($search <> null && $request->reset!="Reset"){
+        $notes = $notes->where(function($q) use($search){
+         $q->Where('user_id_fk', 'LIKE', '%' . $search . '%')
+        ->orWhere('status', 'LIKE', '%' . $search . '%')
+        ->orWhere('amount', 'LIKE', '%' . $search . '%')
+          ->orWhere('created_at', 'LIKE', '%' . $search . '%');
+
+        });
+      }
+
+        $notes = $notes->paginate($limit)->appends(['limit' => $limit ]);
+
+      $this->data['search'] =$search;
+      $this->data['deposit_list'] =$notes;
+      $this->data['page'] = 'user.fund.fundHistory';
+      return $this->dashboard_layout();
+
+
+        }
 
 
 }

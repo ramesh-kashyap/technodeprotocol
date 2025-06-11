@@ -50,7 +50,7 @@ public function generate_roi()
                     'comm' => $roiAmount,
                     'amt' => $investment->amount,
                     'level'=>1,
-                    'remarks' => 'ROI Bonus',
+                    'remarks' => 'Roi Bonus',
                     'ttime' => now(),
                 ]);
                 $investment->cycle += 1;

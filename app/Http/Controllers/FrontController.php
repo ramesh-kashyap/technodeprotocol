@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\GeneralSetting;
 
 use Illuminate\Http\Request;
 
@@ -8,9 +9,11 @@ class FrontController extends Controller
 {
 
     public function index()
-    {
-        return view('main.home');
-    }
+{
+    $settings = GeneralSetting::select('days_online', 'users', 'total_deposit', 'total_withdraw')->first();
+
+    return view('main.home', compact('settings'));
+}
 
     public function about()
     {

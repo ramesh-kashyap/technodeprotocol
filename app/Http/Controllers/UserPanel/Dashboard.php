@@ -132,6 +132,7 @@ class Dashboard extends Controller
 
     $notes = Contract::where('user_id',$user->id)->orderBy('id','DESC')->get();
       
+      $user = Auth::user();
 
       $userDirect = User::where('sponsor',$user->id)->where('active_status','Active')->where('package','>=',30)->count();
       $totalRoi = \DB::table('contract')->where('user_id',$user->id)->sum('profit');
@@ -198,6 +199,7 @@ if ($latest->isEmpty()) {
 } else {
     $this->data['records'] = $latest;
 }
+      $this->data['user'] = $user;
 
       $this->data['todaysTrade'] = $todaysRoi;
       $this->data['totalRoi'] = $totalRoi;

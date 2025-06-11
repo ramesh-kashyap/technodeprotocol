@@ -161,6 +161,9 @@ $(function() {
            <option style="background-color: #08132e
 ;" value="{{ route('user.matchingBonus') }}" 
         {{ Request::routeIs('user.matchingBonus') ? 'selected' : '' }}> Matching Income</option>
+        <option style="background-color: #08132e
+;" value="{{ route('user.fundHistory') }}" 
+        {{ Request::routeIs('user.fundHistory') ? 'selected' : '' }}> Fund History</option>
 </select>
 
 </div>

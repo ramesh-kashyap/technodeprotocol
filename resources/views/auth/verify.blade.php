@@ -106,7 +106,7 @@
 
 
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div style="margin-bottom:10px" class="col-lg-8">
                 <div class="card bento-card">
                     <div class="card-body p-4">
 

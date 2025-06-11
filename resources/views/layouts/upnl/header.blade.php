@@ -2,6 +2,8 @@
 	<meta charset="UTF-8">
     <link rel="shortcut icon" href="{{asset('')}}assets/img/logo.png">
 	<link rel="apple-touch-icon" href="{{asset('')}}assets/img/logo.png">
+  <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('')}}assets\images\technode.png">
 	  <meta name="msapplication-square70x70logo" content="{{asset('')}}assets/img/logo.png">
   <meta name="msapplication-square150x150logo" content="{{asset('')}}assets/img/logo.png">
   <meta name="msapplication-wide310x150logo" content="{{asset('')}}assets/img/logo.png">
@@ -50,11 +52,13 @@
 
 <body>
 
-	<div class="preloader" style="">
+	<<div class="preloader">
   <div class="loader">
-		<div class="lds-circle2" style="background-position: 0px -18rem;"><div></div></div>
+    <img src="{{ asset('assets/images/technode.png') }}" alt="Loading..." class="logo-loader">
   </div>
 </div>
+
+
 	
 <div class="modal fade" id="language-modal" tabindex="-1" role="">
   <div class="modal-dialog modal-lg">
@@ -206,3 +210,32 @@
     <div style="height:6.125rem;"></div>
   </div>
 </header>
+<!-- Add this CSS to center the logo -->
+<style>
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader {
+  text-align: center;
+}
+
+.logo-loader {
+  width: 100px;
+  height: 100px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>

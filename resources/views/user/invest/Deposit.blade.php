@@ -204,7 +204,7 @@ $(function() {
         <div class="card mb-4 wow fadeInUp" data-wow-duration=".7s" data-wow-delay=".1s">
           <div class="card-body pb-5">
            <div class="d-flex justify-content-center align-items-center" >
-  <h2>Deposit</h2>
+  <h2>Top Up</h2>
 </div>
         <div class="tab-content" id="balance-tabContent">
           

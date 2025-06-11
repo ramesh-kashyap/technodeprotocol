@@ -37,7 +37,7 @@ $(function() {
       </div>
       <div class="modal-body">
         <div class="row align-items-center">
-                            <div class="col-12 text-center">
+         <div class="col-12 text-center">
               <div class="row promo">
                   <div class="col-12">
                       <img src="{{asset('')}}assets/img/bg.gif" style="max-width:100%;margin:0 auto;" />
@@ -158,9 +158,10 @@ $(function() {
     <option style="background-color: #08132e
 ;" value="{{ route('user.reward-bonus') }}" 
         {{ Request::routeIs('user.reward-bonus') ? 'selected' : '' }}>Direct Income</option> 
-            <option style="background-color: #08132e
-;" value="{{ route('user.matchingBonus') }}" 
-        {{ Request::routeIs('user.matchingBonus') ? 'selected' : '' }}> Matching Income</option>
+          
+        <option style="background-color: #08132e
+;" value="{{ route('user.fundHistory') }}" 
+        {{ Request::routeIs('user.fundHistory') ? 'selected' : '' }}> Fund History</option>
 </select>
 
 </div>
@@ -187,6 +188,8 @@ $(function() {
                                 <div class="mb-2"> Withdraw Transaction</div>
         <div class="d-flex justify-content-between align-items-center mb-3">
     <form action="{{ route('user.Withdraw-History') }}" method="GET" class="d-flex ms-auto" style="width: 350px;">
+                @csrf
+
         <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
             <button class="btn btn-outline-secondary" type="submit" style="border-left: none;background-color:#0493CA;color:#fff">

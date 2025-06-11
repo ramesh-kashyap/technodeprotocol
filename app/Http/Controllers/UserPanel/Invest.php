@@ -441,7 +441,7 @@ public function cancel_payment($id)
     $validation =  Validator::make($request->all(), [
         'amount' => 'required|numeric|min:50',
         'paymentMode' => 'required',
-        'transaction_id' => 'required|unique:investments,transaction_id',
+        'transaction_password' => 'required',
     ]);
 
     if($validation->fails()) {
@@ -450,12 +450,9 @@ public function cancel_payment($id)
         return redirect()->route('user.deposit')->withErrors($validation->getMessageBag()->first())->withInput();
     }
 
-  $user = Auth::user();
-
-        if ($request->transaction_id !== $user->TPSR) {
-            return Redirect::back()->withErrors(['Transaction password is incorrect.'])->withInput();
-        }
-
+     $user = Auth::user();
+      $password= $request->transaction_password;
+      
 
        
        $plan="1";
@@ -469,11 +466,14 @@ public function cancel_payment($id)
 
 
       $last_package = ($invest_check)?$invest_check->amount:0;
-        if ($balance >= $request->amount) {
+       if (Hash::check($password, $user->tpassword))
+               {
+
+          if ($balance >= $request->amount) {
 
         
            $data = [
-                'transaction_id' =>$request->transaction_id,
+                'transaction_id' =>md5(time() . rand()),
                 'user_id' => $user_detail->id,
                 'user_id_fk' => $user_detail->username,
                 'amount' => $request->amount,
@@ -483,13 +483,18 @@ public function cancel_payment($id)
                 'active_from' => $user->username,
             ];
             $payment =  Investment::insert($data);
-            
 
-        $notify[] = ['success','Deposit request submitted successfully'];
+        //  add_direct_income($user_detail->id,$request->amount);
+        $notify[] = ['success','user activation submitted successfully'];
         return redirect()->route('user.deposit')->withNotify($notify);
- } else {
-            return Redirect::back()->withErrors(['Insufficient balance in your account.']);
-        }
+           }    else {
+                         return Redirect::back()->withErrors(['Insufficient balance in your account.']);
+                 }
+                 }
+                else
+                     {
+                     return Redirect::back()->withErrors(array('Invalid Transaction Password'));
+                  }  
    
 
   }
@@ -507,18 +512,18 @@ public function cancel_payment($id)
 
         public function invest_list(Request $request){
 
-      $user=Auth::user();
-      $limit = $request->limit ? $request->limit : paginationLimit();
+        $user=Auth::user();
+       $limit = $request->limit ? $request->limit : paginationLimit();
         $status = $request->status ? $request->status : null;
         $search = $request->search ? $request->search : null;
         $notes = Investment::where('user_id',$user->id);
-      if($search <> null && $request->reset!="Reset"){
+        if($search <> null && $request->reset!="Reset"){
         $notes = $notes->where(function($q) use($search){
-          $q->Where('user_id_fk', 'LIKE', '%' . $search . '%')
-          ->orWhere('status', 'LIKE', '%' . $search . '%')
-          ->orWhere('payment_mode', 'LIKE', '%' . $search . '%')
-          ->orWhere('amount', 'LIKE', '%' . $search . '%')
-                    ->orWhere('created_at', 'LIKE', '%' . $search . '%');
+         $q->Where('user_id_fk', 'LIKE', '%' . $search . '%')
+        ->orWhere('status', 'LIKE', '%' . $search . '%')
+        ->orWhere('payment_mode', 'LIKE', '%' . $search . '%')
+        ->orWhere('amount', 'LIKE', '%' . $search . '%')
+          ->orWhere('created_at', 'LIKE', '%' . $search . '%');
 
         });
       }

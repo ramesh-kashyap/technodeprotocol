@@ -182,7 +182,7 @@ $(function() {
         <div class="card mb-4 wow fadeInUp" data-wow-duration=".7s" data-wow-delay=".1s">
           <div class="card-body pb-5">
 <div class="d-flex justify-content-center align-items-center" >
-  <h2>Investment</h2>
+  <h2>Deposit</h2>
 </div>
 
 			
@@ -207,7 +207,7 @@ $(function() {
                         <input type="text"  class="form-control wallet inter" id="wallet_btc" name="paymentMode" value="USDT (BEP20)"    placeholder="USDT(BEP20)">
 											</div>
 											<div class="form-group mt-4">
-                        <input type="text"  class="form-control wallet inter" id="wallet_btc" name="transaction_id" value=""    placeholder="Enter Transaction Password">
+                        <input type="text"  class="form-control wallet inter" id="wallet_btc" name="transaction_password" value=""    placeholder="Enter Transaction Password">
 											</div>
                       <div class="mt-4 d-grid">
                         <button type="submit" class="btn btn-primary go_pay_usd" data-curency="btc">Submit</button>

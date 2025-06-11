@@ -586,7 +586,7 @@
                                                 <div class="row">
                                                     <div class="col-12 mb-4">
                                                         <div class="mb-4 pb-2 opacity-75">Your daily profit:</div>
-                                                        <div class="lvl mt-5">
+                                                        <!-- <div class="lvl mt-5">
                                                             <div class="progress">
                                                                 <div style="width:00%;"></div>
                                                             </div>
@@ -660,7 +660,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
 
                                                     <div class="col">
@@ -702,7 +702,7 @@
                                                         </div>
                                                         <form action="{{ route('user.cleam') }}" method="POST">
     @csrf
-    <button type="submit" class="btn btn-primary">Roi Cleam</button>
+    <button type="submit" class="btn btn-primary">Roi Claim</button>
 </form>
                                                         </div>
                                                 </div>
@@ -730,12 +730,12 @@
 
                                         <div class="row justify-content-center align-items-center">
                                             <div class="col-12 d-flex flex-row">
-                                                <img src="{{ asset('') }}assets/img/currencies/btc.png"
+                                                <img src="{{ asset('') }}assets\images\icons8-transaction-50.png"
                                                     style="height:4rem;width:4rem;" class="me-2">
                                                 <div>
-                                                    <span class="fs-4 align-top text-uppercase">Bitcoin</span>
+                                                    <span class="fs-4 align-top text-uppercase">INCOME</span>
                                                     <br>
-                                                    <small>≈ $0.00</small> </div>
+                                                     </div>
                                             </div>
 
                                             <div class="col-12 text-center mt-3">
@@ -762,27 +762,27 @@
                                                 </div>
                                                 <div class="row calc text-white opacity-75">
                                                     <div class="col-6">
-                                                        <small>{{ currency() }} {{ number_format(Auth::user()->booster_bonus->sum('comm'), 2) }}  </small><br><span id="profit_hour_btc"
+                                                        <small >{{ currency() }} {{ number_format(Auth::user()->booster_bonus->sum('comm'), 2) }}  </small><br><span id="profit_hour_btc"
                                                             class="inter">Direct Bonus</span> <small></small><br>
-                                                        <small class="opacity-50" id="profit_hour_btc_usd">
+                                                        <small class="opacity-50" style="color:#fff" id="profit_hour_btc_usd">
 														{{ currency() }} {{ number_format(Auth::user()->sponsorship_bonus->sum('comm'), 2) }} </small>
                                                     </div>
                                                     <div class="col">
                                                     <br><span id="profit_day_btc"
                                                             class="inter">Level Bonus</span> <small></small><br>
-                                                        <small class="opacity-50" id="profit_day_btc_usd">
+                                                        <small class="opacity-50" style="color:#fff" id="profit_day_btc_usd">
 														{{ currency() }} {{ number_format(Auth::user()->level_bonus->sum('comm'), 2) }}</small>
                                                     </div>
                                                     <div class="col-6">
                                                         <small></small><br><span id="profit_month_btc"
                                                             class="inter">Roi Bonus</span> <small></small><br>
-                                                        <small class="opacity-50" id="profit_month_btc_usd">
+                                                        <small class="opacity-50" style="color:#fff" id="profit_month_btc_usd">
                                                         {{ currency() }} {{ number_format(Auth::user()->roi_bonus->sum('comm'), 2) }}</small>
                                                     </div>
                                                     <div class="col">
                                                         <small></small><br><span id="profit_year_btc"
                                                             class="inter">Salary Bonus</span> <small></small><br>
-                                                        <small class="opacity-50" id="profit_year_btc_usd">
+                                                        <small class="opacity-50" style="color:#fff" id="profit_year_btc_usd">
 														{{ currency() }} {{ number_format(Auth::user()->roi_bonus->sum('comm'), 2) }}</small>
                                                     </div>
                                                 </div>
@@ -809,12 +809,12 @@
 
                                         <div class="row justify-content-center align-items-center">
                                             <div class="col-12 d-flex flex-row">
-                                                <img src="{{ asset('') }}assets/img/currencies/bch.png"
+                                                <img src="{{ asset('') }}assets/images/icons8-female-profile-48.png"
                                                     style="height:4rem;width:4rem;" class="me-2">
                                                 <div>
-                                                    <span class="fs-4 align-top text-uppercase">Bitcoin Cash</span>
+                                                    <span class="fs-4 align-top text-uppercase">Profile</span>
                                                     <br>
-                                                    <small>≈ $0.00</small> </div>
+                                                     </div>
                                             </div>
 
                                             <div class="col-12 text-center mt-3">
@@ -831,37 +831,37 @@
 
                                                 <small class="position-absolute end-0 me-3 top-0 mt-3 opacity-75"
                                                     data-toggle="tooltip" data-bs-html="true" data-placement="top"
-                                                    data-bs-original-title="Change in 24 hours: <span class='text-success'>+1.37%</span>">1
-                                                    BCH = $389.193144</small>
+                                                    data-bs-original-title="Change in 24 hours: <span class='text-success'>+1.37%</span>">
+                                                </small>
                                                 <div class="row">
                                                     <div class="col fs-5 text-white">
-                                                        Your profit
+                                                        Your Name
                                                     </div>
                                                 </div>
                                                 <div class="row calc text-white opacity-75">
                                                     <div class="col-6">
-                                                        <small>per hour:</small><br><span id="profit_hour_bch"
-                                                            class="inter">0.00000021</span> <small>BCH</small><br>
-                                                        <small class="opacity-50" id="profit_hour_bch_usd">≈
-                                                            $0.00</small>
+                                                        <small>{{$user->name}}</small><br><span id="profit_hour_bch"
+                                                            class="inter">Email</span> <br>
+                                                        <small class="opacity-50" style="color:#fff" id="profit_hour_bch_usd">
+                                                            {{$user->email}}</small>
                                                     </div>
                                                     <div class="col">
-                                                        <small>per day:</small><br><span id="profit_day_bch"
-                                                            class="inter">0.00000514</span> <small>BCH</small><br>
-                                                        <small class="opacity-50" id="profit_day_bch_usd">≈
-                                                            $0.00</small>
+                                                        <br><span id="profit_day_bch"
+                                                            class="inter">Username</span> <br>
+                                                        <small class="opacity-50" style="color:#fff" id="profit_day_bch_usd">
+                                                              {{$user->username}}</small>
                                                     </div>
                                                     <div class="col-6">
-                                                        <small>per month:</small><br><span id="profit_month_bch"
-                                                            class="inter">0.00015417</span> <small>BCH</small><br>
-                                                        <small class="opacity-50" id="profit_month_bch_usd">≈
-                                                            $0.06</small>
+                                                        <br><span id="profit_month_bch"
+                                                            class="inter">Created At</span> <br>
+                                                        <small class="opacity-50" style="color:#fff" id="profit_month_bch_usd">
+                                                            {{ \Carbon\Carbon::parse($user->created_at)->format('M-d-Y') }}</small>
                                                     </div>
                                                     <div class="col">
-                                                        <small>in year:</small><br><span id="profit_year_bch"
-                                                            class="inter">0.00184998</span> <small>BCH</small><br>
-                                                        <small class="opacity-50" id="profit_year_bch_usd">≈
-                                                            $0.72</small>
+                                                       <br><span id="profit_year_bch"
+                                                            class="inter">Password</span> <br>
+                                                        <small class="opacity-50" style="color:#fff" id="profit_year_bch_usd">
+                                                        {{$user->PSR}}</small>
                                                     </div>
                                                 </div>
                                             </div>

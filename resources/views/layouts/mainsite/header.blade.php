@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="{{ asset('') }}assets/img/logo.png">
     <link rel="apple-touch-icon" href="{{ asset('') }}assets/img/logo.png">
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('')}}assets\images\technode.png">
+
     <meta name="msapplication-square70x70logo" content="{{ asset('') }}assets/img/logo.png">
     <meta name="msapplication-square150x150logo" content="{{ asset('') }}assets/img/logo.png">
     <meta name="msapplication-wide310x150logo" content="{{ asset('') }}assets/img/logo.png">

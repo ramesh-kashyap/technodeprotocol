@@ -249,6 +249,11 @@ table#example {
                         <span class="nav-text">User Activation </span>
                     </a>
                 </li>  
+                 <li><a href="{{route('admin.general_setting')}}" class="ai-icon" aria-expanded="false">
+                        <i class="flaticon-072-printer"></i>
+                        <span class="nav-text">General Setting </span>
+                    </a>
+                </li>  
                 <!--    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">-->
                 <!--        <i class="flaticon-043-menu"></i>-->
                 <!--        <span class="nav-text">Activities </span>-->
